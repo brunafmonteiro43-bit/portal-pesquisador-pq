@@ -18,20 +18,20 @@ const publicNav = [
 
 export function PublicHeader({ compact = false }: { compact?: boolean }) {
   const pathname = usePathname();
-  const titleSize = compact ? "text-base" : "text-base 2xl:text-xl";
+  const titleSize = compact ? "text-base" : "text-base xl:text-lg 2xl:text-xl";
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 shadow-[0_8px_24px_rgba(15,23,42,0.06)] backdrop-blur">
-      <div className="mx-auto grid max-w-[100rem] grid-cols-[minmax(18rem,auto)_minmax(0,1fr)_auto] items-center gap-3 px-4 py-2.5 lg:px-5 xl:gap-5">
-        <div className="flex min-w-0 items-center gap-2.5 2xl:gap-3">
-          <div className="flex shrink-0 items-center gap-2">
+      <div className="mx-auto grid max-w-[112rem] grid-cols-[minmax(18rem,auto)_minmax(0,1fr)_auto] items-center gap-4 px-5 py-3 xl:grid-cols-[minmax(20rem,auto)_minmax(0,1fr)_auto] xl:gap-5 2xl:grid-cols-[minmax(26rem,auto)_minmax(0,1fr)_auto] 2xl:gap-6 2xl:px-8">
+        <div className="flex min-w-0 items-center gap-3">
+          <div className="flex shrink-0 items-center gap-2.5">
             <Link href="https://www.unicamp.br/" aria-label="Acessar site da UNICAMP">
               <Image
                 src="/assets/logo-unicamp.png"
                 alt="UNICAMP"
                 width={56}
                 height={56}
-                className="h-8 w-auto object-contain xl:h-9 2xl:h-11"
+                className="h-8 w-auto object-contain xl:h-9 2xl:h-12"
               />
             </Link>
             <Link href="https://www.cocen.unicamp.br/" aria-label="Acessar site da COCEN">
@@ -58,7 +58,7 @@ export function PublicHeader({ compact = false }: { compact?: boolean }) {
           </Link>
         </div>
 
-        <nav className="flex min-w-0 flex-nowrap items-center justify-center gap-0.5 whitespace-nowrap text-[0.7rem] font-medium xl:gap-1 xl:text-[0.76rem] 2xl:gap-2 2xl:text-sm">
+        <nav className="flex min-w-0 flex-nowrap items-center justify-center gap-1 whitespace-nowrap text-[0.72rem] font-medium xl:gap-1 xl:text-[0.76rem] 2xl:gap-2 2xl:text-sm">
           {publicNav.map((item) => {
             const isActive = item.href === "/" && pathname === "/";
 
@@ -68,8 +68,8 @@ export function PublicHeader({ compact = false }: { compact?: boolean }) {
                 href={item.href}
                 className={
                   isActive
-                    ? "group relative shrink-0 rounded-lg bg-accent/10 px-1.5 py-2 text-accent transition-colors duration-200 hover:bg-accent/15 xl:px-2.5 2xl:px-3"
-                    : "group relative shrink-0 rounded-lg px-1.5 py-2 text-slate-700 transition-colors duration-200 hover:bg-slate-50 hover:text-accent xl:px-2.5 2xl:px-3"
+                    ? "group relative shrink-0 rounded-lg bg-accent/10 px-2 py-2 text-accent transition-colors duration-200 hover:bg-accent/15 xl:px-2.5 2xl:px-3"
+                    : "group relative shrink-0 rounded-lg px-2 py-2 text-slate-700 transition-colors duration-200 hover:bg-slate-50 hover:text-accent xl:px-2.5 2xl:px-3"
                 }
               >
                 {item.label}
@@ -86,7 +86,7 @@ export function PublicHeader({ compact = false }: { compact?: boolean }) {
         </nav>
 
         <div className="flex shrink-0 items-center gap-2">
-          <label className="hidden h-9 min-w-0 items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 text-sm text-muted-foreground shadow-sm transition-colors focus-within:border-accent lg:flex lg:w-24 xl:w-28 2xl:w-56">
+          <label className="hidden h-9 min-w-0 items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 text-sm text-muted-foreground shadow-sm transition-colors focus-within:border-accent lg:flex lg:w-24 xl:w-28 2xl:w-48">
             <Search className="h-4 w-4 shrink-0 text-accent" />
             <span className="sr-only">Pesquisar no Portal</span>
             <input
@@ -94,7 +94,7 @@ export function PublicHeader({ compact = false }: { compact?: boolean }) {
               placeholder="Pesquisar no portal..."
             />
           </label>
-          <Button asChild className="h-9 whitespace-nowrap px-3 text-sm 2xl:px-5">
+          <Button asChild className="h-9 whitespace-nowrap px-3.5 text-sm 2xl:px-5">
             <Link href="/login">
               <LockKeyhole className="mr-2 h-4 w-4" />
               Entrar no Portal
