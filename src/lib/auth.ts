@@ -33,7 +33,7 @@ function demoUser(email: string, password: string) {
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
-  adapter: PrismaAdapter(prisma) as unknown as Adapter,
+  adapter: process.env.DEMO_AUTH === "true" ? undefined : (PrismaAdapter(prisma) as unknown as Adapter),,
   providers: [
     Credentials({
       credentials: {
