@@ -9,7 +9,7 @@ import { prisma } from "@/lib/prisma";
 
 const credentialsSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(6)
+  password: z.string().min(6),
 });
 
 function demoUser(email: string, password: string) {
@@ -17,7 +17,10 @@ function demoUser(email: string, password: string) {
     return null;
   }
 
-  if (email !== "admin@cocen.unicamp.br" || password !== "portal-pq") {
+  if (
+    email !== "admin@cocen.unicamp.br" ||
+    password !== "portal-pq"
+  ) {
     return null;
   }
 
@@ -26,22 +29,35 @@ function demoUser(email: string, password: string) {
     name: "Administrador PQ",
     email,
     image: null,
-    role: "SUPER_ADMIN" as const,
-    centerId: "demo-cocen"
+    role: "SUPER_ADMIN",
+    centerId: "demo-cocen",
   };
 }
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
-  adapter: process.env.DEMO_AUTH === "true" ? undefined : (PrismaAdapter(prisma) as unknown as Adapter),
+
+  adapter:
+    process.env.DEMO_AUTH === "true"
+      ? undefined
+      : (PrismaAdapter(prisma) as unknown as Adapter),
+
   providers: [
     Credentials({
       credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Senha", type: "password" }
+        email: {
+          label: "Email",
+          type: "email",
+        },
+        password: {
+          label: "Senha",
+          type: "password",
+        },
       },
+
       async authorize(rawCredentials) {
-        const credentials = credentialsSchema.safeParse(rawCredentials);
+        const credentials =
+          credentialsSchema.safeParse(rawCredentials);
 
         if (!credentials.success) {
           return null;
@@ -49,14 +65,23 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
         try {
           const user = await prisma.user.findUnique({
-            where: { email: credentials.data.email }
+            where: {
+              email: credentials.data.email,
+            },
           });
 
           if (!user?.passwordHash) {
-            return demoUser(credentials.data.email, credentials.data.password);
+            return demoUser(
+              credentials.data.email,
+              credentials.data.password
+            );
           }
 
-          const passwordMatches = await bcrypt.compare(credentials.data.password, user.passwordHash);
+          const passwordMatches =
+            await bcrypt.compare(
+              credentials.data.password,
+              user.passwordHash
+            );
 
           if (!passwordMatches) {
             return null;
@@ -68,12 +93,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             email: user.email,
             image: user.image,
             role: user.role,
-            centerId: user.centerId
+            centerId: user.centerId,
           };
         } catch {
-          return demoUser(credentials.data.email, credentials.data.password);
+          return demoUser(
+            credentials.data.email,
+            credentials.data.password
+          );
         }
-      }
-    })
-  ]
+      },
+    }),
+  ],
 });
