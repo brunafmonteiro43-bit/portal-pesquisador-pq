@@ -12,6 +12,7 @@ export function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const requestedCallbackUrl = searchParams.get("callbackUrl");
+  const loginMessage = searchParams.get("message");
   const callbackUrl =
     requestedCallbackUrl && requestedCallbackUrl.startsWith("/") && !requestedCallbackUrl.startsWith("//")
       ? requestedCallbackUrl
@@ -53,6 +54,13 @@ export function LoginForm() {
         <p className="text-sm text-muted-foreground">COCEN/UNICAMP</p>
       </CardHeader>
       <CardContent>
+        {loginMessage === "atena-chat" || loginMessage === "atena-use" || loginMessage === "atena" ? (
+          <div className="mb-4 rounded-md border border-accent/20 bg-accent/5 px-4 py-3 text-sm font-medium text-accent">
+            {loginMessage === "atena-use"
+              ? "A Atena é uma ferramenta exclusiva para usuários autenticados."
+              : "Faça login para conversar com a Atena."}
+          </div>
+        ) : null}
         <form className="space-y-4" onSubmit={onSubmit}>
           <label className="block space-y-2 text-sm font-medium">
             <span>Email</span>

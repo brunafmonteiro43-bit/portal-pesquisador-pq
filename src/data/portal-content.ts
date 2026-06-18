@@ -136,10 +136,10 @@ export const moduleCards = [
   },
   {
     key: "chat",
-    title: "Assistente do Pesquisador",
+    title: "Atena",
     href: "/chat",
     count: "Respostas com base documental",
-    description: "Tire dúvidas com o assistente de IA especializado em COCEN."
+    description: "Inteligência para pesquisa, fomento, inovação e documentação acadêmica."
   }
 ];
 
@@ -323,6 +323,45 @@ export const glossaryTerms: GlossaryTerm[] = [
       "Após aprovação FAPESP, o pesquisador usa o termo de outorga para orientar execução e regras do projeto.",
     recommendedDocuments: ["Termo de outorga", "Plano de aplicação", "Manual do financiador"],
     synonyms: ["concessão", "outorga", "instrumento de fomento"]
+  },
+  {
+    term: "Plano de Trabalho",
+    slug: "plano-de-trabalho",
+    category: "Projetos",
+    area: "Submissão e execução",
+    simpleExplanation: "É o documento que organiza objetivos, equipe, cronograma, orçamento e entregas de um projeto.",
+    technicalExplanation:
+      "Instrumento técnico-administrativo que descreve escopo, metas, etapas, indicadores, orçamento, responsabilidades e resultados esperados.",
+    cocenExample:
+      "Antes de formalizar uma parceria ou abrir projeto Funcamp, a equipe usa o plano de trabalho para alinhar escopo, prazos e recursos.",
+    recommendedDocuments: ["Modelo de plano de trabalho", "Cronograma físico-financeiro", "Declaração de anuência"],
+    synonyms: ["escopo", "cronograma", "metas", "proposta técnica"]
+  },
+  {
+    term: "Contrapartida",
+    slug: "contrapartida",
+    category: "Orçamento",
+    area: "Fomento e parcerias",
+    simpleExplanation: "É o apoio financeiro, material ou institucional oferecido pela universidade ou parceiro ao projeto.",
+    technicalExplanation:
+      "Composição de recursos econômicos ou não econômicos exigidos em edital, convênio ou parceria para viabilizar a execução do objeto.",
+    cocenExample:
+      "Um edital pode exigir contrapartida de infraestrutura, horas técnicas ou equipamentos já disponíveis no Centro ou Núcleo.",
+    recommendedDocuments: ["Declaração de contrapartida", "Plano de trabalho", "Memória de cálculo"],
+    synonyms: ["aporte institucional", "apoio não financeiro", "infraestrutura"]
+  },
+  {
+    term: "Diárias e Passagens",
+    slug: "diarias-e-passagens",
+    category: "Despesas",
+    area: "Viagens e eventos",
+    simpleExplanation: "São recursos usados para deslocamento, hospedagem e alimentação em atividades ligadas ao projeto.",
+    technicalExplanation:
+      "Despesas vinculadas a missão, coleta de campo, evento, reunião técnica ou atividade prevista no plano aprovado e nas normas do financiador.",
+    cocenExample:
+      "Para apresentar resultado em congresso, o pesquisador confere se o edital permite passagens e diárias na rubrica correta.",
+    recommendedDocuments: ["Solicitação de recursos para viagem", "Comprovante de evento", "Relatório de participação"],
+    synonyms: ["viagem", "missão", "evento", "deslocamento"]
   }
 ];
 
@@ -386,6 +425,42 @@ export const templates: DocumentModel[] = [
     description: "Planilha e checklist para diárias, passagens, inscrição em eventos e justificativa acadêmica.",
     tags: ["viagem", "diárias", "passagens"],
     downloads: 42
+  },
+  {
+    title: "Modelo de Orçamento por Rubrica",
+    slug: "modelo-orcamento-rubrica",
+    category: "Financeiro",
+    version: "v1.3",
+    updatedAt: "10/06/2026",
+    fileType: "XLSX",
+    status: "Publicado",
+    description: "Planilha para organizar despesas por rubrica, justificativa técnica e fonte de recurso.",
+    tags: ["rubrica", "orçamento", "fomento"],
+    downloads: 117
+  },
+  {
+    title: "Checklist de Submissão FAPESP",
+    slug: "checklist-submissao-fapesp",
+    category: "Fomento",
+    version: "v2.0",
+    updatedAt: "07/06/2026",
+    fileType: "PDF",
+    status: "Publicado",
+    description: "Roteiro para conferir documentos, orçamento, equipe, anuências e campos obrigatórios antes do envio.",
+    tags: ["FAPESP", "submissão", "edital"],
+    downloads: 154
+  },
+  {
+    title: "Minuta de Acordo de Cooperação",
+    slug: "minuta-acordo-cooperacao",
+    category: "Parcerias",
+    version: "v1.1",
+    updatedAt: "31/05/2026",
+    fileType: "DOCX",
+    status: "Publicado",
+    description: "Modelo de referência para iniciar formalização de cooperação técnica e científica.",
+    tags: ["convênio", "parceria", "jurídico"],
+    downloads: 63
   }
 ];
 
@@ -469,6 +544,45 @@ export const fundingCalls: FundingCall[] = [
     link: "/oportunidades",
     summary: "Apoio a redes, missões e projetos colaborativos com instituições estrangeiras.",
     categories: ["Internacionalização", "Mobilidade", "Redes"]
+  },
+  {
+    title: "FAPESP - Equipamentos Multiusuários",
+    slug: "fapesp-equipamentos-multiusuarios",
+    agency: "FAPESP",
+    area: "Infraestrutura de pesquisa",
+    status: "Aberto",
+    deadline: "18/08/2026",
+    value: "Conforme porte do equipamento",
+    audience: "Centros, Núcleos e unidades com uso compartilhado",
+    link: "/fomento",
+    summary: "Chamada demonstrativa para aquisição e compartilhamento de equipamentos estratégicos de pesquisa.",
+    categories: ["Equipamentos", "Infraestrutura", "Uso compartilhado"]
+  },
+  {
+    title: "CAPES - Programa de Internacionalização",
+    slug: "capes-programa-internacionalizacao",
+    agency: "CAPES",
+    area: "Internacionalização",
+    status: "Próximo",
+    deadline: "Outubro/2026",
+    value: "Bolsas, missões e custeio",
+    audience: "Grupos com cooperação internacional ativa",
+    link: "/fomento",
+    summary: "Apoio a mobilidade, redes internacionais e fortalecimento de projetos conjuntos.",
+    categories: ["Bolsas", "Mobilidade", "Cooperação"]
+  },
+  {
+    title: "CNPq - Bolsas de Produtividade",
+    slug: "cnpq-bolsas-produtividade",
+    agency: "CNPq",
+    area: "Todas as áreas",
+    status: "Monitorado",
+    deadline: "Calendário anual",
+    value: "Conforme modalidade",
+    audience: "Pesquisadores com produção científica consolidada",
+    link: "/fomento",
+    summary: "Acompanhamento demonstrativo de chamada para produtividade em pesquisa e desenvolvimento tecnológico.",
+    categories: ["Bolsas", "Produtividade", "Currículo"]
   }
 ];
 
@@ -637,6 +751,72 @@ export const supportTrails: SupportTrail[] = [
         nextStep: "Executar e acompanhar"
       }
     ]
+  },
+  {
+    title: "Solicitar Recursos para Viagem",
+    slug: "solicitar-recursos-viagem",
+    category: "Viagens",
+    summary: "Fluxo para planejar solicitação de passagens, diárias, inscrição em eventos e prestação posterior.",
+    flow: ["Evento", "Justificativa", "Orçamento", "Autorização", "Execução", "Comprovação"],
+    steps: [
+      {
+        title: "Registrar a finalidade",
+        whatToDo: "Descrever vínculo da viagem com projeto, edital, coleta de campo, missão técnica ou apresentação de resultado.",
+        responsible: "Pesquisador(a)",
+        documents: ["Comprovante do evento", "Carta de aceite", "Justificativa técnica"],
+        estimatedTime: "1 dia útil",
+        nextStep: "Montar previsão de custos"
+      },
+      {
+        title: "Montar previsão de custos",
+        whatToDo: "Organizar passagens, diárias, inscrição e rubrica aplicável conforme regras do financiador.",
+        responsible: "Pesquisador(a) e secretaria",
+        documents: ["Planilha de viagem", "Orçamento estimado", "Plano aprovado"],
+        estimatedTime: "2 dias úteis",
+        nextStep: "Solicitar autorização"
+      },
+      {
+        title: "Comprovar participação",
+        whatToDo: "Reunir comprovantes de deslocamento, certificado, relatório e recibos quando aplicável.",
+        responsible: "Pesquisador(a)",
+        documents: ["Certificado", "Relatório de viagem", "Comprovantes"],
+        estimatedTime: "Até 5 dias após retorno",
+        nextStep: "Arquivar no processo do projeto"
+      }
+    ]
+  },
+  {
+    title: "Solicitar Anuência Institucional",
+    slug: "solicitar-anuencia-institucional",
+    category: "Institucional",
+    summary: "Fluxo para obter ciência e anuência do Centro ou Núcleo antes da submissão de proposta.",
+    flow: ["Proposta", "Documentos", "Direção", "Ajustes", "Anuência", "Submissão"],
+    steps: [
+      {
+        title: "Preparar informações da proposta",
+        whatToDo: "Separar resumo, edital, equipe, orçamento, infraestrutura necessária e prazo de submissão.",
+        responsible: "Pesquisador(a)",
+        documents: ["Resumo da proposta", "Edital", "Orçamento preliminar"],
+        estimatedTime: "1 dia útil",
+        nextStep: "Encaminhar para direção"
+      },
+      {
+        title: "Avaliar impactos institucionais",
+        whatToDo: "Verificar uso de infraestrutura, contrapartidas, responsabilidades e aderência ao escopo do Centro ou Núcleo.",
+        responsible: "Direção do Centro/Núcleo",
+        documents: ["Plano de trabalho", "Declaração de infraestrutura", "Minuta de anuência"],
+        estimatedTime: "3 dias úteis",
+        nextStep: "Emitir anuência"
+      },
+      {
+        title: "Arquivar anuência",
+        whatToDo: "Salvar versão assinada e anexar ao processo de submissão ou sistema da agência.",
+        responsible: "Secretaria",
+        documents: ["Anuência assinada", "Comprovante de submissão"],
+        estimatedTime: "Mesmo dia",
+        nextStep: "Submeter proposta"
+      }
+    ]
   }
 ];
 
@@ -699,6 +879,30 @@ export const patentGuides: PatentGuide[] = [
       "A estratégia depende de maturidade tecnológica e interesse de mercado.",
       "A negociação deve respeitar regras institucionais e contratos existentes.",
       "Royalties seguem políticas de repartição aplicáveis à universidade."
+    ]
+  },
+  {
+    title: "Busca de anterioridade",
+    slug: "busca-de-anterioridade",
+    area: "Avaliação",
+    status: "Publicado",
+    summary: "Etapa de verificação para comparar a invenção com documentos, artigos, patentes e tecnologias já divulgadas.",
+    details: [
+      "Ajuda a avaliar novidade e atividade inventiva.",
+      "Pode indicar ajustes na redação técnica antes do depósito.",
+      "Deve ser feita antes de decisões sobre publicação, depósito ou parceria."
+    ]
+  },
+  {
+    title: "Acordo de confidencialidade",
+    slug: "acordo-confidencialidade",
+    area: "Sigilo",
+    status: "Publicado",
+    summary: "Instrumento usado quando informações técnicas precisam ser compartilhadas com parceiros antes da proteção.",
+    details: [
+      "Evita divulgação indevida de resultados com potencial de patente.",
+      "Deve ser avaliado antes de reuniões técnicas com empresas ou parceiros externos.",
+      "Não substitui a comunicação de invenção à Inova Unicamp."
     ]
   }
 ];

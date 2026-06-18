@@ -99,7 +99,7 @@ export function AppShell({ children, role }: { children: React.ReactNode; role: 
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "border-b-2 border-transparent px-3 py-3 text-sm font-semibold text-muted-foreground transition-colors hover:border-accent hover:text-foreground",
+                    "border-b-2 border-transparent px-3 py-3 text-sm font-medium text-muted-foreground transition-colors hover:border-accent hover:text-foreground",
                     active && "border-accent text-foreground"
                   )}
                 >
@@ -142,7 +142,7 @@ export function AppShell({ children, role }: { children: React.ReactNode; role: 
                 href={item.href}
                 onClick={() => setOpen(false)}
                 className={cn(
-                  "flex min-h-11 items-center gap-3 rounded-md px-3 text-sm font-semibold text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
+                  "flex min-h-11 items-center gap-3 rounded-md px-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
                   active && "bg-accent text-white hover:bg-accent hover:text-white"
                 )}
               >

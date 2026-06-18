@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { answerFundingSearch, isFundingSearchQuestion } from "@/lib/funding-assistant";
 import { z } from "zod";
 import { answerWithRag } from "@/lib/rag";
 
@@ -13,6 +14,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Mensagem invalida." }, { status: 400 });
   }
 
-  const answer = await answerWithRag(payload.data.message);
+  const answer = isFundingSearchQuestion(payload.data.message)
+    ? answerFundingSearch(payload.data.message)
+    : await answerWithRag(payload.data.message);
+
   return NextResponse.json(answer);
 }

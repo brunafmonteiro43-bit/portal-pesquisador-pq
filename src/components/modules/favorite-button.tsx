@@ -30,7 +30,17 @@ export function getStoredFavorites() {
   return readFavorites();
 }
 
-export function FavoriteButton({ item, className }: { item: FavoriteItem; className?: string }) {
+export function FavoriteButton({
+  item,
+  className,
+  inactiveLabel = "Favoritar",
+  activeLabel = "Favorito"
+}: {
+  item: FavoriteItem;
+  className?: string;
+  inactiveLabel?: string;
+  activeLabel?: string;
+}) {
   const [active, setActive] = useState(false);
 
   useEffect(() => {
@@ -50,7 +60,7 @@ export function FavoriteButton({ item, className }: { item: FavoriteItem; classN
   return (
     <Button type="button" variant="outline" className={cn("gap-2", className)} onClick={toggleFavorite}>
       <Star className={cn("h-4 w-4", active && "fill-accent text-accent")} />
-      {active ? "Favorito" : "Favoritar"}
+      {active ? activeLabel : inactiveLabel}
     </Button>
   );
 }

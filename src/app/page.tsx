@@ -4,6 +4,7 @@ import {
   CalendarDays,
   CheckCircle2,
   FileText,
+  Landmark,
   Lightbulb,
   Map,
   MessageSquare,
@@ -14,8 +15,46 @@ import Image from "next/image";
 import Link from "next/link";
 import { InstitutionalFooter } from "@/components/layout/institutional-footer";
 import { PublicHeader } from "@/components/layout/public-header";
+import { AtenaAvatar } from "@/components/modules/atena-avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+
+const institutionalIndicators = [
+  { value: "+500", label: "modelos e documentos" },
+  { value: "+120", label: "editais monitorados" },
+  { value: "+50", label: "fluxos administrativos" },
+  { value: "+100", label: "termos do glossário" }
+];
+
+const quickSuggestions = ["FAPESP", "CAPES", "Patentes", "Convênios", "Prestação de contas"];
+
+const helpCards = [
+  {
+    title: "Pesquisa",
+    description: "Encontre caminhos para submeter, acompanhar e organizar projetos.",
+    icon: BookOpen
+  },
+  {
+    title: "Fomento",
+    description: "Acompanhe chamadas, agências, prazos e oportunidades abertas.",
+    icon: Landmark
+  },
+  {
+    title: "Documentação",
+    description: "Acesse modelos, formulários, checklists e documentos institucionais.",
+    icon: FileText
+  },
+  {
+    title: "Patentes",
+    description: "Entenda sigilo, comunicação de invenção, Inova Unicamp e INPI.",
+    icon: Lightbulb
+  },
+  {
+    title: "Atena",
+    description: "Inteligência para pesquisa, fomento e inovação.",
+    icon: Sparkles
+  }
+];
 
 const quickAccess = [
   {
@@ -44,8 +83,8 @@ const quickAccess = [
     icon: Lightbulb
   },
   {
-    title: "Assistente do Pesquisador",
-    description: "Dúvidas respondidas com apoio institucional.",
+    title: "Atena",
+    description: "Assistente institucional especializado.",
     icon: MessageSquare
   }
 ];
@@ -72,7 +111,14 @@ const heroIndicators = [
   "23 Centros e Núcleos",
   "+500 documentos e modelos",
   "Editais atualizados",
-  "Assistente com IA especializada"
+  "Atena especializada"
+];
+
+const assistantQuestions = [
+  "O que é uma rubrica e como ela impacta meu orçamento?",
+  "Quais documentos preciso para abrir um projeto Funcamp?",
+  "Como registrar uma patente antes de publicar um artigo?",
+  "Como preparar uma submissão para edital FAPESP?"
 ];
 
 export default function PublicHomePage() {
@@ -102,7 +148,7 @@ export default function PublicHomePage() {
 
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                 <Button asChild size="lg" className="h-14 px-8 text-base shadow-lg shadow-accent/20">
-                  <Link href="/login?callbackUrl=%2Fchat">Conversar com o Assistente do Pesquisador</Link>
+                  <Link href="/chat?intent=chat-atena">Conversar com a Atena</Link>
                 </Button>
                 <Button
                   asChild
@@ -114,14 +160,27 @@ export default function PublicHomePage() {
                 </Button>
               </div>
 
-              <div className="mt-8 flex max-w-3xl flex-col gap-3 rounded-2xl border bg-white p-3 shadow-[0_20px_60px_rgba(0,0,0,0.10)] sm:flex-row sm:items-center">
-                <div className="flex min-h-16 flex-1 items-center gap-3 px-4 text-muted-foreground">
-                  <Search className="h-5 w-5 text-accent" />
-                  <span>Pesquise editais, modelos, rubricas, convênios, patentes ou fluxos administrativos...</span>
+              <div className="mt-8 max-w-3xl rounded-2xl border bg-white p-3 shadow-[0_20px_60px_rgba(0,0,0,0.10)]">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <div className="flex min-h-16 flex-1 items-center gap-3 px-4 text-muted-foreground">
+                    <Search className="h-5 w-5 text-accent" />
+                    <span>Pesquise editais, modelos, rubricas, convênios, patentes ou fluxos administrativos...</span>
+                  </div>
+                  <Button asChild className="h-12 px-7">
+                    <Link href="/login">Pesquisar</Link>
+                  </Button>
                 </div>
-                <Button asChild className="h-12 px-7">
-                  <Link href="/login">Pesquisar</Link>
-                </Button>
+                <div className="mt-3 flex flex-wrap gap-2 border-t pt-3">
+                  {quickSuggestions.map((suggestion) => (
+                    <Link
+                      key={suggestion}
+                      href="/login"
+                      className="rounded-full bg-muted px-3 py-1.5 text-xs font-bold text-muted-foreground transition hover:bg-accent/10 hover:text-accent"
+                    >
+                      {suggestion}
+                    </Link>
+                  ))}
+                </div>
               </div>
 
               <div className="mt-8 grid max-w-3xl gap-3 sm:grid-cols-2">
@@ -166,6 +225,45 @@ export default function PublicHomePage() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="border-y bg-muted/20 py-14">
+          <div className="mx-auto grid max-w-7xl gap-4 px-4 sm:grid-cols-2 lg:grid-cols-4">
+            {institutionalIndicators.map((indicator) => (
+              <div key={indicator.label} className="rounded-2xl border bg-white p-6 text-center shadow-sm">
+                <p className="text-4xl font-black text-accent">{indicator.value}</p>
+                <p className="mt-2 text-sm font-bold text-muted-foreground">{indicator.label}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-4 py-20">
+          <div className="text-center">
+            <h2 className="text-4xl font-black tracking-normal">Como podemos ajudar?</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+              Escolha o tipo de apoio que você precisa e siga para o conteúdo certo.
+            </p>
+          </div>
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
+            {helpCards.map((card) => {
+              const Icon = card.icon;
+
+              return (
+                <Link
+                  key={card.title}
+                  href="/login"
+                  className="group rounded-2xl border bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-accent/60 hover:shadow-lg"
+                >
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-muted text-accent transition group-hover:bg-accent group-hover:text-white">
+                    <Icon className="h-6 w-6" />
+                  </span>
+                  <h3 className="mt-6 text-xl font-black">{card.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">{card.description}</p>
+                </Link>
+              );
+            })}
           </div>
         </section>
 
@@ -239,33 +337,56 @@ export default function PublicHomePage() {
         </section>
 
         <section id="assistente" className="bg-muted/20 py-24">
-          <div className="mx-auto max-w-5xl px-4 text-center">
-            <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-accent/10 text-accent">
-              <MessageSquare className="h-8 w-8" />
-            </span>
-            <h2 className="mt-8 text-4xl font-black tracking-normal">Pergunte ao Assistente do Pesquisador</h2>
-            <p className="mx-auto mt-4 max-w-3xl text-lg leading-8 text-muted-foreground">
-              Tire dúvidas sobre editais, Funcamp, patentes, prestação de contas e processos administrativos.
-            </p>
-            <div className="mx-auto mt-10 grid max-w-4xl gap-4 md:grid-cols-2">
-              {[
-                "O que é uma rubrica?",
-                "Como abrir um projeto Funcamp?",
-                "Como registrar uma patente?",
-                "Como submeter um projeto FAPESP?"
-              ].map((question) => (
-                <div
-                  key={question}
-                  className="flex items-center gap-4 rounded-lg border bg-white p-5 text-left font-semibold shadow-sm"
-                >
-                  <MessageSquare className="h-4 w-4 text-muted-foreground" />
-                  {question}
+          <div className="mx-auto max-w-7xl px-4">
+            <div className="grid gap-10 rounded-3xl border bg-white p-8 shadow-sm lg:grid-cols-[0.9fr_1.1fr] lg:p-12">
+              <div>
+                <div className="flex items-center gap-4">
+                  <AtenaAvatar className="h-20 w-20" />
+                  <div>
+                    <p className="text-sm font-black uppercase tracking-wide text-accent">Atena</p>
+                    <p className="text-sm font-semibold text-muted-foreground">
+                      Inteligência para Pesquisa, Fomento e Inovação
+                    </p>
+                  </div>
                 </div>
-              ))}
+                <h2 className="mt-8 text-4xl font-black tracking-normal">Pergunte à Atena</h2>
+                <p className="mt-4 max-w-2xl text-lg leading-8 text-muted-foreground">
+                  Conecte editais, oportunidades de fomento, patentes, modelos, fluxos administrativos, convênios,
+                  prestação de contas, normas institucionais e trilhas de apoio em respostas claras.
+                </p>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <Button asChild size="lg">
+                    <Link href="/chat?intent=chat-atena">Perguntar à Atena</Link>
+                  </Button>
+                  <Button asChild variant="outline" size="lg">
+                    <Link href="/login">Ver documentos relacionados</Link>
+                  </Button>
+                </div>
+              </div>
+
+              <div>
+                <p className="text-sm font-bold uppercase tracking-wide text-accent">Exemplos de perguntas</p>
+                <div className="mt-5 grid gap-4">
+                  {assistantQuestions.map((question) => (
+                    <Link
+                      key={question}
+                      href="/chat?intent=chat-atena"
+                      className="flex items-center gap-4 rounded-2xl border bg-muted/20 p-5 text-left font-semibold shadow-sm transition hover:border-accent/60 hover:bg-accent/5"
+                    >
+                      <AtenaAvatar className="h-8 w-8 shrink-0 shadow-none" />
+                      {question}
+                    </Link>
+                  ))}
+                </div>
+                <div className="mt-6 rounded-2xl border border-accent/30 bg-accent/5 p-5">
+                  <p className="font-black text-accent">Valor para o pesquisador</p>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                    A Atena ajuda a localizar orientações, reduzir retrabalho e transformar termos administrativos em
+                    ações práticas para submissões, convênios, fomento e inovação.
+                  </p>
+                </div>
+              </div>
             </div>
-            <Button asChild size="lg" className="mt-10">
-              <Link href="/login">Iniciar conversa</Link>
-            </Button>
           </div>
         </section>
       </main>

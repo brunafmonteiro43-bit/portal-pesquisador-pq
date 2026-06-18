@@ -13,6 +13,7 @@ import {
   Workflow
 } from "lucide-react";
 import Link from "next/link";
+import { AtenaAvatar } from "@/components/modules/atena-avatar";
 import { GlobalSearch } from "@/components/modules/global-search";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -56,7 +57,7 @@ const recentActivities = [
   { title: "Rubrica consultada", detail: "Material permanente em projeto FAPESP", time: "há 12 min" },
   { title: "Modelo baixado", detail: "Plano de Trabalho v2.1", time: "há 38 min" },
   { title: "Edital visualizado", detail: "FINEP - Subvenção Econômica", time: "há 1 h" },
-  { title: "Conversa iniciada com IA", detail: "Dúvidas sobre abertura Funcamp", time: "ontem" }
+  { title: "Conversa iniciada com a Atena", detail: "Dúvidas sobre abertura Funcamp", time: "ontem" }
 ];
 
 const assistantTopics = ["Rubricas", "FAPESP", "Funcamp", "Prestação de contas", "Patentes", "Convênios", "Documentação"];
@@ -80,7 +81,7 @@ export default function DashboardPage() {
           </div>
           <Button asChild className="h-12 px-6">
             <Link href="/chat">
-              Iniciar Conversa <ArrowRight className="ml-2 h-4 w-4" />
+              Perguntar à Atena <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
         </div>
@@ -110,9 +111,13 @@ export default function DashboardPage() {
                 className="group rounded-2xl border bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-md dark:bg-card"
               >
                 <div className="flex items-start justify-between gap-4">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-muted text-accent">
-                    <Icon className="h-6 w-6" />
-                  </span>
+                  {module.key === "chat" ? (
+                    <AtenaAvatar className="h-12 w-12 shadow-none" />
+                  ) : (
+                    <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-muted text-accent">
+                      <Icon className="h-6 w-6" />
+                    </span>
+                  )}
                   <ArrowRight className="h-5 w-5 text-muted-foreground transition group-hover:translate-x-1 group-hover:text-accent" />
                 </div>
                 <h3 className="mt-5 text-xl font-black">{module.title}</h3>
@@ -160,13 +165,11 @@ export default function DashboardPage() {
           <CardContent className="p-6">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="text-sm font-bold uppercase tracking-wide text-white/75">Assistente IA</p>
-                <h2 className="mt-2 text-3xl font-black">Assistente do Pesquisador</h2>
-                <p className="mt-3 leading-7 text-white/85">Faça perguntas sobre processos, documentos e normas da rotina COCEN.</p>
+                <p className="text-sm font-bold uppercase tracking-wide text-white/75">Atena</p>
+                <h2 className="mt-2 text-3xl font-black">Assistente de Pesquisa e Inovação</h2>
+                <p className="mt-3 leading-7 text-white/85">Faça perguntas sobre editais, fomento, patentes, documentos e normas da rotina COCEN.</p>
               </div>
-              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15">
-                <Bot className="h-7 w-7" />
-              </span>
+              <AtenaAvatar className="h-14 w-14 shrink-0" />
             </div>
             <div className="mt-6 flex flex-wrap gap-2">
               {assistantTopics.map((topic) => (
@@ -177,7 +180,7 @@ export default function DashboardPage() {
             </div>
             <Button asChild variant="secondary" className="mt-7">
               <Link href="/chat">
-                Iniciar Conversa <ArrowRight className="ml-2 h-4 w-4" />
+                Perguntar à Atena <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </CardContent>

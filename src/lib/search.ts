@@ -145,11 +145,11 @@ export function searchPortalContent(query: string, module?: string): PortalSearc
   if (!module || module === "assistente") {
     results.push({
       title: normalizedQuery.includes("patente")
-        ? "Perguntar sobre patente ao Assistente do Pesquisador"
+        ? "Perguntar sobre patente à Atena"
         : normalizedQuery.includes("rubrica")
-          ? "Perguntar sobre rubrica ao Assistente do Pesquisador"
-          : "Perguntar ao Assistente do Pesquisador COCEN",
-      module: "Assistente IA",
+          ? "Perguntar sobre rubrica à Atena"
+          : "Perguntar à Atena",
+      module: "Atena",
       href: "/chat",
       excerpt:
         "Receba resposta simples, passo a passo, documentos relacionados e fonte consultada com base nos conteúdos do portal."

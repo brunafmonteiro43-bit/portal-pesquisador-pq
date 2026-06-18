@@ -1,6 +1,9 @@
+"use client";
+
 import { LockKeyhole, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 const publicNav = [
@@ -10,86 +13,93 @@ const publicNav = [
   { label: "Fomento e Editais", href: "/#destaques" },
   { label: "Trilhas de Apoio", href: "/#acesso-rapido" },
   { label: "Patentes", href: "/#acesso-rapido" },
-  { label: "Assistente IA", href: "/#assistente" }
+  { label: "Atena", href: "/chat?intent=use-atena" }
 ];
 
 export function PublicHeader({ compact = false }: { compact?: boolean }) {
+  const pathname = usePathname();
+  const titleSize = compact ? "text-base" : "text-base 2xl:text-xl";
+
   return (
-    <header className="sticky top-0 z-50 border-b bg-white/95 shadow-sm backdrop-blur">
-      <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-3 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex min-w-0 items-center gap-4">
-          <div className="flex shrink-0 items-center gap-3">
+    <header className="sticky top-0 z-50 bg-white/95 shadow-[0_8px_24px_rgba(15,23,42,0.06)] backdrop-blur">
+      <div className="mx-auto grid max-w-[100rem] grid-cols-[minmax(18rem,auto)_minmax(0,1fr)_auto] items-center gap-3 px-4 py-2.5 lg:px-5 xl:gap-5">
+        <div className="flex min-w-0 items-center gap-2.5 2xl:gap-3">
+          <div className="flex shrink-0 items-center gap-2">
             <Link href="https://www.unicamp.br/" aria-label="Acessar site da UNICAMP">
               <Image
                 src="/assets/logo-unicamp.png"
                 alt="UNICAMP"
-                width={68}
-                height={68}
-                className="h-11 w-auto object-contain"
+                width={56}
+                height={56}
+                className="h-8 w-auto object-contain xl:h-9 2xl:h-11"
               />
             </Link>
             <Link href="https://www.cocen.unicamp.br/" aria-label="Acessar site da COCEN">
               <Image
                 src="/assets/logo-cocen.jpg"
                 alt="COCEN"
-                width={190}
-                height={58}
-                className="hidden h-11 w-auto object-contain md:block"
+                width={150}
+                height={46}
+                className="hidden h-7 w-auto object-contain xl:block 2xl:h-10"
               />
             </Link>
           </div>
 
-          <span className="hidden h-12 w-px bg-border lg:block" />
-
           <Link href="/" className="min-w-0">
-            <span className="block whitespace-nowrap text-[1.7rem] font-black leading-tight tracking-normal text-foreground md:text-3xl">
+            <span className={`block whitespace-nowrap font-black leading-tight tracking-normal text-foreground ${titleSize}`}>
               Portal do Pesquisador
             </span>
-            <span className="block text-sm font-semibold text-foreground">Pesquisa • Inovação • Fomento</span>
-            <span className="block text-xs font-bold uppercase text-accent">COCEN | UNICAMP</span>
-            {!compact ? (
-              <span className="mt-1 inline-flex items-center gap-2 rounded-full border bg-accent/5 px-2.5 py-1 text-xs font-bold text-accent">
-                <span className="h-2 w-2 rounded-full bg-accent" />
-                Portal Oficial COCEN
-              </span>
-            ) : null}
+            <span className="block whitespace-nowrap text-[0.64rem] font-semibold leading-tight text-slate-700 2xl:text-[0.68rem]">
+              Pesquisa • Inovação • Fomento
+            </span>
+            <span className="block whitespace-nowrap text-[0.58rem] font-bold uppercase tracking-wide text-slate-500 2xl:text-[0.6rem]">
+              COCEN / UNICAMP
+            </span>
           </Link>
         </div>
 
-        <div className="flex flex-col gap-3 lg:items-end">
-          <nav className="flex max-w-4xl flex-wrap items-center gap-x-2 gap-y-1 text-sm font-semibold">
-            {publicNav.map((item, index) => (
+        <nav className="flex min-w-0 flex-nowrap items-center justify-center gap-0.5 whitespace-nowrap text-[0.7rem] font-medium xl:gap-1 xl:text-[0.76rem] 2xl:gap-2 2xl:text-sm">
+          {publicNav.map((item) => {
+            const isActive = item.href === "/" && pathname === "/";
+
+            return (
               <Link
                 key={item.href}
                 href={item.href}
                 className={
-                  index === 0
-                    ? "group relative rounded-md bg-accent/10 px-3.5 py-2 text-accent transition-colors duration-200 hover:bg-accent/15"
-                    : "group relative rounded-md px-3.5 py-2 text-foreground transition-colors duration-200 hover:bg-muted/70 hover:text-accent"
+                  isActive
+                    ? "group relative shrink-0 rounded-lg bg-accent/10 px-1.5 py-2 text-accent transition-colors duration-200 hover:bg-accent/15 xl:px-2.5 2xl:px-3"
+                    : "group relative shrink-0 rounded-lg px-1.5 py-2 text-slate-700 transition-colors duration-200 hover:bg-slate-50 hover:text-accent xl:px-2.5 2xl:px-3"
                 }
               >
                 {item.label}
-                <span className="absolute inset-x-3 bottom-1 h-0.5 origin-left scale-x-0 rounded-full bg-accent transition-transform duration-200 ease-out group-hover:scale-x-100" />
+                <span
+                  className={
+                    isActive
+                      ? "absolute inset-x-2 bottom-1 h-0.5 rounded-full bg-accent"
+                      : "absolute inset-x-2 bottom-1 h-0.5 origin-left scale-x-0 rounded-full bg-accent transition-transform duration-200 ease-out group-hover:scale-x-100"
+                  }
+                />
               </Link>
-            ))}
-          </nav>
+            );
+          })}
+        </nav>
 
-          <div className="flex w-full flex-col gap-2 sm:flex-row sm:items-center lg:w-auto lg:justify-end">
-            <label className="flex h-10 min-w-0 items-center gap-2 rounded-xl border bg-white px-3 text-sm text-muted-foreground shadow-sm transition-colors focus-within:border-accent sm:w-80">
-              <Search className="h-4 w-4 shrink-0 text-accent" />
-              <span className="sr-only">Pesquisar no Portal</span>
-              <input
-                className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
-                placeholder="Pesquisar documentos, editais, modelos ou termos..."
-              />
-            </label>
-            <Button asChild className="h-10 self-start px-5 lg:self-auto">
-              <Link href="/login">
-                <LockKeyhole className="mr-2 h-4 w-4" />
-                Entrar no Portal
-              </Link>
-            </Button>
-          </div>
+        <div className="flex shrink-0 items-center gap-2">
+          <label className="hidden h-9 min-w-0 items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 text-sm text-muted-foreground shadow-sm transition-colors focus-within:border-accent lg:flex lg:w-24 xl:w-28 2xl:w-56">
+            <Search className="h-4 w-4 shrink-0 text-accent" />
+            <span className="sr-only">Pesquisar no Portal</span>
+            <input
+              className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
+              placeholder="Pesquisar no portal..."
+            />
+          </label>
+          <Button asChild className="h-9 whitespace-nowrap px-3 text-sm 2xl:px-5">
+            <Link href="/login">
+              <LockKeyhole className="mr-2 h-4 w-4" />
+              Entrar no Portal
+            </Link>
+          </Button>
         </div>
       </div>
     </header>

@@ -99,7 +99,7 @@ export function GlossaryBrowser({ terms }: { terms: GlossaryTerm[] }) {
                 </div>
                 <Button asChild>
                   <Link href={`/chat?termo=${term.slug}`}>
-                    <Bot className="mr-2 h-4 w-4" /> Perguntar ao Assistente
+                    <Bot className="mr-2 h-4 w-4" /> Perguntar à Atena
                   </Link>
                 </Button>
                 <FavoriteButton item={{ id: term.slug, type: "termo", title: term.term, href: "/glossario" }} />

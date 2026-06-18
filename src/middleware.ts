@@ -14,7 +14,13 @@ export function middleware(request: NextRequest) {
 
   if (!hasSessionCookie) {
     const loginUrl = new URL("/login", request.nextUrl);
-    loginUrl.searchParams.set("callbackUrl", pathname);
+    loginUrl.searchParams.set("callbackUrl", `${pathname}${request.nextUrl.search}`);
+
+    if (pathname.startsWith("/chat")) {
+      const intent = request.nextUrl.searchParams.get("intent");
+      loginUrl.searchParams.set("message", intent === "use-atena" ? "atena-use" : "atena-chat");
+    }
+
     return NextResponse.redirect(loginUrl);
   }
 
@@ -24,15 +30,7 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/dashboard/:path*",
-    "/glossario/:path*",
-    "/templates/:path*",
-    "/centros/:path*",
-    "/oportunidades/:path*",
     "/favoritos/:path*",
-    "/fomento/:path*",
-    "/trilhas/:path*",
-    "/patentes/:path*",
-    "/faq/:path*",
     "/chat/:path*",
     "/admin/:path*"
   ]

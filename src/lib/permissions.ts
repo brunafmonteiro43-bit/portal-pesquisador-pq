@@ -54,8 +54,8 @@ export const navItems = [
   { href: "/faq", label: "Central de Dúvidas", shortLabel: "Dúvidas", icon: "CircleHelp", roles: allRoles },
   {
     href: "/chat",
-    label: "Assistente do Pesquisador",
-    shortLabel: "Assistente",
+    label: "Atena",
+    shortLabel: "Atena",
     icon: "Bot",
     roles: allRoles
   },

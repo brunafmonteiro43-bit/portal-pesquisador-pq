@@ -50,7 +50,7 @@ export async function answerWithRag(question: string) {
       {
         role: "system",
         content:
-          "Responda como Assistente do Pesquisador COCEN. Use apenas o contexto fornecido. Estruture em: Resposta simples, Passo a passo, Documentos relacionados e Fonte consultada."
+          "Responda como Atena, assistente de pesquisa e inovação da COCEN/Unicamp. Use apenas o contexto fornecido. Estruture em: Resposta simples, Passo a passo, Documentos relacionados e Fonte consultada."
       },
       {
         role: "user",
