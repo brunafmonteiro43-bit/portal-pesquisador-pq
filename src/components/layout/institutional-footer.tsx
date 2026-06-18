@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
+﻿import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -36,16 +36,16 @@ export function InstitutionalFooter() {
           <div className="rounded-lg border bg-card p-5 shadow-sm">
             <div className="flex gap-4">
               <Image
-                src="/assets/qr-portal-pesquisador.png"
-                alt="QR Code para acessar o Portal do Pesquisador pelo celular"
+                src="/assets/qr-site-cocen.jpg"
+                alt="QR Code para acessar o site da COCEN"
                 width={96}
                 height={96}
                 className="h-24 w-24 rounded-md border bg-white p-1"
               />
               <div>
-                <h3 className="font-bold">Acesse também</h3>
-                <p className="mt-2 font-semibold text-accent">Acesse o portal pelo seu celular</p>
-                <p className="mt-1 text-sm text-muted-foreground">Escaneie o QR Code para acesso rápido.</p>
+                <h3 className="font-bold">Site da COCEN</h3>
+                <p className="mt-2 font-semibold text-accent">Acesse também o site institucional</p>
+                <p className="mt-1 text-sm text-muted-foreground">Escaneie o QR Code para abrir o site da COCEN.</p>
               </div>
             </div>
           </div>
@@ -96,7 +96,7 @@ export function InstitutionalFooter() {
           <div className="rounded-lg border border-white/10 bg-white/5 p-5 text-center">
             <p className="font-bold uppercase tracking-wider">Acesse:</p>
             <Image
-              src="/assets/qr-portal-pesquisador.png"
+              src="/assets/qr-portal-pesquisador-celular.jpg"
               alt="QR Code do Portal do Pesquisador COCEN"
               width={128}
               height={128}
