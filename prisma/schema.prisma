@@ -1,0 +1,360 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [pgvector(map: "vector")]
+}
+
+enum Role {
+  RESEARCHER
+  CENTER_MANAGER
+  INNOVATION_OFFICE
+  COCEN_ADMIN
+  SUPER_ADMIN
+}
+
+enum ContentStatus {
+  DRAFT
+  REVIEW
+  PUBLISHED
+  ARCHIVED
+}
+
+enum FundingStatus {
+  OPEN
+  UPCOMING
+  CLOSED
+  ARCHIVED
+}
+
+enum PatentStatus {
+  TRIAGE
+  PRIOR_ART_SEARCH
+  DISCLOSURE
+  INOVA_REVIEW
+  FILED
+  GRANTED
+  ARCHIVED
+}
+
+enum AuditAction {
+  CREATE
+  UPDATE
+  DELETE
+  PUBLISH
+  LOGIN
+  SEARCH
+  DOWNLOAD
+  CHAT
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  passwordHash  String?
+  role          Role      @default(RESEARCHER)
+  centerId      String?
+  center        Center?   @relation(fields: [centerId], references: [id])
+  accounts      Account[]
+  sessions      Session[]
+  templates     DocumentTemplate[] @relation("TemplateOwner")
+  chatThreads   ChatThread[]
+  searchLogs    SearchLog[]
+  auditLogs     AuditLog[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Center {
+  id          String   @id @default(cuid())
+  acronym     String   @unique
+  name        String
+  description String?
+  website     String?
+  users       User[]
+  documents   KnowledgeDocument[]
+  patentCases PatentCase[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model GlossaryTerm {
+  id          String        @id @default(cuid())
+  term        String
+  slug        String        @unique
+  definition  String        @db.Text
+  category    String
+  synonyms    String[]      @default([])
+  examples    String[]      @default([])
+  status      ContentStatus @default(PUBLISHED)
+  updatedById String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([term])
+  @@index([category])
+}
+
+model DocumentTemplate {
+  id          String        @id @default(cuid())
+  title       String
+  slug        String        @unique
+  description String        @db.Text
+  category    String
+  fileUrl     String?
+  fileType    String?
+  tags        String[]      @default([])
+  status      ContentStatus @default(PUBLISHED)
+  ownerId     String?
+  owner       User?         @relation("TemplateOwner", fields: [ownerId], references: [id])
+  versions    TemplateVersion[]
+  downloads   Int           @default(0)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model TemplateVersion {
+  id          String           @id @default(cuid())
+  templateId  String
+  template    DocumentTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  version     String
+  changelog   String?
+  fileUrl     String
+  createdAt   DateTime         @default(now())
+}
+
+model Agency {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  acronym     String   @unique
+  website     String?
+  description String?
+  calls       FundingCall[]
+}
+
+model BudgetCategory {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String   @db.Text
+  examples    String[] @default([])
+  calls       FundingCall[] @relation("CallBudgetCategories")
+}
+
+model FundingCall {
+  id          String        @id @default(cuid())
+  title       String
+  slug        String        @unique
+  agencyId    String
+  agency      Agency        @relation(fields: [agencyId], references: [id])
+  summary     String        @db.Text
+  status      FundingStatus @default(OPEN)
+  deadline    DateTime?
+  url         String?
+  target      String?
+  budgetMin   Decimal?      @db.Decimal(12, 2)
+  budgetMax   Decimal?      @db.Decimal(12, 2)
+  categories  BudgetCategory[] @relation("CallBudgetCategories")
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([status])
+  @@index([deadline])
+}
+
+model SupportTrail {
+  id          String        @id @default(cuid())
+  title       String
+  slug        String        @unique
+  summary     String        @db.Text
+  category    String
+  status      ContentStatus @default(PUBLISHED)
+  steps       TrailStep[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model TrailStep {
+  id          String       @id @default(cuid())
+  trailId     String
+  trail       SupportTrail @relation(fields: [trailId], references: [id], onDelete: Cascade)
+  order       Int
+  title       String
+  description String       @db.Text
+  owner       String?
+  slaDays     Int?
+  requiredDocs String[]    @default([])
+
+  @@unique([trailId, order])
+}
+
+model PatentCase {
+  id          String        @id @default(cuid())
+  title       String
+  slug        String        @unique
+  summary     String        @db.Text
+  status      PatentStatus  @default(TRIAGE)
+  centerId    String?
+  center      Center?       @relation(fields: [centerId], references: [id])
+  inventors   String[]      @default([])
+  milestones  PatentMilestone[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model PatentMilestone {
+  id          String     @id @default(cuid())
+  patentId    String
+  patent      PatentCase @relation(fields: [patentId], references: [id], onDelete: Cascade)
+  title       String
+  dueDate     DateTime?
+  completedAt DateTime?
+  notes       String?
+}
+
+model FaqItem {
+  id          String        @id @default(cuid())
+  question    String
+  answer      String        @db.Text
+  category    String
+  tags        String[]      @default([])
+  status      ContentStatus @default(PUBLISHED)
+  votes       FaqVote[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([category])
+}
+
+model FaqVote {
+  id        String   @id @default(cuid())
+  faqId     String
+  faq       FaqItem  @relation(fields: [faqId], references: [id], onDelete: Cascade)
+  helpful   Boolean
+  createdAt DateTime @default(now())
+}
+
+model KnowledgeDocument {
+  id          String        @id @default(cuid())
+  title       String
+  slug        String        @unique
+  sourceUrl   String?
+  fileType    String?
+  module      String
+  centerId    String?
+  center      Center?       @relation(fields: [centerId], references: [id])
+  status      ContentStatus @default(PUBLISHED)
+  chunks      KnowledgeChunk[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model KnowledgeChunk {
+  id          String            @id @default(cuid())
+  documentId  String
+  document    KnowledgeDocument @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  content     String            @db.Text
+  heading     String?
+  page        Int?
+  tokenCount  Int?
+  embedding   Unsupported("vector(1536)")?
+  createdAt   DateTime          @default(now())
+
+  @@index([documentId])
+}
+
+model ChatThread {
+  id        String        @id @default(cuid())
+  userId    String?
+  user      User?         @relation(fields: [userId], references: [id])
+  title     String
+  messages  ChatMessage[]
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
+
+model ChatMessage {
+  id        String     @id @default(cuid())
+  threadId  String
+  thread    ChatThread @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  role      String
+  content   String     @db.Text
+  citations String[]   @default([])
+  createdAt DateTime   @default(now())
+}
+
+model SearchLog {
+  id        String   @id @default(cuid())
+  query     String
+  module    String?
+  resultCount Int    @default(0)
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model UsageMetric {
+  id        String   @id @default(cuid())
+  key       String
+  label     String
+  value     Int
+  module    String?
+  capturedAt DateTime @default(now())
+
+  @@index([key])
+  @@index([module])
+}
+
+model AuditLog {
+  id        String      @id @default(cuid())
+  actorId   String?
+  actor     User?       @relation(fields: [actorId], references: [id])
+  action    AuditAction
+  entity    String
+  entityId  String?
+  metadata  Json?
+  createdAt DateTime    @default(now())
+
+  @@index([action])
+  @@index([entity])
+}

@@ -1,0 +1,35 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: portal-pq-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: portal_pq
+      POSTGRES_USER: pq
+      POSTGRES_PASSWORD: pq
+    ports:
+      - "5432:5432"
+    volumes:
+      - pq_postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pq -d portal_pq"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    container_name: portal-pq-app
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://pq:pq@postgres:5432/portal_pq?schema=public
+      NEXTAUTH_URL: http://localhost:3000
+      NEXTAUTH_SECRET: troque-este-segredo-em-producao
+      AUTH_TRUST_HOST: "true"
+    ports:
+      - "3000:3000"
+
+volumes:
+  pq_postgres:
