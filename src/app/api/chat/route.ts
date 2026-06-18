@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { answerFundingSearch, isFundingSearchQuestion } from "@/lib/funding-assistant";
+import { auth } from "@/lib/auth";
 import { z } from "zod";
 import { answerWithRag } from "@/lib/rag";
 
@@ -8,6 +9,12 @@ const chatSchema = z.object({
 });
 
 export async function POST(request: NextRequest) {
+  const session = await auth();
+
+  if (!session?.user) {
+    return NextResponse.json({ error: "Faça login para conversar com a Atena." }, { status: 401 });
+  }
+
   const payload = chatSchema.safeParse(await request.json());
 
   if (!payload.success) {

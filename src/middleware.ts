@@ -32,6 +32,7 @@ export const config = {
     "/dashboard/:path*",
     "/favoritos/:path*",
     "/chat/:path*",
+    "/api/chat/:path*",
     "/admin/:path*"
   ]
 };

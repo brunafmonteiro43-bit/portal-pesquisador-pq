@@ -98,7 +98,7 @@ export function GlossaryBrowser({ terms }: { terms: GlossaryTerm[] }) {
                   ))}
                 </div>
                 <Button asChild>
-                  <Link href={`/chat?termo=${term.slug}`}>
+                  <Link href={`/login?callbackUrl=%2Fchat%3Ftermo%3D${term.slug}&message=atena-chat`}>
                     <Bot className="mr-2 h-4 w-4" /> Perguntar à Atena
                   </Link>
                 </Button>

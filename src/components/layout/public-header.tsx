@@ -13,7 +13,7 @@ const publicNav = [
   { label: "Fomento e Editais", href: "/#destaques" },
   { label: "Trilhas de Apoio", href: "/#acesso-rapido" },
   { label: "Patentes", href: "/#acesso-rapido" },
-  { label: "Atena", href: "/chat?intent=use-atena" }
+  { label: "Atena", href: "/login?callbackUrl=%2Fchat%3Fintent%3Duse-atena&message=atena-use" }
 ];
 
 export function PublicHeader({ compact = false }: { compact?: boolean }) {

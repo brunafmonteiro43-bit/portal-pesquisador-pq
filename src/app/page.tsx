@@ -121,6 +121,31 @@ const assistantQuestions = [
   "Como preparar uma submissão para edital FAPESP?"
 ];
 
+const publicHelpLinks: Record<string, string> = {
+  Pesquisa: "/trilhas",
+  Fomento: "/fomento",
+  Documentação: "/templates",
+  Patentes: "/patentes",
+  Atena: "/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat"
+};
+
+const quickAccessLinks: Record<string, string> = {
+  "Glossário Facilitado": "/glossario",
+  "Modelos e Documentos": "/templates",
+  "Fomento e Editais": "/fomento",
+  "Trilhas de Apoio": "/trilhas",
+  "Patentes e Inovação": "/patentes",
+  Atena: "/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat"
+};
+
+const suggestionLinks: Record<string, string> = {
+  FAPESP: "/fomento",
+  CAPES: "/fomento",
+  Patentes: "/patentes",
+  Convênios: "/trilhas",
+  "Prestação de contas": "/trilhas"
+};
+
 export default function PublicHomePage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -148,7 +173,7 @@ export default function PublicHomePage() {
 
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                 <Button asChild size="lg" className="h-14 px-8 text-base shadow-lg shadow-accent/20">
-                  <Link href="/chat?intent=chat-atena">Conversar com a Atena</Link>
+                  <Link href="/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat">Conversar com a Atena</Link>
                 </Button>
                 <Button
                   asChild
@@ -167,14 +192,14 @@ export default function PublicHomePage() {
                     <span>Pesquise editais, modelos, rubricas, convênios, patentes ou fluxos administrativos...</span>
                   </div>
                   <Button asChild className="h-12 px-7">
-                    <Link href="/login">Pesquisar</Link>
+                    <Link href="/fomento">Pesquisar</Link>
                   </Button>
                 </div>
                 <div className="mt-3 flex flex-wrap gap-2 border-t pt-3">
                   {quickSuggestions.map((suggestion) => (
                     <Link
                       key={suggestion}
-                      href="/login"
+                      href={suggestionLinks[suggestion] ?? "/fomento"}
                       className="rounded-full bg-muted px-3 py-1.5 text-xs font-bold text-muted-foreground transition hover:bg-accent/10 hover:text-accent"
                     >
                       {suggestion}
@@ -218,7 +243,7 @@ export default function PublicHomePage() {
                     <p className="mt-1 text-sm leading-5 text-muted-foreground">
                       Fluxo simplificado para orientar proteção intelectual.
                     </p>
-                    <Link href="/login" className="mt-4 inline-flex items-center text-sm font-bold text-accent">
+                    <Link href="/patentes" className="mt-4 inline-flex items-center text-sm font-bold text-accent">
                       Acessar guia <ArrowRight className="ml-1 h-4 w-4" />
                     </Link>
                   </div>
@@ -253,7 +278,7 @@ export default function PublicHomePage() {
               return (
                 <Link
                   key={card.title}
-                  href="/login"
+                  href={publicHelpLinks[card.title] ?? "/"}
                   className="group rounded-2xl border bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-accent/60 hover:shadow-lg"
                 >
                   <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-muted text-accent transition group-hover:bg-accent group-hover:text-white">
@@ -283,7 +308,7 @@ export default function PublicHomePage() {
                 return (
                   <Link
                     key={card.title}
-                    href="/login"
+                    href={quickAccessLinks[card.title] ?? "/"}
                     className="group min-h-[230px] rounded-xl border bg-white p-9 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-accent/60 hover:shadow-lg"
                   >
                     <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-muted text-accent transition group-hover:bg-accent group-hover:text-white">
@@ -307,7 +332,7 @@ export default function PublicHomePage() {
               </p>
             </div>
             <Button asChild variant="outline">
-              <Link href="/login">Ver oportunidades</Link>
+              <Link href="/fomento">Ver oportunidades</Link>
             </Button>
           </div>
 
@@ -327,7 +352,7 @@ export default function PublicHomePage() {
                   </div>
                 </div>
                 <Button asChild variant="ghost" className="w-fit text-accent hover:text-accent">
-                  <Link href="/login">
+                  <Link href="/fomento">
                     Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -356,10 +381,10 @@ export default function PublicHomePage() {
                 </p>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <Button asChild size="lg">
-                    <Link href="/chat?intent=chat-atena">Perguntar à Atena</Link>
+                    <Link href="/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat">Perguntar à Atena</Link>
                   </Button>
                   <Button asChild variant="outline" size="lg">
-                    <Link href="/login">Ver documentos relacionados</Link>
+                    <Link href="/templates">Ver documentos relacionados</Link>
                   </Button>
                 </div>
               </div>
@@ -370,7 +395,7 @@ export default function PublicHomePage() {
                   {assistantQuestions.map((question) => (
                     <Link
                       key={question}
-                      href="/chat?intent=chat-atena"
+                      href="/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat"
                       className="flex items-center gap-4 rounded-2xl border bg-muted/20 p-5 text-left font-semibold shadow-sm transition hover:border-accent/60 hover:bg-accent/5"
                     >
                       <AtenaAvatar className="h-8 w-8 shrink-0 shadow-none" />
