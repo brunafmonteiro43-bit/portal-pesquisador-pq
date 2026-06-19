@@ -3,7 +3,7 @@
 import { LockKeyhole, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 const publicNav = [
@@ -13,11 +13,13 @@ const publicNav = [
   { label: "Fomento e Editais", href: "/fomento" },
   { label: "Trilhas de Apoio", href: "/trilhas" },
   { label: "Patentes", href: "/patentes" },
+  { label: "Centros e Núcleos", href: "/centros" },
   { label: "Atena", href: "/login?callbackUrl=%2Fchat%3Fintent%3Duse-atena&message=atena-use" }
 ];
 
 export function PublicHeader({ compact = false }: { compact?: boolean }) {
   const pathname = usePathname();
+  const router = useRouter();
   const titleSize = compact ? "text-base" : "text-base xl:text-lg 2xl:text-xl";
 
   return (
@@ -61,7 +63,7 @@ export function PublicHeader({ compact = false }: { compact?: boolean }) {
             <Button asChild className="h-9 whitespace-nowrap px-3 text-xs">
               <Link href="/login">
                 <LockKeyhole className="mr-1.5 h-3.5 w-3.5" />
-                Entrar
+                Entrar no Ambiente
               </Link>
             </Button>
           </div>
@@ -95,18 +97,27 @@ export function PublicHeader({ compact = false }: { compact?: boolean }) {
         </nav>
 
         <div className="hidden shrink-0 items-center gap-2 lg:flex">
-          <label className="hidden h-9 min-w-0 items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 text-sm text-muted-foreground shadow-sm transition-colors focus-within:border-accent lg:flex lg:w-24 xl:w-28 2xl:w-48">
+          <form
+            className="hidden h-9 min-w-0 items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 text-sm text-muted-foreground shadow-sm transition-colors focus-within:border-accent lg:flex lg:w-24 xl:w-28 2xl:w-48"
+            onSubmit={(event) => {
+              event.preventDefault();
+              const formData = new FormData(event.currentTarget);
+              const query = String(formData.get("q") ?? "").trim();
+              if (query) router.push(`/busca?q=${encodeURIComponent(query)}`);
+            }}
+          >
             <Search className="h-4 w-4 shrink-0 text-accent" />
             <span className="sr-only">Pesquisar no Portal</span>
             <input
+              name="q"
               className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
               placeholder="Pesquisar no portal..."
             />
-          </label>
+          </form>
           <Button asChild className="h-9 whitespace-nowrap px-3.5 text-sm 2xl:px-5">
             <Link href="/login">
               <LockKeyhole className="mr-2 h-4 w-4" />
-              Entrar no Portal
+              Entrar no Ambiente
             </Link>
           </Button>
         </div>

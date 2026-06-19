@@ -11,10 +11,10 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ results: [] });
   }
 
-  const results = searchPortalContent(query, moduleFilter);
+  const session = await auth();
+  const results = searchPortalContent(query, moduleFilter, Boolean(session?.user));
 
   try {
-    const session = await auth();
     await prisma.searchLog.create({
       data: {
         query,

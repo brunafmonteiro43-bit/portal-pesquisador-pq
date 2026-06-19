@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import type { CocenCenter } from "@/data/portal-content";
 
-const areas = ["Todos", "Saúde", "Tecnologia", "Energia", "Humanidades", "Meio Ambiente", "Ciências Sociais", "Interdisciplinar"];
+const areas = ["Todos", "Saúde", "Tecnologia", "Humanidades", "Meio Ambiente", "Ciências Sociais", "Interdisciplinar"];
 
 export function CentersBrowser({ centers }: { centers: CocenCenter[] }) {
   const [query, setQuery] = useState("");
@@ -59,7 +59,7 @@ export function CentersBrowser({ centers }: { centers: CocenCenter[] }) {
                 <Badge>{center.area}</Badge>
                 <Button asChild variant="outline" size="sm">
                   <a href={center.site} target="_blank" rel="noreferrer">
-                    Página COCEN <ExternalLink className="ml-2 h-4 w-4" />
+                    Ver página COCEN <ExternalLink className="ml-2 h-4 w-4" />
                   </a>
                 </Button>
               </div>

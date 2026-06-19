@@ -187,14 +187,19 @@ export default function PublicHomePage() {
                 </Button>
               </div>
 
-              <div className="mt-7 max-w-3xl rounded-2xl border bg-white p-3 shadow-[0_20px_60px_rgba(0,0,0,0.10)] sm:mt-8">
+              <form action="/busca" className="mt-7 max-w-3xl rounded-2xl border bg-white p-3 shadow-[0_20px_60px_rgba(0,0,0,0.10)] sm:mt-8">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                  <div className="flex min-h-14 flex-1 items-center gap-3 px-3 text-sm text-muted-foreground sm:min-h-16 sm:px-4 sm:text-base">
+                  <label className="flex min-h-14 flex-1 items-center gap-3 px-3 text-sm text-muted-foreground sm:min-h-16 sm:px-4 sm:text-base">
                     <Search className="h-5 w-5 shrink-0 text-accent" />
-                    <span>Pesquise editais, modelos, rubricas, convênios, patentes ou fluxos administrativos...</span>
-                  </div>
-                  <Button asChild className="h-11 px-7 sm:h-12">
-                    <Link href="/fomento">Pesquisar</Link>
+                    <span className="sr-only">Pesquisar no Portal Público</span>
+                    <input
+                      name="q"
+                      className="min-w-0 flex-1 bg-transparent text-foreground outline-none placeholder:text-muted-foreground"
+                      placeholder="Pesquise editais, modelos, rubricas, convênios, patentes ou fluxos administrativos..."
+                    />
+                  </label>
+                  <Button className="h-11 px-7 sm:h-12" type="submit">
+                    Pesquisar
                   </Button>
                 </div>
                 <div className="mt-3 flex flex-wrap gap-2 border-t pt-3">
@@ -208,7 +213,7 @@ export default function PublicHomePage() {
                     </Link>
                   ))}
                 </div>
-              </div>
+              </form>
 
               <div className="mt-7 grid max-w-3xl gap-3 sm:mt-8 sm:grid-cols-2">
                 {heroIndicators.map((indicator) => (
