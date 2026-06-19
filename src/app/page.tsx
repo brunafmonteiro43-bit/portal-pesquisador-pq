@@ -148,17 +148,37 @@ const suggestionLinks: Record<string, string> = {
   "Prestação de contas": "/trilhas"
 };
 
+function ConnectionBackdrop({ className = "" }: { className?: string }) {
+  return (
+    <div aria-hidden="true" className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}>
+      <svg className="absolute left-1/2 top-0 h-full min-h-[720px] w-[1200px] -translate-x-1/2 opacity-70" viewBox="0 0 1200 760" fill="none">
+        <path d="M96 186L248 112L402 174L558 96L742 156L908 84L1092 168" stroke="#BE123C" strokeOpacity="0.11" strokeWidth="1.4" />
+        <path d="M178 462L336 356L520 416L690 304L874 378L1036 284" stroke="#0F172A" strokeOpacity="0.08" strokeWidth="1.2" />
+        <path d="M250 112L336 356M402 174L520 416M558 96L690 304M742 156L874 378M908 84L1036 284" stroke="#BE123C" strokeOpacity="0.08" strokeWidth="1" />
+        {[96, 248, 402, 558, 742, 908, 1092].map((cx, index) => (
+          <circle key={`top-${cx}`} cx={cx} cy={[186, 112, 174, 96, 156, 84, 168][index]} r={index % 2 === 0 ? 5 : 3.5} fill="#BE123C" fillOpacity="0.22" />
+        ))}
+        {[178, 336, 520, 690, 874, 1036].map((cx, index) => (
+          <circle key={`bottom-${cx}`} cx={cx} cy={[462, 356, 416, 304, 378, 284][index]} r="4" fill="#0F172A" fillOpacity="0.12" />
+        ))}
+      </svg>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_22%,rgba(190,18,60,0.10),transparent_26%),radial-gradient(circle_at_82%_10%,rgba(15,23,42,0.08),transparent_24%),radial-gradient(circle_at_55%_62%,rgba(190,18,60,0.08),transparent_30%)]" />
+    </div>
+  );
+}
+
 export default function PublicHomePage() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-[#fbfbfc] text-foreground">
       <PublicHeader />
 
       <main>
-        <section className="relative overflow-hidden">
+        <section className="relative overflow-hidden bg-[linear-gradient(135deg,#ffffff_0%,#fff7f9_42%,#f8fafc_100%)]">
           <div className="absolute inset-x-0 top-0 h-px bg-border" />
-          <div className="mx-auto grid min-h-[calc(100vh-118px)] max-w-7xl gap-10 px-4 py-10 sm:py-14 lg:grid-cols-[1fr_0.84fr] lg:items-center lg:gap-12 lg:py-20">
+          <ConnectionBackdrop />
+          <div className="relative mx-auto grid min-h-[calc(100vh-118px)] max-w-7xl gap-10 px-4 py-10 sm:py-14 lg:grid-cols-[1fr_0.84fr] lg:items-center lg:gap-12 lg:py-20">
             <div>
-              <div className="inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border bg-white px-3 py-2 text-xs font-bold shadow-sm sm:px-4 sm:text-sm">
+              <div className="inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-accent/15 bg-white/85 px-3 py-2 text-xs font-bold shadow-sm backdrop-blur sm:px-4 sm:text-sm">
                 <span className="h-2 w-2 rounded-full bg-accent" />
                 <span className="text-accent">Ambiente Institucional</span>
                 <span className="text-muted-foreground">•</span>
@@ -168,7 +188,7 @@ export default function PublicHomePage() {
               <h1 className="mt-7 max-w-4xl text-4xl font-black leading-[1.02] tracking-normal text-foreground sm:text-5xl md:text-7xl">
                 Simplificando a gestão da pesquisa universitária.
               </h1>
-              <p className="mt-5 max-w-3xl text-lg font-semibold leading-7 text-foreground sm:mt-7 sm:text-2xl sm:leading-9">
+              <p className="mt-5 max-w-3xl text-lg font-semibold leading-7 text-slate-700 sm:mt-7 sm:text-2xl sm:leading-9">
                 Centralize editais, modelos, fluxos administrativos, patentes e suporte especializado em um único
                 ambiente.
               </p>
@@ -187,7 +207,7 @@ export default function PublicHomePage() {
                 </Button>
               </div>
 
-              <form action="/busca" className="mt-7 max-w-3xl rounded-2xl border bg-white p-3 shadow-[0_20px_60px_rgba(0,0,0,0.10)] sm:mt-8">
+              <form action="/busca" className="mt-7 max-w-3xl rounded-3xl border border-accent/10 bg-white/90 p-3 shadow-[0_24px_70px_rgba(15,23,42,0.10)] backdrop-blur sm:mt-8">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                   <label className="flex min-h-14 flex-1 items-center gap-3 px-3 text-sm text-muted-foreground sm:min-h-16 sm:px-4 sm:text-base">
                     <Search className="h-5 w-5 shrink-0 text-accent" />
@@ -207,7 +227,7 @@ export default function PublicHomePage() {
                     <Link
                       key={suggestion}
                       href={suggestionLinks[suggestion] ?? "/fomento"}
-                      className="rounded-full bg-muted px-3 py-1.5 text-xs font-bold text-muted-foreground transition hover:bg-accent/10 hover:text-accent"
+                      className="rounded-full border border-transparent bg-slate-50 px-3 py-1.5 text-xs font-bold text-muted-foreground transition hover:border-accent/20 hover:bg-accent/10 hover:text-accent"
                     >
                       {suggestion}
                     </Link>
@@ -219,7 +239,7 @@ export default function PublicHomePage() {
                 {heroIndicators.map((indicator) => (
                   <div
                     key={indicator}
-                    className="flex items-center gap-3 rounded-xl border bg-white px-4 py-3 text-sm font-bold shadow-sm"
+                    className="flex items-center gap-3 rounded-2xl border border-white/80 bg-white/80 px-4 py-3 text-sm font-bold shadow-sm backdrop-blur"
                   >
                     <CheckCircle2 className="h-4 w-4 text-accent" />
                     {indicator}
@@ -229,6 +249,7 @@ export default function PublicHomePage() {
             </div>
 
             <div className="relative lg:justify-self-end">
+              <div className="absolute -inset-4 rounded-[2rem] bg-white/45 blur-2xl" />
               <div className="absolute right-[-16px] top-8 z-10 hidden rounded-xl border bg-white px-6 py-4 font-bold shadow-xl md:flex">
                 <Sparkles className="mr-3 h-5 w-5 text-accent" /> Pesquisa • Inovação • Impacto
               </div>
@@ -238,7 +259,7 @@ export default function PublicHomePage() {
                 width={860}
                 height={760}
                 priority
-                className="aspect-[1.12] w-full rounded-2xl object-cover shadow-[0_20px_60px_rgba(0,0,0,0.16)] sm:aspect-[0.92] lg:max-w-[45vw] lg:shadow-[0_28px_80px_rgba(0,0,0,0.18)]"
+                className="relative aspect-[1.12] w-full rounded-[1.75rem] border border-white/70 object-cover shadow-[0_24px_70px_rgba(15,23,42,0.16)] sm:aspect-[0.92] lg:max-w-[45vw] lg:shadow-[0_30px_90px_rgba(15,23,42,0.18)]"
               />
               <div className="absolute bottom-7 left-6 hidden max-w-[19rem] rounded-2xl border border-white/70 bg-white/95 p-4 shadow-[0_18px_45px_rgba(15,23,42,0.16)] backdrop-blur lg:block xl:left-[-18px]">
                 <div className="flex gap-4">
@@ -261,10 +282,11 @@ export default function PublicHomePage() {
           </div>
         </section>
 
-        <section className="border-y bg-muted/20 py-14">
-          <div className="mx-auto grid max-w-7xl gap-4 px-4 sm:grid-cols-2 lg:grid-cols-4">
+        <section className="relative -mt-4 border-y border-accent/10 bg-white/80 py-14 backdrop-blur">
+          <ConnectionBackdrop className="opacity-40" />
+          <div className="relative mx-auto grid max-w-7xl gap-4 px-4 sm:grid-cols-2 lg:grid-cols-4">
             {institutionalIndicators.map((indicator) => (
-              <div key={indicator.label} className="rounded-2xl border bg-white p-6 text-center shadow-sm">
+              <div key={indicator.label} className="rounded-3xl border border-slate-200/80 bg-white/90 p-6 text-center shadow-sm transition hover:-translate-y-0.5 hover:border-accent/25 hover:shadow-md">
                 <p className="text-4xl font-black text-accent">{indicator.value}</p>
                 <p className="mt-2 text-sm font-bold text-muted-foreground">{indicator.label}</p>
               </div>
@@ -272,7 +294,9 @@ export default function PublicHomePage() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 py-20">
+        <section className="relative overflow-hidden py-20">
+          <ConnectionBackdrop className="opacity-35" />
+          <div className="relative mx-auto max-w-7xl px-4">
           <div className="text-center">
             <h2 className="text-4xl font-black tracking-normal">Como podemos ajudar?</h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
@@ -287,7 +311,7 @@ export default function PublicHomePage() {
                 <Link
                   key={card.title}
                   href={publicHelpLinks[card.title] ?? "/"}
-                  className="group rounded-2xl border bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-accent/60 hover:shadow-lg"
+                  className="group rounded-3xl border border-slate-200/80 bg-white/90 p-6 shadow-sm backdrop-blur transition duration-200 hover:-translate-y-1 hover:border-accent/40 hover:shadow-lg"
                 >
                   <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-muted text-accent transition group-hover:bg-accent group-hover:text-white">
                     <Icon className="h-6 w-6" />
@@ -298,7 +322,7 @@ export default function PublicHomePage() {
               );
             })}
           </div>
-          <div className="mt-10 rounded-2xl border bg-white p-4 shadow-sm">
+          <div className="mt-10 rounded-3xl border border-accent/10 bg-white/90 p-4 shadow-sm backdrop-blur">
             <p className="text-center text-sm font-bold uppercase tracking-wide text-accent">Ciclo da pesquisa apoiado pelo portal</p>
             <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center">
               {researchJourney.map((step, index) => (
@@ -309,10 +333,12 @@ export default function PublicHomePage() {
               ))}
             </div>
           </div>
+          </div>
         </section>
 
-        <section id="acesso-rapido" className="border-y bg-muted/20 py-20">
-          <div className="mx-auto max-w-7xl px-4">
+        <section id="acesso-rapido" className="relative overflow-hidden border-y border-accent/10 bg-[linear-gradient(180deg,#ffffff_0%,#fff7f9_100%)] py-20">
+          <ConnectionBackdrop className="opacity-45" />
+          <div className="relative mx-auto max-w-7xl px-4">
             <div className="text-center">
               <h2 className="text-4xl font-black tracking-normal">Acesso Rápido</h2>
               <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
@@ -328,7 +354,7 @@ export default function PublicHomePage() {
                   <Link
                     key={card.title}
                     href={quickAccessLinks[card.title] ?? "/"}
-                    className="group min-h-[230px] rounded-xl border bg-white p-9 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-accent/60 hover:shadow-lg"
+                    className="group min-h-[230px] rounded-3xl border border-slate-200/80 bg-white/90 p-9 shadow-sm backdrop-blur transition duration-200 hover:-translate-y-1 hover:border-accent/40 hover:shadow-xl"
                   >
                     <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-muted text-accent transition group-hover:bg-accent group-hover:text-white">
                       <Icon className="h-6 w-6" />
@@ -359,7 +385,7 @@ export default function PublicHomePage() {
             {weeklyHighlights.map((item) => (
               <article
                 key={item.title}
-                className="flex flex-col gap-5 rounded-xl border bg-white p-6 shadow-sm md:flex-row md:items-center md:justify-between"
+                className="flex flex-col gap-5 rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-accent/30 hover:shadow-md md:flex-row md:items-center md:justify-between"
               >
                 <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-6">
                   <Badge variant="secondary" className="w-fit text-accent">
@@ -380,9 +406,10 @@ export default function PublicHomePage() {
           </div>
         </section>
 
-        <section id="assistente" className="bg-muted/20 py-24">
-          <div className="mx-auto max-w-7xl px-4">
-            <div className="grid gap-10 rounded-3xl border bg-white p-8 shadow-sm lg:grid-cols-[0.9fr_1.1fr] lg:p-12">
+        <section id="assistente" className="relative overflow-hidden bg-[linear-gradient(135deg,#fff7f9_0%,#ffffff_52%,#f8fafc_100%)] py-24">
+          <ConnectionBackdrop className="opacity-45" />
+          <div className="relative mx-auto max-w-7xl px-4">
+            <div className="grid gap-10 rounded-[2rem] border border-accent/10 bg-white/90 p-8 shadow-[0_24px_70px_rgba(15,23,42,0.08)] backdrop-blur lg:grid-cols-[0.9fr_1.1fr] lg:p-12">
               <div>
                 <div className="flex items-center gap-4">
                   <AtenaAvatar className="h-20 w-20" />
@@ -415,7 +442,7 @@ export default function PublicHomePage() {
                     <Link
                       key={question}
                       href="/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat"
-                      className="flex items-center gap-4 rounded-2xl border bg-muted/20 p-5 text-left font-semibold shadow-sm transition hover:border-accent/60 hover:bg-accent/5"
+                      className="flex items-center gap-4 rounded-2xl border border-slate-200/80 bg-white/70 p-5 text-left font-semibold shadow-sm transition hover:border-accent/40 hover:bg-accent/5"
                     >
                       <AtenaAvatar className="h-8 w-8 shrink-0 shadow-none" />
                       {question}
