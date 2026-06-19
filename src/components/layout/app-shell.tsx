@@ -60,7 +60,10 @@ export function AppShell({ children, role }: { children: React.ReactNode; role: 
             <Link href="https://www.unicamp.br/" aria-label="Acessar site da UNICAMP">
               <Image src="/assets/logo-unicamp.png" alt="UNICAMP" width={48} height={48} className="h-9 w-auto object-contain" />
             </Link>
-            <Link href="/dashboard" className="min-w-0">
+            <Link href="https://www.cocen.unicamp.br/" aria-label="Acessar site da COCEN" className="hidden sm:block">
+              <Image src="/assets/logo-cocen.jpg" alt="COCEN" width={130} height={40} className="h-8 w-auto object-contain" />
+            </Link>
+            <Link href="/" className="min-w-0">
               <span className="block truncate text-base font-black text-foreground">Portal do Pesquisador</span>
               <span className="block truncate text-xs font-semibold text-muted-foreground">Plataforma de gestão da pesquisa</span>
             </Link>

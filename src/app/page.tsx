@@ -121,6 +121,8 @@ const assistantQuestions = [
   "Como preparar uma submissão para edital FAPESP?"
 ];
 
+const researchJourney = ["Ideia", "Fomento", "Execução", "Inovação", "Prestação de contas"];
+
 const publicHelpLinks: Record<string, string> = {
   Pesquisa: "/trilhas",
   Fomento: "/fomento",
@@ -154,44 +156,44 @@ export default function PublicHomePage() {
       <main>
         <section className="relative overflow-hidden">
           <div className="absolute inset-x-0 top-0 h-px bg-border" />
-          <div className="mx-auto grid min-h-[calc(100vh-118px)] max-w-7xl gap-12 px-4 py-16 lg:grid-cols-[1fr_0.84fr] lg:items-center lg:py-20">
+          <div className="mx-auto grid min-h-[calc(100vh-118px)] max-w-7xl gap-10 px-4 py-10 sm:py-14 lg:grid-cols-[1fr_0.84fr] lg:items-center lg:gap-12 lg:py-20">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border bg-white px-4 py-2 text-sm font-bold shadow-sm">
+              <div className="inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border bg-white px-3 py-2 text-xs font-bold shadow-sm sm:px-4 sm:text-sm">
                 <span className="h-2 w-2 rounded-full bg-accent" />
                 <span className="text-accent">Ambiente Institucional</span>
                 <span className="text-muted-foreground">•</span>
                 <span className="text-muted-foreground">Pesquisa • Inovação • Fomento</span>
               </div>
 
-              <h1 className="mt-8 max-w-4xl text-5xl font-black leading-[0.98] tracking-normal text-foreground md:text-7xl">
+              <h1 className="mt-7 max-w-4xl text-4xl font-black leading-[1.02] tracking-normal text-foreground sm:text-5xl md:text-7xl">
                 Simplificando a gestão da pesquisa universitária.
               </h1>
-              <p className="mt-7 max-w-3xl text-2xl font-semibold leading-9 text-foreground">
+              <p className="mt-5 max-w-3xl text-lg font-semibold leading-7 text-foreground sm:mt-7 sm:text-2xl sm:leading-9">
                 Centralize editais, modelos, fluxos administrativos, patentes e suporte especializado em um único
                 ambiente.
               </p>
 
-              <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                <Button asChild size="lg" className="h-14 px-8 text-base shadow-lg shadow-accent/20">
+              <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:gap-4">
+                <Button asChild size="lg" className="h-12 px-5 text-sm shadow-lg shadow-accent/20 sm:h-14 sm:px-8 sm:text-base">
                   <Link href="/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat">Conversar com a Atena</Link>
                 </Button>
                 <Button
                   asChild
                   variant="outline"
                   size="lg"
-                  className="h-14 border-accent px-9 text-base font-bold text-accent hover:bg-accent hover:text-white"
+                  className="h-12 border-accent px-5 text-sm font-bold text-accent hover:bg-accent hover:text-white sm:h-14 sm:px-9 sm:text-base"
                 >
                   <Link href="#acesso-rapido">Explorar Recursos</Link>
                 </Button>
               </div>
 
-              <div className="mt-8 max-w-3xl rounded-2xl border bg-white p-3 shadow-[0_20px_60px_rgba(0,0,0,0.10)]">
+              <div className="mt-7 max-w-3xl rounded-2xl border bg-white p-3 shadow-[0_20px_60px_rgba(0,0,0,0.10)] sm:mt-8">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                  <div className="flex min-h-16 flex-1 items-center gap-3 px-4 text-muted-foreground">
-                    <Search className="h-5 w-5 text-accent" />
+                  <div className="flex min-h-14 flex-1 items-center gap-3 px-3 text-sm text-muted-foreground sm:min-h-16 sm:px-4 sm:text-base">
+                    <Search className="h-5 w-5 shrink-0 text-accent" />
                     <span>Pesquise editais, modelos, rubricas, convênios, patentes ou fluxos administrativos...</span>
                   </div>
-                  <Button asChild className="h-12 px-7">
+                  <Button asChild className="h-11 px-7 sm:h-12">
                     <Link href="/fomento">Pesquisar</Link>
                   </Button>
                 </div>
@@ -208,7 +210,7 @@ export default function PublicHomePage() {
                 </div>
               </div>
 
-              <div className="mt-8 grid max-w-3xl gap-3 sm:grid-cols-2">
+              <div className="mt-7 grid max-w-3xl gap-3 sm:mt-8 sm:grid-cols-2">
                 {heroIndicators.map((indicator) => (
                   <div
                     key={indicator}
@@ -231,7 +233,7 @@ export default function PublicHomePage() {
                 width={860}
                 height={760}
                 priority
-                className="aspect-[0.92] w-full rounded-2xl object-cover shadow-[0_28px_80px_rgba(0,0,0,0.18)] lg:max-w-[45vw]"
+                className="aspect-[1.12] w-full rounded-2xl object-cover shadow-[0_20px_60px_rgba(0,0,0,0.16)] sm:aspect-[0.92] lg:max-w-[45vw] lg:shadow-[0_28px_80px_rgba(0,0,0,0.18)]"
               />
               <div className="absolute bottom-8 left-[-32px] hidden max-w-xs rounded-xl border bg-white p-5 shadow-xl lg:block">
                 <div className="flex gap-4">
@@ -289,6 +291,17 @@ export default function PublicHomePage() {
                 </Link>
               );
             })}
+          </div>
+          <div className="mt-10 rounded-2xl border bg-white p-4 shadow-sm">
+            <p className="text-center text-sm font-bold uppercase tracking-wide text-accent">Ciclo da pesquisa apoiado pelo portal</p>
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center">
+              {researchJourney.map((step, index) => (
+                <div key={step} className="flex items-center gap-3">
+                  <span className="rounded-full border bg-muted px-4 py-2 text-sm font-bold text-foreground">{step}</span>
+                  {index < researchJourney.length - 1 ? <ArrowRight className="hidden h-4 w-4 text-accent sm:block" /> : null}
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 

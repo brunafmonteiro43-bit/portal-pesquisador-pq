@@ -45,15 +45,31 @@ export function FavoritesList() {
                 <Link key={item.id} href={item.href} className="flex items-center justify-between rounded-md border p-4 hover:border-accent">
                   <span>
                     <span className="block font-semibold">{item.title}</span>
-                    <Badge className="mt-2" variant="secondary">{item.type}</Badge>
+                    <Badge className="mt-2" variant="secondary">
+                      {item.type}
+                    </Badge>
                   </span>
                   <Button variant="ghost">Abrir</Button>
                 </Link>
               ))
             ) : (
-              <p className="rounded-md border bg-muted/40 p-4 text-sm text-muted-foreground">
-                Você ainda não favoritou nenhum item. Use o botão Favoritar em documentos, editais, termos e trilhas.
-              </p>
+              <div className="rounded-xl border border-dashed bg-muted/30 p-5">
+                <p className="font-bold text-foreground">Sua biblioteca pessoal ainda está vazia.</p>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                  Use o botão Favoritar em documentos, editais, termos e trilhas para montar uma lista rápida do que você mais consulta.
+                </p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <Button asChild size="sm" variant="outline">
+                    <Link href="/templates">Ver documentos</Link>
+                  </Button>
+                  <Button asChild size="sm" variant="outline">
+                    <Link href="/oportunidades">Ver editais</Link>
+                  </Button>
+                  <Button asChild size="sm">
+                    <Link href="/glossario">Explorar glossário</Link>
+                  </Button>
+                </div>
+              </div>
             )}
           </CardContent>
         </Card>

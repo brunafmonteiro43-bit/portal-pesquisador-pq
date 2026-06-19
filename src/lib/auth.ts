@@ -37,6 +37,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             name: "Administrador PQ",
             email,
             image: null,
+            role: "COCEN_ADMIN",
+            centerId: null,
           };
         }
 

@@ -135,7 +135,7 @@ export function searchPortalContent(query: string, module?: string): PortalSearc
         results.push({
           title: item.title,
           module: "Base documental",
-          href: "/chat",
+          href: "/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat",
           excerpt: item.content
         });
       }
@@ -150,7 +150,7 @@ export function searchPortalContent(query: string, module?: string): PortalSearc
           ? "Perguntar sobre rubrica à Atena"
           : "Perguntar à Atena",
       module: "Atena",
-      href: "/chat",
+      href: "/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat",
       excerpt:
         "Receba resposta simples, passo a passo, documentos relacionados e fonte consultada com base nos conteúdos do portal."
     });

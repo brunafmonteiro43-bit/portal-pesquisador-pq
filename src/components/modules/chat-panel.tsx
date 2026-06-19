@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
+import { answerFundingSearch, isFundingSearchQuestion } from "@/lib/funding-assistant";
 import type { FundingCallMatch } from "@/lib/funding-assistant";
 
 type Message = {
@@ -66,11 +67,31 @@ export function ChatPanel() {
     setLoading(true);
 
     try {
+      if (isFundingSearchQuestion(trimmed)) {
+        const localAnswer = answerFundingSearch(trimmed);
+        setMessages((current) => [
+          ...current,
+          {
+            role: "assistant",
+            content: localAnswer.answer,
+            citations: localAnswer.citations,
+            opportunities: localAnswer.opportunities
+          }
+        ]);
+        setLoading(false);
+        return;
+      }
+
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: trimmed })
       });
+
+      if (!response.ok) {
+        throw new Error("chat-request-failed");
+      }
+
       const data = (await response.json()) as { answer: string; citations?: string[]; opportunities?: FundingCallMatch[] };
       setMessages((current) => [
         ...current,
