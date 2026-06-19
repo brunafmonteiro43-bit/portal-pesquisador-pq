@@ -235,18 +235,19 @@ export default function PublicHomePage() {
                 priority
                 className="aspect-[1.12] w-full rounded-2xl object-cover shadow-[0_20px_60px_rgba(0,0,0,0.16)] sm:aspect-[0.92] lg:max-w-[45vw] lg:shadow-[0_28px_80px_rgba(0,0,0,0.18)]"
               />
-              <div className="absolute bottom-8 left-[-32px] hidden max-w-xs rounded-xl border bg-white p-5 shadow-xl lg:block">
+              <div className="absolute bottom-7 left-6 hidden max-w-[19rem] rounded-2xl border border-white/70 bg-white/95 p-4 shadow-[0_18px_45px_rgba(15,23,42,0.16)] backdrop-blur lg:block xl:left-[-18px]">
                 <div className="flex gap-4">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent">
-                    <FileText className="h-6 w-6" />
+                  <span className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
+                    <FileText className="h-5 w-5" />
                   </span>
                   <div>
-                    <p className="font-black">Guia de Patentes</p>
+                    <p className="text-xs font-black uppercase tracking-wide text-accent">Atena recomenda</p>
+                    <p className="mt-1 text-lg font-black">Trilha de Patentes</p>
                     <p className="mt-1 text-sm leading-5 text-muted-foreground">
-                      Fluxo simplificado para orientar proteção intelectual.
+                      Entenda os passos para proteger resultados de pesquisa e inovação.
                     </p>
                     <Link href="/patentes" className="mt-4 inline-flex items-center text-sm font-bold text-accent">
-                      Acessar guia <ArrowRight className="ml-1 h-4 w-4" />
+                      Acessar trilha <ArrowRight className="ml-1 h-4 w-4" />
                     </Link>
                   </div>
                 </div>
