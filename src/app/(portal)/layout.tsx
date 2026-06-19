@@ -6,5 +6,5 @@ export const dynamic = "force-dynamic";
 export default async function PortalLayout({ children }: { children: React.ReactNode }) {
   const session = await auth();
 
-  return <AppShell role={session?.user.role ?? "RESEARCHER"}>{children}</AppShell>;
+  return <AppShell role={session?.user?.role ?? "RESEARCHER"}>{children}</AppShell>;
 }

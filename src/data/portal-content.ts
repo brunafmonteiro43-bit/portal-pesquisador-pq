@@ -909,60 +909,188 @@ export const patentGuides: PatentGuide[] = [
 
 export const cocenCenters: CocenCenter[] = [
   {
-    name: "Centro de Pesquisa em Obesidade e Comorbidades",
+    name: "CBMEG - Centro de Biologia Molecular e Engenharia Genética",
     area: "Saúde",
-    description: "Pesquisa interdisciplinar sobre metabolismo, obesidade, diabetes e doenças associadas.",
-    site: "https://www.unicamp.br/",
-    contact: "cpoc@unicamp.br",
-    researchLines: ["Metabolismo", "Nutrição", "Doenças crônicas"]
+    description: "Atua nas áreas da bioquímica, genética e suas aplicações tecnológicas.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/2/cbmeg",
+    contact: "(19) 3521-1134 | sslima@unicamp.br",
+    researchLines: ["Biológicas", "Saúde", "Tecnológicas"]
   },
   {
-    name: "Núcleo Interdisciplinar de Planejamento Energético",
-    area: "Energia",
-    description: "Estudos sobre transição energética, políticas públicas, eficiência e sustentabilidade.",
-    site: "https://www.unicamp.br/",
-    contact: "nipe@unicamp.br",
-    researchLines: ["Energia renovável", "Política energética", "Sustentabilidade"]
-  },
-  {
-    name: "Centro de Tecnologia da Informação Renato Archer",
-    area: "Tecnologia",
-    description: "Projetos em computação, automação, dados, inteligência artificial e infraestrutura digital.",
-    site: "https://www.unicamp.br/",
-    contact: "cti@unicamp.br",
-    researchLines: ["IA", "Sistemas", "Dados científicos"]
-  },
-  {
-    name: "Núcleo de Estudos de População",
-    area: "Ciências Sociais",
-    description: "Produção de conhecimento sobre população, políticas públicas, território e desigualdades.",
-    site: "https://www.unicamp.br/",
-    contact: "nepo@unicamp.br",
-    researchLines: ["Demografia", "Políticas públicas", "Território"]
-  },
-  {
-    name: "Centro de Estudos Ambientais",
-    area: "Meio Ambiente",
-    description: "Pesquisa aplicada sobre clima, biodiversidade, recursos naturais e gestão ambiental.",
-    site: "https://www.unicamp.br/",
-    contact: "ambiental@unicamp.br",
-    researchLines: ["Clima", "Biodiversidade", "Gestão ambiental"]
-  },
-  {
-    name: "Núcleo de Estudos de Gênero",
+    name: "LUME - Núcleo Interdisciplinar de Pesquisas Teatrais",
     area: "Humanidades",
-    description: "Pesquisa em gênero, cultura, direitos, memória e relações sociais.",
-    site: "https://www.unicamp.br/",
-    contact: "pagu@unicamp.br",
-    researchLines: ["Gênero", "Cultura", "Direitos"]
+    description: "Núcleo dedicado à pesquisa teatral, criação, difusão e formação em artes cênicas.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/13/lume",
+    contact: "lume@lumeteatro.com.br",
+    researchLines: ["Artes", "Humanas"]
   },
   {
-    name: "Laboratório de Estudos Interdisciplinares",
+    name: "CCSNano - Centro de Componentes Semicondutores e Nanotecnologias",
+    area: "Tecnologia",
+    description: "Atua com técnicas avançadas de microfabricação vinculadas à nanotecnologia.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/3/ccsnano",
+    contact: "(19) 3521-7282 | secretaria@ccs.unicamp.br",
+    researchLines: ["Exatas", "Tecnológicas"]
+  },
+  {
+    name: "NEAB - Núcleo de Estudos Afro-Brasileiros",
+    area: "Ciências Sociais",
+    description: "Desenvolve pesquisas interdisciplinares sobre população afro-brasileira, relações étnico-raciais e ações afirmativas.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/23/neab",
+    contact: "(19) 3521-4753 | neab@unicamp.br",
+    researchLines: ["Artes", "Biológicas", "Exatas", "Humanas", "Saúde", "Tecnológicas"]
+  },
+  {
+    name: "CEB - Centro de Engenharia Biomédica",
+    area: "Saúde",
+    description: "Desenvolve pesquisa básica e aplicada envolvendo fenômenos e sistemas biológicos, com tecnologia aplicada à saúde.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/4/ceb",
+    contact: "(19) 3521-9274 | ceb@ceb.unicamp.br",
+    researchLines: ["Biológicas", "Exatas", "Saúde", "Tecnológicas"]
+  },
+  {
+    name: "NEPA - Núcleo de Estudos e Pesquisa em Alimentação",
+    area: "Saúde",
+    description: "Desenvolve atividades multidisciplinares nas áreas de alimentação e nutrição.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/14/nepa",
+    contact: "(19) 3521-4022 | nepa@unicamp.br",
+    researchLines: ["Biológicas", "Saúde", "Tecnológicas"]
+  },
+  {
+    name: "CEMIB - Centro Multidisciplinar para Investigação Biológica na Área da Ciência de Animais de Laboratório",
+    area: "Saúde",
+    description: "Forma recursos humanos e desenvolve tecnologias na área de bioterismo.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/5/cemib",
+    contact: "(19) 3521-7652 | insadmrh@unicamp.br",
+    researchLines: ["Biológicas", "Saúde", "Tecnológicas"]
+  },
+  {
+    name: "NEPAM - Núcleo de Estudos e Pesquisas Ambientais",
+    area: "Meio Ambiente",
+    description: "Referência em pesquisas interdisciplinares sobre ambiente e sociedade.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/15/nepam",
+    contact: "(19) 3521-5103 | feliperv@unicamp.br",
+    researchLines: ["Biológicas", "Exatas", "Humanas"]
+  },
+  {
+    name: "CIEBC - Centro Interdisciplinar de Estudos Brasil-China",
     area: "Interdisciplinar",
-    description: "Articulação de redes de pesquisa entre Centros, Núcleos, unidades e parceiros externos.",
-    site: "https://www.unicamp.br/",
-    contact: "interdisciplinar@unicamp.br",
-    researchLines: ["Redes", "Métodos integrados", "Impacto social"]
+    description: "Centro interdisciplinar dedicado aos estudos Brasil-China no âmbito da COCEN/UNICAMP.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/24/ciebc",
+    contact: "Consultar página oficial da COCEN",
+    researchLines: ["Artes", "Humanas", "Saúde", "Tecnológicas"]
+  },
+  {
+    name: "NEPO - Núcleo de Estudos de População",
+    area: "Ciências Sociais",
+    description: "Implementa e desenvolve pesquisas em estudos de população e demografia.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/16/nepo",
+    contact: "(19) 3521-5893 | suporte@nepo.unicamp.br",
+    researchLines: ["Humanas", "Saúde"]
+  },
+  {
+    name: "CEPAGRI - Centro de Pesquisas Meteorológicas e Climáticas Aplicadas à Agricultura",
+    area: "Meio Ambiente",
+    description: "Atua em pesquisas meteorológicas e climáticas aplicadas à agricultura e presta serviços de previsão do tempo.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/6/cepagri",
+    contact: "(19) 3521-2460 | webmaster@cpa.unicamp.br",
+    researchLines: ["Exatas", "Tecnológicas"]
+  },
+  {
+    name: "NEPP - Núcleo de Estudos de Políticas Públicas",
+    area: "Ciências Sociais",
+    description: "Produz diagnósticos sociais, avaliações de impacto de programas governamentais e estudos de políticas públicas.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/17/nepp",
+    contact: "(19) 3521-2495 | nepp@nepp.unicamp.br",
+    researchLines: ["Humanas", "Saúde"]
+  },
+  {
+    name: "CEPETRO - Centro de Estudos de Energia e Petróleo",
+    area: "Energia",
+    description: "Apoia cursos e projetos em ciências e engenharia de petróleo, exploração petrolífera e geoengenharia de reservatórios.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/7/cepetro",
+    contact: "(19) 3521-4664 | esmercia@cepetro.unicamp.br",
+    researchLines: ["Exatas", "Tecnológicas"]
+  },
+  {
+    name: "NICS - Núcleo Interdisciplinar de Comunicação Sonora",
+    area: "Humanidades",
+    description: "Voltado ao estudo do som e de suas manifestações artísticas e culturais, reunindo pesquisadores das artes e ciências.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/18/nics",
+    contact: "(19) 3521-2579 | adm@nics.unicamp.br",
+    researchLines: ["Artes", "Exatas", "Humanas", "Tecnológicas"]
+  },
+  {
+    name: "CESOP - Centro de Estudos de Opinião Pública",
+    area: "Ciências Sociais",
+    description: "Trabalha com captação de dados e pesquisas de opinião, com metodologia e análise quantitativa em ciências sociais.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/8/cesop",
+    contact: "(19) 3521-7093 | cesop@unicamp.br",
+    researchLines: ["Exatas", "Humanas"]
+  },
+  {
+    name: "NIED - Núcleo de Informática Aplicada à Educação",
+    area: "Tecnologia",
+    description: "Realiza estudos e pesquisas sobre as várias formas de aplicação do computador na educação.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/19/nied",
+    contact: "(19) 3521-7350 | lutecia@unicamp.br",
+    researchLines: ["Exatas", "Humanas", "Tecnológicas"]
+  },
+  {
+    name: "CIDDIC - Centro de Integração, Documentação e Difusão Cultural",
+    area: "Humanidades",
+    description: "Atua na integração, documentação e difusão cultural no âmbito da universidade.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/9/ciddic",
+    contact: "(19) 3521-6734 | cdmc00@unicamp.br",
+    researchLines: ["Artes", "Humanas"]
+  },
+  {
+    name: "NIPE - Núcleo Interdisciplinar de Planejamento Energético",
+    area: "Energia",
+    description: "Núcleo interdisciplinar voltado ao planejamento energético.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/20/nipe",
+    contact: "(19) 3521-1240 | marciarogerio@nipe.unicamp.br",
+    researchLines: ["Biológicas", "Exatas", "Tecnológicas"]
+  },
+  {
+    name: "CLE - Centro de Lógica, Epistemologia e História da Ciência",
+    area: "Humanidades",
+    description: "Referência em lógica, epistemologia e história da ciência, com acervos e publicações especializadas.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/10/cle",
+    contact: "(19) 3521-6518 | regianemelo@cle.unicamp.br",
+    researchLines: ["Exatas", "Humanas"]
+  },
+  {
+    name: "NUDECRI - Núcleo de Desenvolvimento da Criatividade",
+    area: "Humanidades",
+    description: "Núcleo interdisciplinar dedicado ao desenvolvimento da criatividade.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/21/nudecri",
+    contact: "(19) 3521-2584 | rosangel@unicamp.br",
+    researchLines: ["Artes", "Humanas"]
+  },
+  {
+    name: "CMU - Centro de Memória Unicamp",
+    area: "Humanidades",
+    description: "Centro dedicado à memória institucional, documentação e pesquisa histórica da Unicamp.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/11/cmu",
+    contact: "(19) 3521-5250 | cmemoria@unicamp.br",
+    researchLines: ["Humanas", "Tecnológicas"]
+  },
+  {
+    name: "PAGU - Núcleo de Estudos de Gênero",
+    area: "Humanidades",
+    description: "Trata de estudos de gênero e relações familiares, sociais e culturais.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/22/pagu",
+    contact: "(19) 3521-1704 | pagu@unicamp.br",
+    researchLines: ["Humanas", "Saúde"]
+  },
+  {
+    name: "CPQBA - Centro Pluridisciplinar de Pesquisas Químicas, Biológicas e Agrícolas",
+    area: "Tecnologia",
+    description: "Referência em produtos naturais, biotecnologia e meio ambiente.",
+    site: "https://www.cocen.unicamp.br/centros-e-nucleos/orgaos-interdisciplinares/id/12/cpqba",
+    contact: "(19) 2139-2850 | cenpesq@cpqba.unicamp.br",
+    researchLines: ["Biológicas", "Exatas", "Saúde", "Tecnológicas"]
   }
 ];
 

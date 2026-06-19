@@ -59,7 +59,7 @@ export function CentersBrowser({ centers }: { centers: CocenCenter[] }) {
                 <Badge>{center.area}</Badge>
                 <Button asChild variant="outline" size="sm">
                   <a href={center.site} target="_blank" rel="noreferrer">
-                    Site <ExternalLink className="ml-2 h-4 w-4" />
+                    Página COCEN <ExternalLink className="ml-2 h-4 w-4" />
                   </a>
                 </Button>
               </div>
