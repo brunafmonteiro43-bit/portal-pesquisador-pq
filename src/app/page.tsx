@@ -63,7 +63,7 @@ const quickAccess = [
     icon: BookOpen
   },
   {
-    title: "Modelos e Documentos",
+    title: "Modelos e Templates",
     description: "Arquivos essenciais para projetos e rotinas.",
     icon: FileText
   },
@@ -133,7 +133,7 @@ const publicHelpLinks: Record<string, string> = {
 
 const quickAccessLinks: Record<string, string> = {
   "Glossário Facilitado": "/glossario",
-  "Modelos e Documentos": "/templates",
+  "Modelos e Templates": "/templates",
   "Fomento e Editais": "/fomento",
   "Trilhas de Apoio": "/trilhas",
   "Patentes e Inovação": "/patentes",

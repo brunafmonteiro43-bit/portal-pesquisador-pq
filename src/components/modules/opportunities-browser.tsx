@@ -22,7 +22,7 @@ export function OpportunitiesBrowser({ calls }: { calls: FundingCall[] }) {
 
     return calls.filter((call) => {
       const matchesAgency = agency === "Todos" || call.agency === agency;
-      const matchesQuery = [call.title, call.area, call.audience, call.summary, call.status, ...call.categories]
+      const matchesQuery = [call.title, call.area, call.audience, call.summary, call.status, ...call.categories, ...call.requiredDocuments]
         .join(" ")
         .toLowerCase()
         .includes(normalized);
@@ -81,6 +81,16 @@ export function OpportunitiesBrowser({ calls }: { calls: FundingCall[] }) {
                     {category}
                   </Badge>
                 ))}
+              </div>
+              <div>
+                <p className="text-sm font-semibold">Documentos necessários</p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {call.requiredDocuments.map((document) => (
+                    <Badge key={document} variant="outline">
+                      {document}
+                    </Badge>
+                  ))}
+                </div>
               </div>
               <Button asChild variant="outline">
                 <a href={call.link}>

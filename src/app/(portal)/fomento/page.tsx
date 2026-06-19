@@ -54,9 +54,21 @@ export default function FomentoPage() {
                   </Badge>
                 ))}
               </div>
+              <div>
+                <p className="text-sm font-semibold">Documentos necessários</p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {call.requiredDocuments.map((document) => (
+                    <Badge key={document} variant="outline">
+                      {document}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
               <div className="flex flex-wrap gap-2">
-                <Button variant="outline">
-                  <ExternalLink className="mr-2 h-4 w-4" /> Abrir edital
+                <Button asChild variant="outline">
+                  <a href={call.link}>
+                    <ExternalLink className="mr-2 h-4 w-4" /> Abrir edital
+                  </a>
                 </Button>
                 <FavoriteButton item={{ id: call.slug, type: "edital", title: call.title, href: "/fomento" }} />
               </div>

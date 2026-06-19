@@ -8,11 +8,11 @@ import { Button } from "@/components/ui/button";
 
 const publicNav = [
   { label: "Início", href: "/" },
-  { label: "Glossário", href: "/#acesso-rapido" },
-  { label: "Modelos e Templates", href: "/#acesso-rapido" },
-  { label: "Fomento e Editais", href: "/#destaques" },
-  { label: "Trilhas de Apoio", href: "/#acesso-rapido" },
-  { label: "Patentes", href: "/#acesso-rapido" },
+  { label: "Glossário", href: "/glossario" },
+  { label: "Modelos e Templates", href: "/templates" },
+  { label: "Fomento e Editais", href: "/fomento" },
+  { label: "Trilhas de Apoio", href: "/trilhas" },
+  { label: "Patentes", href: "/patentes" },
   { label: "Atena", href: "/login?callbackUrl=%2Fchat%3Fintent%3Duse-atena&message=atena-use" }
 ];
 
@@ -69,7 +69,7 @@ export function PublicHeader({ compact = false }: { compact?: boolean }) {
 
         <nav className="-mx-4 flex min-w-0 max-w-[100vw] flex-nowrap items-center gap-1 overflow-x-auto whitespace-nowrap px-4 pb-1 text-[0.72rem] font-medium [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:justify-center lg:overflow-visible lg:px-0 lg:pb-0 xl:gap-1 xl:text-[0.76rem] 2xl:gap-2 2xl:text-sm">
           {publicNav.map((item) => {
-            const isActive = item.href === "/" && pathname === "/";
+            const isActive = item.href === pathname;
 
             return (
               <Link

@@ -32,13 +32,13 @@ export async function answerWithRag(question: string) {
   if (!process.env.OPENAI_API_KEY || citations.length === 0) {
     const relatedDocs = citations.length
       ? citations.map((item) => item.title).join(", ")
-      : "Glossário Facilitado, Modelos e Documentos e Trilhas de Apoio";
+      : "Glossário Facilitado, Modelos e Templates e Trilhas de Apoio";
 
     return {
       answer:
         citations.length > 0
           ? `Resposta simples: ${citations[0].content}\n\nPasso a passo:\n1. Confira o termo ou processo relacionado no portal.\n2. Verifique os documentos recomendados antes de iniciar a solicitação.\n3. Em caso de prazo ou submissão, registre o comprovante e acompanhe a trilha correspondente.\n\nDocumentos relacionados: ${relatedDocs}.\n\nFonte consultada: ${citations.map((item) => item.title).join(", ")}.`
-          : "Resposta simples: não encontrei uma referência direta na base demonstrativa.\n\nPasso a passo:\n1. Tente pesquisar pelo termo principal, como rubrica, patente, Funcamp ou convênio.\n2. Consulte o Glossário Facilitado e as Trilhas de Apoio.\n3. Procure a equipe da COCEN caso precise confirmar uma orientação institucional.\n\nDocumentos relacionados: Glossário Facilitado e Modelos e Documentos.\n\nFonte consultada: base demonstrativa local.",
+          : "Resposta simples: não encontrei uma referência direta na base demonstrativa.\n\nPasso a passo:\n1. Tente pesquisar pelo termo principal, como rubrica, patente, Funcamp ou convênio.\n2. Consulte o Glossário Facilitado e as Trilhas de Apoio.\n3. Procure a equipe da COCEN caso precise confirmar uma orientação institucional.\n\nDocumentos relacionados: Glossário Facilitado e Modelos e Templates.\n\nFonte consultada: base demonstrativa local.",
       citations: citations.map((item) => item.title)
     };
   }

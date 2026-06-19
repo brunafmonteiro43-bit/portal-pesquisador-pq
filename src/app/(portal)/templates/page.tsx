@@ -14,7 +14,7 @@ export default function TemplatesPage() {
     <div className="space-y-6">
       <SectionHeader
         eyebrow="Repositório institucional"
-        title="Modelos e Documentos"
+        title="Modelos e Templates"
         description="Cards com categoria, descrição, versão, data de atualização, tipo de arquivo e downloads."
         action={
           <Button variant="outline">

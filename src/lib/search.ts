@@ -61,7 +61,7 @@ export function searchPortalContent(query: string, module?: string): PortalSearc
       if (matches(query, item.title, item.description, item.tags.join(" "))) {
         results.push({
           title: item.title,
-          module: "Modelos e Documentos",
+          module: "Modelos e Templates",
           href: "/templates",
           excerpt: item.description
         });
@@ -71,7 +71,19 @@ export function searchPortalContent(query: string, module?: string): PortalSearc
 
   if (!module || module === "fomento") {
     fundingCalls.forEach((item) => {
-      if (matches(query, item.title, item.summary, item.agency, item.area, item.value, item.categories.join(" "))) {
+      if (
+        matches(
+          query,
+          item.title,
+          item.summary,
+          item.agency,
+          item.area,
+          item.value,
+          item.audience,
+          item.categories.join(" "),
+          item.requiredDocuments.join(" ")
+        )
+      ) {
         results.push({
           title: item.title,
           module: "Fomento e Editais",

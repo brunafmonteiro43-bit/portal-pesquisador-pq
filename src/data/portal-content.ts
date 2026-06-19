@@ -46,6 +46,7 @@ export type FundingCall = {
   closingSoon?: boolean;
   summary: string;
   categories: string[];
+  requiredDocuments: string[];
 };
 
 export type TrailStep = {
@@ -108,7 +109,7 @@ export const moduleCards = [
   },
   {
     key: "templates",
-    title: "Modelos e Documentos",
+    title: "Modelos e Templates",
     href: "/templates",
     count: "Formulários, manuais e checklists",
     description: "Templates, formulários e documentos necessários para seus projetos."
@@ -477,7 +478,8 @@ export const fundingCalls: FundingCall[] = [
     link: "/fomento",
     closingSoon: true,
     summary: "Submissão de propostas para projetos de pesquisa regular.",
-    categories: ["Material de consumo", "Serviços", "Equipamentos"]
+    categories: ["Material de consumo", "Serviços", "Equipamentos"],
+    requiredDocuments: ["Projeto de pesquisa", "Súmula curricular", "Orçamento por rubrica", "Anuência institucional"]
   },
   {
     title: "CNPq - Chamada Universal",
@@ -490,7 +492,8 @@ export const fundingCalls: FundingCall[] = [
     audience: "Grupos de pesquisa",
     link: "/fomento",
     summary: "Financiamento de projetos de pesquisa científica, tecnológica e de inovação.",
-    categories: ["Custeio", "Capital", "Bolsas"]
+    categories: ["Custeio", "Capital", "Bolsas"],
+    requiredDocuments: ["Projeto detalhado", "Currículo Lattes", "Plano de aplicação", "Declaração de vínculo"]
   },
   {
     title: "CAPES - Apoio à Pós-graduação",
@@ -504,7 +507,8 @@ export const fundingCalls: FundingCall[] = [
     link: "/fomento",
     closingSoon: true,
     summary: "Apoio à formação, internacionalização e consolidação de programas vinculados à pesquisa.",
-    categories: ["Mobilidade", "Bolsas", "Eventos"]
+    categories: ["Mobilidade", "Bolsas", "Eventos"],
+    requiredDocuments: ["Plano de atividades", "Carta institucional", "Comprovante de vínculo", "Cronograma"]
   },
   {
     title: "FINEP - Subvenção Econômica",
@@ -517,7 +521,8 @@ export const fundingCalls: FundingCall[] = [
     audience: "Projetos com potencial de inovação",
     link: "/fomento",
     summary: "Apoio a projetos inovadores com potencial de transferência tecnológica e parceria externa.",
-    categories: ["Inovação", "Empresa parceira", "Prototipagem"]
+    categories: ["Inovação", "Empresa parceira", "Prototipagem"],
+    requiredDocuments: ["Plano de inovação", "Orçamento", "Termo de parceria", "Resumo de propriedade intelectual"]
   },
   {
     title: "Empresas Parceiras - Pesquisa Aplicada",
@@ -530,7 +535,8 @@ export const fundingCalls: FundingCall[] = [
     audience: "Centros, Núcleos e grupos de pesquisa",
     link: "/oportunidades",
     summary: "Oportunidades de cooperação com empresas para pesquisa aplicada, serviços e inovação.",
-    categories: ["Parceria", "Convênio", "Propriedade intelectual"]
+    categories: ["Parceria", "Convênio", "Propriedade intelectual"],
+    requiredDocuments: ["Plano de trabalho", "Minuta de cooperação", "Documentos do parceiro", "Declaração de infraestrutura"]
   },
   {
     title: "Programa Internacional de Cooperação",
@@ -543,7 +549,8 @@ export const fundingCalls: FundingCall[] = [
     audience: "Pesquisadores em rede internacional",
     link: "/oportunidades",
     summary: "Apoio a redes, missões e projetos colaborativos com instituições estrangeiras.",
-    categories: ["Internacionalização", "Mobilidade", "Redes"]
+    categories: ["Internacionalização", "Mobilidade", "Redes"],
+    requiredDocuments: ["Carta de parceria", "Plano de missão", "Currículo da equipe", "Orçamento de mobilidade"]
   },
   {
     title: "FAPESP - Equipamentos Multiusuários",
@@ -556,7 +563,8 @@ export const fundingCalls: FundingCall[] = [
     audience: "Centros, Núcleos e unidades com uso compartilhado",
     link: "/fomento",
     summary: "Chamada demonstrativa para aquisição e compartilhamento de equipamentos estratégicos de pesquisa.",
-    categories: ["Equipamentos", "Infraestrutura", "Uso compartilhado"]
+    categories: ["Equipamentos", "Infraestrutura", "Uso compartilhado"],
+    requiredDocuments: ["Justificativa técnica", "Plano de uso compartilhado", "Cotações", "Anuência da unidade"]
   },
   {
     title: "CAPES - Programa de Internacionalização",
@@ -569,7 +577,8 @@ export const fundingCalls: FundingCall[] = [
     audience: "Grupos com cooperação internacional ativa",
     link: "/fomento",
     summary: "Apoio a mobilidade, redes internacionais e fortalecimento de projetos conjuntos.",
-    categories: ["Bolsas", "Mobilidade", "Cooperação"]
+    categories: ["Bolsas", "Mobilidade", "Cooperação"],
+    requiredDocuments: ["Plano de internacionalização", "Carta de cooperação", "Cronograma", "Orçamento"]
   },
   {
     title: "CNPq - Bolsas de Produtividade",
@@ -582,7 +591,8 @@ export const fundingCalls: FundingCall[] = [
     audience: "Pesquisadores com produção científica consolidada",
     link: "/fomento",
     summary: "Acompanhamento demonstrativo de chamada para produtividade em pesquisa e desenvolvimento tecnológico.",
-    categories: ["Bolsas", "Produtividade", "Currículo"]
+    categories: ["Bolsas", "Produtividade", "Currículo"],
+    requiredDocuments: ["Currículo Lattes", "Projeto de pesquisa", "Produção científica", "Comprovante de vínculo"]
   }
 ];
 
@@ -815,6 +825,39 @@ export const supportTrails: SupportTrail[] = [
         documents: ["Anuência assinada", "Comprovante de submissão"],
         estimatedTime: "Mesmo dia",
         nextStep: "Submeter proposta"
+      }
+    ]
+  },
+  {
+    title: "Captar Fomento",
+    slug: "captar-fomento",
+    category: "Fomento",
+    summary: "Fluxo para identificar oportunidades, avaliar aderência e preparar uma estratégia de submissão.",
+    flow: ["Ideia", "Busca", "Aderência", "Documentos", "Submissão", "Acompanhamento"],
+    steps: [
+      {
+        title: "Mapear oportunidades",
+        whatToDo: "Buscar editais por agência, área de pesquisa, prazo, público-alvo e tipo de despesa permitida.",
+        responsible: "Pesquisador(a)",
+        documents: ["Resumo da ideia", "Palavras-chave", "Perfil da equipe"],
+        estimatedTime: "1 a 2 dias úteis",
+        nextStep: "Avaliar aderência ao edital"
+      },
+      {
+        title: "Avaliar aderência",
+        whatToDo: "Comparar objetivo do edital, requisitos, valor estimado, rubricas e contrapartidas com a proposta.",
+        responsible: "Pesquisador(a) e secretaria",
+        documents: ["Edital", "Checklist de elegibilidade", "Orçamento preliminar"],
+        estimatedTime: "2 dias úteis",
+        nextStep: "Organizar documentos de submissão"
+      },
+      {
+        title: "Preparar submissão",
+        whatToDo: "Montar pacote com projeto, plano de trabalho, currículo, anuência e documentos obrigatórios.",
+        responsible: "Pesquisador(a)",
+        documents: ["Projeto de pesquisa", "Plano de trabalho", "Anuência institucional", "Currículo Lattes"],
+        estimatedTime: "5 dias úteis",
+        nextStep: "Submeter e acompanhar resultado"
       }
     ]
   }
@@ -1119,7 +1162,7 @@ export const faqItems = [
   {
     question: "Onde encontro modelos de documentos para edital?",
     answer:
-      "Os modelos ficam em Modelos e Documentos, separados por tipo de processo, agência, finalidade, versão e data de atualização.",
+      "Os modelos ficam em Modelos e Templates, separados por tipo de processo, agência, finalidade, versão e data de atualização.",
     category: "Documentos",
     tags: ["modelo", "edital", "arquivo"]
   },
