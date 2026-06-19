@@ -2,6 +2,7 @@
 
 import { ArrowRight, Loader2, Search } from "lucide-react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -14,7 +15,8 @@ export function GlobalSearch({
 }: {
   placeholder?: string;
 }) {
-  const [query, setQuery] = useState("");
+  const searchParams = useSearchParams();
+  const [query, setQuery] = useState(() => searchParams.get("q") ?? "");
   const [results, setResults] = useState<PortalSearchResult[]>([]);
   const [loading, setLoading] = useState(false);
 

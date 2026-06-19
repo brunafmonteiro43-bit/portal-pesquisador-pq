@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { AtenaFloatingButton } from "@/components/modules/atena-floating-button";
+import { auth } from "@/lib/auth";
 import "./globals.css";
 
 const inter = Inter({
@@ -14,16 +15,18 @@ export const metadata: Metadata = {
   description: "Autoatendimento para pesquisadores da COCEN/UNICAMP"
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+
   return (
     <html lang="pt-BR" className={inter.variable} suppressHydrationWarning>
       <body className={inter.className}>
         {children}
-        <AtenaFloatingButton />
+        <AtenaFloatingButton isAuthenticated={Boolean(session?.user)} />
       </body>
     </html>
   );

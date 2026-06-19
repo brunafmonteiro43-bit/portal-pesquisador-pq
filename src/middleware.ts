@@ -31,6 +31,7 @@ export const config = {
   matcher: [
     "/dashboard/:path*",
     "/favoritos/:path*",
+    "/faq/:path*",
     "/chat/:path*",
     "/api/chat/:path*",
     "/admin/:path*"

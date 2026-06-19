@@ -4,6 +4,9 @@ import {
   glossaryTerms,
   knowledgeSnippets,
   patentGuides,
+  cocenCenters,
+  featuredDeadlines,
+  mostAccessedDocuments,
   supportTrails,
   templates
 } from "@/data/portal-content";
@@ -27,7 +30,14 @@ function matches(query: string, ...values: string[]) {
   return values.some((value) => normalize(value).includes(normalizedQuery));
 }
 
-export function searchPortalContent(query: string, module?: string): PortalSearchResult[] {
+const internalDemoItems = [
+  { title: "Edital FAPESP salvo", module: "Editais salvos", href: "/favoritos", excerpt: "Chamada acompanhada no ambiente do pesquisador com prazo, rubricas e documentos." },
+  { title: "Consulta recente sobre rubricas", module: "Histórico", href: "/dashboard", excerpt: "Registro demonstrativo de consulta recente à Atena sobre custeio, capital e prestação de contas." },
+  { title: "Trilha salva de abertura Funcamp", module: "Trilhas salvas", href: "/favoritos", excerpt: "Fluxo interno salvo para abertura de projeto, plano de trabalho e documentação administrativa." },
+  { title: "Documento interno de prestação de contas", module: "Documentos internos", href: "/dashboard", excerpt: "Checklist demonstrativo restrito com comprovantes, relatório técnico e extratos do projeto." }
+];
+
+export function searchPortalContent(query: string, module?: string, includeInternal = false): PortalSearchResult[] {
   const results: PortalSearchResult[] = [];
   const normalizedQuery = normalize(query);
 
@@ -128,7 +138,20 @@ export function searchPortalContent(query: string, module?: string): PortalSearc
     });
   }
 
-  if (!module || module === "faq") {
+  if (!module || module === "centros") {
+    cocenCenters.forEach((item) => {
+      if (matches(query, item.name, item.area, item.description, item.contact, item.researchLines.join(" "))) {
+        results.push({
+          title: item.name,
+          module: "Centros e Núcleos",
+          href: "/centros",
+          excerpt: item.description
+        });
+      }
+    });
+  }
+
+  if (includeInternal && (!module || module === "faq")) {
     faqItems.forEach((item) => {
       if (matches(query, item.question, item.answer, item.category, item.tags.join(" "))) {
         results.push({
@@ -137,6 +160,19 @@ export function searchPortalContent(query: string, module?: string): PortalSearc
           href: "/faq",
           excerpt: item.answer
         });
+      }
+    });
+  }
+
+  if (!module || module === "destaques") {
+    featuredDeadlines.forEach((item) => {
+      if (matches(query, item.title, item.detail, item.status)) {
+        results.push({ title: item.title, module: "Destaques da semana", href: "/fomento", excerpt: `${item.status} • ${item.detail}` });
+      }
+    });
+    mostAccessedDocuments.forEach((item) => {
+      if (matches(query, item)) {
+        results.push({ title: item, module: "Destaques da semana", href: "/templates", excerpt: "Documento frequentemente acessado no Portal do Pesquisador." });
       }
     });
   }
@@ -154,6 +190,14 @@ export function searchPortalContent(query: string, module?: string): PortalSearc
     });
   }
 
+  if (includeInternal && (!module || module === "interno")) {
+    internalDemoItems.forEach((item) => {
+      if (matches(query, item.title, item.module, item.excerpt)) {
+        results.push(item);
+      }
+    });
+  }
+
   if (!module || module === "assistente") {
     results.push({
       title: normalizedQuery.includes("patente")
@@ -162,7 +206,7 @@ export function searchPortalContent(query: string, module?: string): PortalSearc
           ? "Perguntar sobre rubrica à Atena"
           : "Perguntar à Atena",
       module: "Atena",
-      href: "/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat",
+      href: includeInternal ? "/chat?intent=chat-atena" : "/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat",
       excerpt:
         "Receba resposta simples, passo a passo, documentos relacionados e fonte consultada com base nos conteúdos do portal."
     });
