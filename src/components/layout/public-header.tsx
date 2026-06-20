@@ -13,6 +13,7 @@ const publicNav = [
   { label: "Fomento e Editais", href: "/fomento" },
   { label: "Trilhas de Apoio", href: "/trilhas" },
   { label: "Patentes", href: "/patentes" },
+  { label: "Centros e Núcleos", href: "/centros" },
   { label: "Atena", href: "/login?callbackUrl=%2Fchat%3Fintent%3Duse-atena&message=atena-use" }
 ];
 
@@ -22,7 +23,7 @@ export function PublicHeader({ compact = false }: { compact?: boolean }) {
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 shadow-[0_8px_24px_rgba(15,23,42,0.06)] backdrop-blur">
-      <div className="mx-auto flex max-w-[112rem] flex-col gap-2 px-4 py-2 lg:grid lg:grid-cols-[minmax(18rem,auto)_minmax(0,1fr)_auto] lg:items-center lg:gap-4 lg:px-5 lg:py-3 xl:grid-cols-[minmax(20rem,auto)_minmax(0,1fr)_auto] xl:gap-5 2xl:grid-cols-[minmax(26rem,auto)_minmax(0,1fr)_auto] 2xl:gap-6 2xl:px-8">
+      <div className="mx-auto flex max-w-[112rem] flex-col gap-2 px-4 py-2 lg:grid lg:grid-cols-[minmax(16rem,auto)_minmax(0,1fr)_auto] lg:items-center lg:gap-3 lg:px-5 lg:py-3 xl:grid-cols-[minmax(18rem,auto)_minmax(0,1fr)_auto] xl:gap-4 2xl:grid-cols-[minmax(24rem,auto)_minmax(0,1fr)_auto] 2xl:gap-6 2xl:px-8">
         <div className="flex min-w-0 items-center justify-between gap-3 lg:justify-start">
           <div className="flex shrink-0 items-center gap-2.5">
             <Link href="https://www.unicamp.br/" aria-label="Acessar site da UNICAMP">
@@ -67,7 +68,7 @@ export function PublicHeader({ compact = false }: { compact?: boolean }) {
           </div>
         </div>
 
-        <nav className="-mx-4 flex min-w-0 max-w-[100vw] flex-nowrap items-center gap-1 overflow-x-auto whitespace-nowrap px-4 pb-1 text-[0.72rem] font-medium [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:justify-center lg:overflow-visible lg:px-0 lg:pb-0 xl:gap-1 xl:text-[0.76rem] 2xl:gap-2 2xl:text-sm">
+        <nav className="-mx-4 flex min-w-0 max-w-[100vw] flex-nowrap items-center gap-1 overflow-x-auto whitespace-nowrap px-4 pb-1 text-[0.72rem] font-medium [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:flex-wrap lg:justify-center lg:overflow-visible lg:px-0 lg:pb-0 lg:text-[0.68rem] xl:gap-1 xl:text-[0.74rem] 2xl:gap-2 2xl:text-sm">
           {publicNav.map((item) => {
             const isActive = item.href === pathname;
 

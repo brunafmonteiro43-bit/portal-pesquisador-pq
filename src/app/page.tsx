@@ -6,6 +6,7 @@ import {
   FileText,
   Landmark,
   Lightbulb,
+  Network,
   Map,
   MessageSquare,
   Search,
@@ -50,6 +51,11 @@ const helpCards = [
     icon: Lightbulb
   },
   {
+    title: "Centros e Núcleos",
+    description: "Conheça os Centros e Núcleos vinculados à COCEN.",
+    icon: Network
+  },
+  {
     title: "Atena",
     description: "Inteligência para pesquisa, fomento e inovação.",
     icon: Sparkles
@@ -81,6 +87,11 @@ const quickAccess = [
     title: "Patentes e Inovação",
     description: "Orientações para proteger descobertas.",
     icon: Lightbulb
+  },
+  {
+    title: "Centros e Núcleos",
+    description: "Conheça as estruturas de pesquisa vinculadas à COCEN.",
+    icon: Network
   },
   {
     title: "Atena",
@@ -128,6 +139,7 @@ const publicHelpLinks: Record<string, string> = {
   Fomento: "/fomento",
   Documentação: "/templates",
   Patentes: "/patentes",
+  "Centros e Núcleos": "/centros",
   Atena: "/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat"
 };
 
@@ -137,6 +149,7 @@ const quickAccessLinks: Record<string, string> = {
   "Fomento e Editais": "/fomento",
   "Trilhas de Apoio": "/trilhas",
   "Patentes e Inovação": "/patentes",
+  "Centros e Núcleos": "/centros",
   Atena: "/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat"
 };
 
@@ -274,7 +287,7 @@ export default function PublicHomePage() {
               Escolha o tipo de apoio que você precisa e siga para o conteúdo certo.
             </p>
           </div>
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             {helpCards.map((card) => {
               const Icon = card.icon;
 
