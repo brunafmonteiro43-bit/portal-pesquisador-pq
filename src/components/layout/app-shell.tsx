@@ -91,7 +91,7 @@ export function AppShell({ children, role }: { children: React.ReactNode; role: 
 
   return (
     <div className="min-h-screen bg-[#f4f5f7] text-foreground">
-      <aside className="fixed inset-y-0 left-0 z-40 hidden w-72 border-r border-white/10 bg-[#17191f] text-white shadow-2xl lg:block">
+      <aside className="fixed inset-y-0 left-0 z-40 hidden w-72 border-r border-white/10 bg-graphite text-white shadow-2xl lg:block">
         <div className="flex h-full flex-col p-5">
           <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
             <p className="text-lg font-black tracking-tight">Olá, Pesquisador</p>
@@ -124,13 +124,13 @@ export function AppShell({ children, role }: { children: React.ReactNode; role: 
           <Button variant="ghost" size="icon" aria-label="Ajuda" className="rounded-full text-slate-600 hover:text-accent">
             <CircleHelp className="h-5 w-5" />
           </Button>
-          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-accent text-sm font-black text-white shadow-lg shadow-red-900/20" title={roleLabels[role]}>
+          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-accent text-sm font-black text-white shadow-lg shadow-primary/20" title={roleLabels[role]}>
             <UserCircle className="h-5 w-5" />
           </div>
         </div>
       </header>
 
-      <aside className={cn("fixed inset-y-0 left-0 z-50 w-80 bg-[#17191f] p-5 text-white shadow-2xl transition-transform lg:hidden", open ? "translate-x-0" : "-translate-x-full")}>
+      <aside className={cn("fixed inset-y-0 left-0 z-50 w-80 bg-graphite p-5 text-white shadow-2xl transition-transform lg:hidden", open ? "translate-x-0" : "-translate-x-full")}>
         <div className="mb-6 flex items-start justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
           <div>
             <p className="text-lg font-black">Olá, Pesquisador</p>

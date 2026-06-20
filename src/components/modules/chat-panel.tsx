@@ -135,7 +135,7 @@ export function ChatPanel() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
-            <div className="rounded-xl border border-accent/15 bg-accent/5 p-4">
+            <div className="rounded-xl border border-primary/15 bg-primary-soft p-4">
               <p className="flex items-center gap-2 text-sm font-bold text-foreground">
                 <Sparkles className="h-4 w-4 text-accent" />
                 Buscar editais de fomento
@@ -155,7 +155,7 @@ export function ChatPanel() {
             {suggestedQuestions.map((question) => (
               <button
                 key={question}
-                className="flex w-full items-center gap-3 rounded-md border p-3 text-left text-sm font-semibold transition-colors hover:border-accent hover:bg-accent/5"
+                className="flex w-full items-center gap-3 rounded-md border p-3 text-left text-sm font-semibold transition-colors hover:border-accent hover:bg-primary-soft"
                 onClick={() => void sendMessage(question)}
               >
                 <AtenaAvatar className="h-6 w-6 shrink-0 shadow-none" />

@@ -77,7 +77,7 @@ export function PublicHeader({ compact = false }: { compact?: boolean }) {
                 href={item.href}
                 className={
                   isActive
-                    ? "group relative shrink-0 rounded-lg bg-accent/10 px-2 py-2 text-accent transition-colors duration-200 hover:bg-accent/15 xl:px-2.5 2xl:px-3"
+                    ? "group relative shrink-0 rounded-lg bg-primary-soft px-2 py-2 text-accent transition-colors duration-200 hover:bg-primary-soft xl:px-2.5 2xl:px-3"
                     : "group relative shrink-0 rounded-lg px-2 py-2 text-slate-700 transition-colors duration-200 hover:bg-slate-50 hover:text-accent xl:px-2.5 2xl:px-3"
                 }
               >

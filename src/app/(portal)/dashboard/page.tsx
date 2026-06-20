@@ -29,7 +29,7 @@ export default function DashboardPage() {
               Centralize oportunidades, documentos, serviços e fluxos administrativos em uma experiência institucional da COCEN/UNICAMP.
             </p>
           </div>
-          <Button asChild className="h-12 rounded-xl px-6 shadow-lg shadow-red-900/15">
+          <Button asChild className="h-12 rounded-xl px-6 shadow-lg shadow-primary/20">
             <Link href="/chat">
               Conversar com Atena <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
@@ -50,7 +50,7 @@ export default function DashboardPage() {
                     <p className="mt-5 text-5xl font-black tracking-tight text-accent">{item.value}</p>
                     <p className="mt-3 text-sm font-medium text-slate-500">{item.detail}</p>
                   </div>
-                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-red-50 text-accent">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary-soft text-accent">
                     <Icon className="h-5 w-5" />
                   </span>
                 </div>
@@ -81,7 +81,7 @@ export default function DashboardPage() {
                     <p className="text-sm font-black text-[#20232b]">{item.progress}%</p>
                   </div>
                   <div className="h-3 overflow-hidden rounded-full bg-slate-100">
-                    <div className="h-full rounded-full bg-accent shadow-[0_0_18px_rgba(194,24,61,0.3)]" style={{ width: `${item.progress}%` }} />
+                    <div className="h-full rounded-full bg-accent shadow-[0_0_18px_rgba(133,18,43,0.28)]" style={{ width: `${item.progress}%` }} />
                   </div>
                 </div>
               ))}
@@ -93,7 +93,7 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="rounded-[2rem] border-accent/20 bg-white shadow-sm">
+        <Card className="rounded-[2rem] border-primary/20 bg-white shadow-sm">
           <CardContent className="p-6 md:p-8">
             <div className="flex items-start gap-4">
               <AtenaAvatar className="h-16 w-16 shrink-0 shadow-none" />
@@ -110,7 +110,7 @@ export default function DashboardPage() {
               </p>
             </div>
 
-            <Button asChild className="mt-7 h-12 w-full rounded-xl shadow-lg shadow-red-900/15">
+            <Button asChild className="mt-7 h-12 w-full rounded-xl shadow-lg shadow-primary/20">
               <Link href="/chat">Conversar com Atena</Link>
             </Button>
           </CardContent>

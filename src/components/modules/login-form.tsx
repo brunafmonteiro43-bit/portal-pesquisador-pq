@@ -55,7 +55,7 @@ export function LoginForm() {
       </CardHeader>
       <CardContent>
         {loginMessage === "atena-chat" || loginMessage === "atena-use" || loginMessage === "atena" ? (
-          <div className="mb-4 rounded-md border border-accent/20 bg-accent/5 px-4 py-3 text-sm font-medium text-accent">
+          <div className="mb-4 rounded-md border border-primary/20 bg-primary-soft px-4 py-3 text-sm font-medium text-accent">
             {loginMessage === "atena-use"
               ? "A Atena é uma ferramenta exclusiva para usuários autenticados."
               : "Faça login para conversar com a Atena."}

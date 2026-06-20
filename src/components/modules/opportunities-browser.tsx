@@ -55,7 +55,7 @@ export function OpportunitiesBrowser({ calls }: { calls: FundingCall[] }) {
 
       <div className="grid gap-4 lg:grid-cols-2">
         {filtered.map((call) => (
-          <Card key={call.slug} className={call.closingSoon ? "border-accent/60 shadow-sm" : undefined}>
+          <Card key={call.slug} className={call.closingSoon ? "border-primary/60 shadow-sm" : undefined}>
             <CardHeader>
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex flex-wrap gap-2">

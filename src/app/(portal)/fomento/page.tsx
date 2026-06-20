@@ -25,7 +25,7 @@ export default function FomentoPage() {
 
       <div className="grid gap-4">
         {fundingCalls.map((call) => (
-          <Card key={call.slug} className={call.closingSoon ? "border-accent/60" : undefined}>
+          <Card key={call.slug} className={call.closingSoon ? "border-primary/60" : undefined}>
             <CardHeader className="flex flex-col gap-3 space-y-0 lg:flex-row lg:items-start lg:justify-between">
               <div>
                 <div className="flex flex-wrap items-center gap-2">
