@@ -1,295 +1,118 @@
-import {
-  ArrowRight,
-  BookOpenText,
-  Bot,
-  CalendarDays,
-  Clock3,
-  FileText,
-  Landmark,
-  Lightbulb,
-  Route,
-  Search,
-  Star,
-  Workflow
-} from "lucide-react";
+import { ArrowRight, ClipboardCheck, FileClock, FileText, Landmark, MessagesSquare, Route } from "lucide-react";
 import Link from "next/link";
 import { AtenaAvatar } from "@/components/modules/atena-avatar";
-import { GlobalSearch } from "@/components/modules/global-search";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { featuredDeadlines, fundingCalls, moduleCards, mostAccessedDocuments } from "@/data/portal-content";
 
-const moduleIconMap = {
-  glossario: BookOpenText,
-  templates: FileText,
-  fomento: Landmark,
-  trilhas: Route,
-  patentes: Lightbulb,
-  chat: Bot
-};
-
-const moduleActions = {
-  glossario: "Consultar termo",
-  templates: "Abrir biblioteca",
-  fomento: "Ver editais",
-  trilhas: "Continuar fluxo",
-  patentes: "Ver guia",
-  chat: "Iniciar conversa"
-};
-
-const workItems = [
-  { label: "Editais salvos", value: "4", detail: "2 encerram este mês", icon: Star },
-  { label: "Trilhas em andamento", value: "3", detail: "Projeto, patente e contas", icon: Workflow },
-  { label: "Modelos favoritos", value: "8", detail: "Documentos usados com frequência", icon: FileText },
-  { label: "Patentes acompanhadas", value: "2", detail: "Uma em análise pela Inova", icon: Lightbulb },
-  { label: "Consultas recentes", value: "12", detail: "Rubricas, FAPESP e Funcamp", icon: Search }
+const summaryCards = [
+  { title: "Editais em aberto", value: "12", detail: "oportunidades", icon: Landmark },
+  { title: "Pendências documentais", value: "8", detail: "itens", icon: ClipboardCheck },
+  { title: "Documentos recentes", value: "15", detail: "itens", icon: FileText },
+  { title: "Serviços solicitados", value: "3", detail: "em andamento", icon: FileClock }
 ];
 
-const executiveDeadlines = [
-  { date: "29/06", agency: "Funcamp", type: "Prestação de contas", status: "Em atenção", priority: "Alta" },
-  { date: "14/07", agency: "FAPESP", type: "Chamada Regular", status: "Aberto", priority: "Alta" },
-  { date: "02/08", agency: "FINEP", type: "Subvenção", status: "Aberto", priority: "Média" },
-  { date: "Set/26", agency: "Internacional", type: "Cooperação", status: "Previsto", priority: "Baixa" }
+const trailItems = [
+  { title: "Prestação de Contas do Projeto", progress: 60 },
+  { title: "Solicitação de Auxílio à Pesquisa", progress: 30 },
+  { title: "Relatório Científico", progress: 80 }
 ];
-
-const recentActivities = [
-  { title: "Rubrica consultada", detail: "Material permanente em projeto FAPESP", time: "há 12 min" },
-  { title: "Modelo baixado", detail: "Plano de Trabalho v2.1", time: "há 38 min" },
-  { title: "Edital visualizado", detail: "FINEP - Subvenção Econômica", time: "há 1 h" },
-  { title: "Conversa iniciada com a Atena", detail: "Dúvidas sobre abertura Funcamp", time: "ontem" }
-];
-
-const assistantTopics = ["Rubricas", "FAPESP", "Funcamp", "Prestação de contas", "Patentes", "Convênios", "Documentação"];
 
 export default function DashboardPage() {
   return (
-    <div className="space-y-8">
-      <section className="rounded-2xl border bg-white p-6 shadow-sm md:p-8 dark:bg-card">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+    <div className="mx-auto max-w-7xl space-y-7">
+      <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <Button asChild variant="ghost" className="mb-5 px-0 text-muted-foreground hover:text-accent">
-              <Link href="/">← Ver Portal Público</Link>
-            </Button>
-            <p className="text-sm font-bold uppercase tracking-wide text-accent">Olá, Pesquisador(a)</p>
-            <h1 className="mt-2 text-4xl font-black tracking-normal text-foreground md:text-5xl">
-              O que você precisa hoje?
-            </h1>
-            <p className="mt-3 max-w-2xl text-base text-muted-foreground">
-              Organize documentos, acompanhe prazos e avance nos fluxos de pesquisa com menos etapas.
+            <p className="text-sm font-black uppercase tracking-[0.2em] text-accent">Ambiente do Pesquisador</p>
+            <h2 className="mt-2 text-3xl font-black tracking-tight text-[#20232b] md:text-4xl">Acompanhe sua rotina de pesquisa</h2>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">
+              Centralize oportunidades, documentos, serviços e fluxos administrativos em uma experiência institucional da COCEN/UNICAMP.
             </p>
           </div>
-          <Button asChild className="h-12 px-6">
+          <Button asChild className="h-12 rounded-xl px-6 shadow-lg shadow-primary/20">
             <Link href="/chat">
-              Perguntar à Atena <ArrowRight className="ml-2 h-4 w-4" />
+              Conversar com Atena <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
         </div>
-        <div className="mt-7">
-          <GlobalSearch placeholder="Buscar edital, rubrica, patente, modelo, FAQ ou documento..." />
-        </div>
       </section>
 
-      <section className="space-y-4">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <p className="text-sm font-bold uppercase tracking-wide text-accent">Acesso rápido</p>
-            <h2 className="text-2xl font-black tracking-normal">Módulos de trabalho</h2>
-          </div>
-          <Badge variant="secondary">6 áreas principais</Badge>
-        </div>
+      <section className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        {summaryCards.map((item) => {
+          const Icon = item.icon;
 
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {moduleCards.map((module) => {
-            const Icon = moduleIconMap[module.key as keyof typeof moduleIconMap] ?? Search;
-            const action = moduleActions[module.key as keyof typeof moduleActions] ?? "Abrir";
-
-            return (
-              <Link
-                key={module.href}
-                href={module.href}
-                className="group rounded-2xl border bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-md dark:bg-card"
-              >
+          return (
+            <Card key={item.title} className="rounded-3xl border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+              <CardContent className="p-6">
                 <div className="flex items-start justify-between gap-4">
-                  {module.key === "chat" ? (
-                    <AtenaAvatar className="h-12 w-12 shadow-none" />
-                  ) : (
-                    <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-muted text-accent">
-                      <Icon className="h-6 w-6" />
-                    </span>
-                  )}
-                  <ArrowRight className="h-5 w-5 text-muted-foreground transition group-hover:translate-x-1 group-hover:text-accent" />
-                </div>
-                <h3 className="mt-5 text-xl font-black">{module.title}</h3>
-                <p className="mt-2 min-h-10 text-sm leading-6 text-muted-foreground">{module.description}</p>
-                <div className="mt-5 flex items-center justify-between gap-3 border-t pt-4">
-                  <span className="text-xs font-bold text-accent">{module.count}</span>
-                  <span className="text-sm font-bold text-foreground">{action}</span>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="grid gap-4 xl:grid-cols-[1fr_0.9fr]">
-        <Card className="rounded-2xl shadow-sm">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-bold uppercase tracking-wide text-accent">Meu Trabalho</p>
-                <h2 className="text-2xl font-black tracking-normal">Seu espaço de acompanhamento</h2>
-              </div>
-              <Clock3 className="h-5 w-5 text-muted-foreground" />
-            </div>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              {workItems.map((item) => {
-                const Icon = item.icon;
-
-                return (
-                  <div key={item.label} className="rounded-xl border bg-muted/20 p-4">
-                    <div className="flex items-center justify-between gap-3">
-                      <Icon className="h-5 w-5 text-accent" />
-                      <span className="text-2xl font-black">{item.value}</span>
-                    </div>
-                    <p className="mt-4 font-bold">{item.label}</p>
-                    <p className="mt-1 text-sm text-muted-foreground">{item.detail}</p>
+                  <div>
+                    <p className="text-sm font-black text-[#20232b]">{item.title}</p>
+                    <p className="mt-5 text-5xl font-black tracking-tight text-accent">{item.value}</p>
+                    <p className="mt-3 text-sm font-medium text-slate-500">{item.detail}</p>
                   </div>
-                );
-              })}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="rounded-2xl border-accent/30 bg-accent text-white shadow-sm">
-          <CardContent className="p-6">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="text-sm font-bold uppercase tracking-wide text-white/75">Atena</p>
-                <h2 className="mt-2 text-3xl font-black">Assistente de Pesquisa e Inovação</h2>
-                <p className="mt-3 leading-7 text-white/85">Faça perguntas sobre editais, fomento, patentes, documentos e normas da rotina COCEN.</p>
-              </div>
-              <AtenaAvatar className="h-14 w-14 shrink-0" />
-            </div>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {assistantTopics.map((topic) => (
-                <span key={topic} className="rounded-full bg-white/15 px-3 py-1 text-sm font-semibold text-white">
-                  {topic}
-                </span>
-              ))}
-            </div>
-            <Button asChild variant="secondary" className="mt-7">
-              <Link href="/chat">
-                Perguntar à Atena <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </CardContent>
-        </Card>
-      </section>
-
-      <section className="grid gap-4 xl:grid-cols-[1fr_0.8fr]">
-        <Card className="rounded-2xl shadow-sm">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-bold uppercase tracking-wide text-accent">Próximos Prazos</p>
-                <h2 className="text-2xl font-black tracking-normal">Calendário executivo</h2>
-              </div>
-              <CalendarDays className="h-5 w-5 text-muted-foreground" />
-            </div>
-            <div className="mt-6 overflow-hidden rounded-xl border">
-              {executiveDeadlines.map((item) => (
-                <div key={`${item.date}-${item.type}`} className="grid gap-3 border-b bg-white p-4 last:border-b-0 md:grid-cols-[0.7fr_1fr_1.4fr_0.9fr_0.8fr] md:items-center dark:bg-card">
-                  <span className="text-lg font-black">{item.date}</span>
-                  <span className="text-sm font-bold">{item.agency}</span>
-                  <span className="text-sm text-muted-foreground">{item.type}</span>
-                  <Badge variant="secondary" className="w-fit">
-                    {item.status}
-                  </Badge>
-                  <span
-                    className={
-                      item.priority === "Alta"
-                        ? "text-sm font-black text-accent"
-                        : "text-sm font-bold text-muted-foreground"
-                    }
-                  >
-                    {item.priority}
+                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary-soft text-accent">
+                    <Icon className="h-5 w-5" />
                   </span>
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="rounded-2xl shadow-sm">
-          <CardContent className="p-6">
-            <div>
-              <p className="text-sm font-bold uppercase tracking-wide text-accent">Atividades Recentes</p>
-              <h2 className="text-2xl font-black tracking-normal">Últimas ações</h2>
-            </div>
-            <div className="mt-6 space-y-3">
-              {recentActivities.map((activity) => (
-                <div key={activity.title} className="rounded-xl border bg-muted/20 p-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="font-bold">{activity.title}</p>
-                      <p className="mt-1 text-sm text-muted-foreground">{activity.detail}</p>
-                    </div>
-                    <span className="shrink-0 text-xs font-semibold text-muted-foreground">{activity.time}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
+          );
+        })}
       </section>
 
-      <section className="grid gap-4 lg:grid-cols-3">
-        <Card className="rounded-2xl shadow-sm">
-          <CardContent className="p-6">
-            <h2 className="text-xl font-black">Editais recentes</h2>
-            <div className="mt-5 space-y-3">
-              {fundingCalls.slice(0, 3).map((call) => (
-                <Link key={call.slug} href="/oportunidades" className="block rounded-xl border p-4 transition hover:border-accent">
-                  <div className="flex items-center justify-between gap-3">
-                    <p className="text-sm font-bold">{call.title}</p>
-                    <Badge variant="secondary">{call.agency}</Badge>
-                  </div>
-                  <p className="mt-2 text-sm text-muted-foreground">{call.deadline}</p>
-                </Link>
-              ))}
+      <section className="grid gap-7 xl:grid-cols-[1.45fr_0.9fr]">
+        <Card className="rounded-[2rem] border-slate-200 bg-white shadow-sm">
+          <CardContent className="p-6 md:p-8">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <p className="text-sm font-black uppercase tracking-[0.18em] text-accent">Fluxos administrativos</p>
+                <h2 className="mt-2 text-2xl font-black tracking-tight text-[#20232b]">Trilhas em andamento</h2>
+              </div>
+              <span className="hidden h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-600 sm:flex">
+                <Route className="h-5 w-5" />
+              </span>
             </div>
-          </CardContent>
-        </Card>
 
-        <Card className="rounded-2xl shadow-sm">
-          <CardContent className="p-6">
-            <h2 className="text-xl font-black">Modelos favoritos</h2>
-            <div className="mt-5 space-y-3">
-              {mostAccessedDocuments.slice(0, 3).map((document) => (
-                <div key={document} className="flex items-center gap-3 rounded-xl border p-4">
-                  <FileText className="h-4 w-4 text-accent" />
-                  <span className="text-sm font-semibold">{document}</span>
+            <div className="mt-8 space-y-7">
+              {trailItems.map((item) => (
+                <div key={item.title}>
+                  <div className="mb-3 flex items-center justify-between gap-4">
+                    <p className="font-bold text-[#20232b]">{item.title}</p>
+                    <p className="text-sm font-black text-[#20232b]">{item.progress}%</p>
+                  </div>
+                  <div className="h-3 overflow-hidden rounded-full bg-slate-100">
+                    <div className="h-full rounded-full bg-accent shadow-[0_0_18px_rgba(133,18,43,0.28)]" style={{ width: `${item.progress}%` }} />
+                  </div>
                 </div>
               ))}
             </div>
+
+            <Link href="/trilhas" className="mt-8 inline-flex items-center text-sm font-black text-accent hover:underline">
+              Ver todas as trilhas <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
           </CardContent>
         </Card>
 
-        <Card className="rounded-2xl shadow-sm">
-          <CardContent className="p-6">
-            <h2 className="text-xl font-black">Prazos em destaque</h2>
-            <div className="mt-5 space-y-3">
-              {featuredDeadlines.map((item) => (
-                <div key={item.title} className="rounded-xl border p-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <p className="text-sm font-bold">{item.title}</p>
-                    <Badge variant="secondary">{item.status}</Badge>
-                  </div>
-                  <p className="mt-2 text-sm text-muted-foreground">{item.detail}</p>
-                </div>
-              ))}
+        <Card className="rounded-[2rem] border-primary/20 bg-white shadow-sm">
+          <CardContent className="p-6 md:p-8">
+            <div className="flex items-start gap-4">
+              <AtenaAvatar className="h-16 w-16 shrink-0 shadow-none" />
+              <div>
+                <p className="text-2xl font-black tracking-tight text-[#20232b]">Atena</p>
+                <p className="mt-1 text-sm font-bold text-accent">Assistente de Pesquisa e Inovação</p>
+              </div>
             </div>
+
+            <div className="mt-7 rounded-3xl border border-slate-100 bg-[#f8f9fb] p-5">
+              <MessagesSquare className="mb-4 h-5 w-5 text-accent" />
+              <p className="text-base leading-7 text-slate-700">
+                Posso ajudar você a encontrar informações, documentos, editais e fluxos administrativos.
+              </p>
+            </div>
+
+            <Button asChild className="mt-7 h-12 w-full rounded-xl shadow-lg shadow-primary/20">
+              <Link href="/chat">Conversar com Atena</Link>
+            </Button>
           </CardContent>
         </Card>
       </section>

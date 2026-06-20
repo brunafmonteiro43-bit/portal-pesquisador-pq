@@ -76,7 +76,7 @@ export function GlobalSearch({
                 key={suggestion}
                 type="button"
                 onClick={() => setQuery(suggestion)}
-                className="rounded-full border bg-white px-3 py-1.5 text-xs font-semibold text-muted-foreground transition hover:border-accent hover:bg-accent/5 hover:text-accent"
+                className="rounded-full border bg-white px-3 py-1.5 text-xs font-semibold text-muted-foreground transition hover:border-accent hover:bg-primary-soft hover:text-accent"
               >
                 {suggestion}
               </button>
@@ -99,7 +99,7 @@ export function GlobalSearch({
                     <Link
                       key={`${result.module}-${result.title}`}
                       href={result.href}
-                      className="group rounded-lg border border-transparent p-3 transition hover:border-accent/20 hover:bg-accent/5"
+                      className="group rounded-lg border border-transparent p-3 transition hover:border-primary/20 hover:bg-primary-soft"
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div>

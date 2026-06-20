@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  ArrowLeft,
   Bell,
   BookOpenText,
   Bot,
@@ -15,15 +16,14 @@ import {
   Menu,
   Search,
   ShieldCheck,
+  SlidersHorizontal,
   Star,
   UserCircle,
   X
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { type AppRole, navItems, roleLabels } from "@/lib/permissions";
 import { cn } from "@/lib/utils";
@@ -40,126 +40,134 @@ const icons = {
   ShieldCheck,
   Building2,
   CalendarDays,
-  Star
+  Star,
+  SlidersHorizontal
 };
+
+const researcherMenuLabels: Record<string, string> = {
+  "/dashboard": "Dashboard",
+  "/fomento": "Editais",
+  "/trilhas": "Projetos",
+  "/templates": "Documentos",
+  "/centros": "Centros e Núcleos",
+  "/glossario": "Serviços",
+  "/favoritos": "Favoritos",
+  "/faq": "Configurações"
+};
+
+const researcherMenuOrder = ["/dashboard", "/fomento", "/trilhas", "/templates", "/centros", "/glossario", "/favoritos", "/faq"];
 
 export function AppShell({ children, role }: { children: React.ReactNode; role: AppRole }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const visibleNavItems = navItems.filter((item) => item.roles.includes(role));
+  const menuItems = researcherMenuOrder
+    .map((href) => visibleNavItems.find((item) => item.href === href))
+    .filter((item): item is (typeof visibleNavItems)[number] => Boolean(item));
+
+  const renderNavigation = (mobile = false) => (
+    <nav className="space-y-1.5">
+      {menuItems.map((item) => {
+        const Icon = icons[item.icon as keyof typeof icons] ?? LayoutDashboard;
+        const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
+        const label = researcherMenuLabels[item.href] ?? item.shortLabel ?? item.label;
+
+        return (
+          <Link
+            key={item.href}
+            href={item.href}
+            onClick={() => mobile && setOpen(false)}
+            className={cn(
+              "group flex min-h-12 items-center gap-3 rounded-xl px-4 text-sm font-semibold text-white/68 transition-all hover:bg-white/8 hover:text-white",
+              active && "bg-white/10 text-white shadow-[inset_4px_0_0_hsl(var(--accent))]"
+            )}
+          >
+            <Icon className={cn("h-4 w-4 shrink-0 text-white/58 transition-colors group-hover:text-white", active && "text-accent")} />
+            <span>{label}</span>
+          </Link>
+        );
+      })}
+    </nav>
+  );
 
   return (
-    <div className="min-h-screen bg-[#f7f8fa] text-foreground dark:bg-background">
-      <header className="sticky top-0 z-40 border-b bg-white/90 backdrop-blur dark:bg-background/95">
-        <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 md:px-6">
+    <div className="min-h-screen bg-[#f4f5f7] text-foreground">
+      <aside className="fixed inset-y-0 left-0 z-40 hidden w-72 border-r border-white/10 bg-graphite text-white shadow-2xl lg:block">
+        <div className="flex h-full flex-col p-5">
+          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+            <p className="text-lg font-black tracking-tight">Olá, Pesquisador</p>
+            <p className="mt-1 text-sm font-medium text-white/62">Bem-vindo ao seu ambiente</p>
+          </div>
+          <div className="mt-8 flex-1">{renderNavigation()}</div>
+          <Link
+            href="/"
+            className="mb-4 flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.06] px-4 text-sm font-bold text-white transition hover:border-white/25 hover:bg-white/10"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Voltar para a Home
+          </Link>
+          <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-xs leading-5 text-white/60">
+            <p className="font-bold text-white">Ambiente do Pesquisador</p>
+            <p>COCEN/UNICAMP</p>
+          </div>
+        </div>
+      </aside>
+
+      <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/95 backdrop-blur lg:ml-72">
+        <div className="flex min-h-20 items-center gap-3 px-4 md:px-8">
           <Button variant="outline" size="icon" className="lg:hidden" onClick={() => setOpen(true)} aria-label="Abrir menu">
             <Menu className="h-4 w-4" />
           </Button>
-
-          <div className="flex min-w-0 items-center gap-3">
-            <Link href="https://www.unicamp.br/" aria-label="Acessar site da UNICAMP">
-              <Image src="/assets/logo-unicamp.png" alt="UNICAMP" width={48} height={48} className="h-9 w-auto object-contain" />
-            </Link>
-            <Link href="https://www.cocen.unicamp.br/" aria-label="Acessar site da COCEN" className="hidden sm:block">
-              <Image src="/assets/logo-cocen.jpg" alt="COCEN" width={130} height={40} className="h-8 w-auto object-contain" />
-            </Link>
-            <Link href="/" className="min-w-0">
-              <span className="block truncate text-base font-black text-foreground">Portal do Pesquisador</span>
-              <span className="block truncate text-xs font-semibold text-muted-foreground">Plataforma de gestão da pesquisa</span>
-            </Link>
+          <div className="min-w-0">
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-accent">Ambiente do Pesquisador</p>
+            <h1 className="truncate text-xl font-black tracking-tight text-[#20232b] md:text-2xl">Dashboard institucional</h1>
           </div>
-
-          <div className="mx-2 hidden min-w-0 flex-1 items-center rounded-xl border bg-muted/35 px-3 lg:flex">
-            <Search className="mr-2 h-4 w-4 text-muted-foreground" />
-            <input
-              className="h-10 min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
-              placeholder="Buscar edital, rubrica, patente, modelo, FAQ ou documento..."
-            />
+          <div className="ml-auto hidden min-w-0 max-w-xl flex-1 items-center rounded-2xl border border-slate-200 bg-[#f7f8fa] px-4 md:flex">
+            <Search className="mr-3 h-4 w-4 text-slate-400" />
+            <input className="h-12 min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-slate-400" placeholder="Buscar no ambiente..." />
           </div>
-
-          <div className="ml-auto flex items-center gap-2">
-            <Button asChild variant="outline" className="hidden sm:inline-flex">
-              <Link href="/">← Ver Portal Público</Link>
-            </Button>
-            <Button variant="outline" size="icon" aria-label="Notificações">
-              <Bell className="h-4 w-4" />
-            </Button>
-            <ThemeToggle />
-            <div className="hidden items-center gap-2 rounded-xl border bg-white px-3 py-2 text-sm shadow-sm md:flex dark:bg-card">
-              <UserCircle className="h-5 w-5 text-accent" />
-              <span className="font-semibold">{roleLabels[role]}</span>
-            </div>
+          <Button asChild variant="outline" className="hidden h-11 rounded-xl px-4 text-sm font-bold text-slate-700 hover:text-accent xl:inline-flex">
+            <Link href="/">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Voltar para a Home
+            </Link>
+          </Button>
+          <Button variant="ghost" size="icon" aria-label="Notificações" className="rounded-full text-slate-600 hover:text-accent">
+            <Bell className="h-5 w-5" />
+          </Button>
+          <Button variant="ghost" size="icon" aria-label="Ajuda" className="rounded-full text-slate-600 hover:text-accent">
+            <CircleHelp className="h-5 w-5" />
+          </Button>
+          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-accent text-sm font-black text-white shadow-lg shadow-primary/20" title={roleLabels[role]}>
+            <UserCircle className="h-5 w-5" />
           </div>
         </div>
-
-        <nav className="hidden border-t bg-white lg:block dark:bg-background">
-          <div className="mx-auto flex max-w-7xl items-center gap-1 overflow-x-auto px-4 md:px-6">
-            {visibleNavItems.map((item) => {
-              const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
-
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "border-b-2 border-transparent px-3 py-3 text-sm font-medium text-muted-foreground transition-colors hover:border-accent hover:text-foreground",
-                    active && "border-accent text-foreground"
-                  )}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </div>
-        </nav>
       </header>
 
-      <aside
-        className={cn(
-          "fixed inset-y-0 left-0 z-50 w-80 border-r bg-card p-4 shadow-xl transition-transform lg:hidden",
-          open ? "translate-x-0" : "-translate-x-full"
-        )}
-      >
-        <div className="mb-4 flex items-center justify-between">
+      <aside className={cn("fixed inset-y-0 left-0 z-50 w-80 bg-graphite p-5 text-white shadow-2xl transition-transform lg:hidden", open ? "translate-x-0" : "-translate-x-full")}>
+        <div className="mb-6 flex items-start justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
           <div>
-            <p className="font-bold">Portal do Pesquisador</p>
-            <p className="text-sm text-muted-foreground">Menu de trabalho</p>
+            <p className="text-lg font-black">Olá, Pesquisador</p>
+            <p className="text-sm text-white/62">Bem-vindo ao seu ambiente</p>
           </div>
-          <Button variant="outline" size="icon" onClick={() => setOpen(false)} aria-label="Fechar menu">
+          <Button variant="ghost" size="icon" onClick={() => setOpen(false)} aria-label="Fechar menu" className="text-white hover:bg-white/10 hover:text-white">
             <X className="h-4 w-4" />
           </Button>
         </div>
-        <Button asChild variant="outline" className="mb-4 w-full justify-start">
-          <Link href="/" onClick={() => setOpen(false)}>
-            ← Ver Portal Público
-          </Link>
-        </Button>
-        <nav className="space-y-1">
-          {visibleNavItems.map((item) => {
-            const Icon = icons[item.icon as keyof typeof icons];
-            const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
-
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className={cn(
-                  "flex min-h-11 items-center gap-3 rounded-md px-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
-                  active && "bg-accent text-white hover:bg-accent hover:text-white"
-                )}
-              >
-                <Icon className="h-4 w-4 shrink-0" />
-                <span>{item.label}</span>
-              </Link>
-            );
-          })}
-        </nav>
+        {renderNavigation(true)}
+        <Link
+          href="/"
+          onClick={() => setOpen(false)}
+          className="mt-6 flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.06] px-4 text-sm font-bold text-white transition hover:border-white/25 hover:bg-white/10"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Voltar para a Home
+        </Link>
       </aside>
 
-      {open && <button className="fixed inset-0 z-40 bg-background/75 lg:hidden" onClick={() => setOpen(false)} />}
+      {open && <button className="fixed inset-0 z-40 bg-slate-950/60 lg:hidden" onClick={() => setOpen(false)} aria-label="Fechar menu" />}
 
-      <main className="mx-auto min-w-0 max-w-7xl px-4 py-8 md:px-6 lg:py-10">{children}</main>
+      <main className="min-w-0 px-4 py-6 md:px-8 lg:ml-72 lg:py-8">{children}</main>
     </div>
   );
 }

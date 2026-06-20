@@ -6,6 +6,7 @@ import {
   FileText,
   Landmark,
   Lightbulb,
+  Network,
   Map,
   MessageSquare,
   Search,
@@ -50,6 +51,11 @@ const helpCards = [
     icon: Lightbulb
   },
   {
+    title: "Centros e Núcleos",
+    description: "Conheça os Centros e Núcleos vinculados à COCEN.",
+    icon: Network
+  },
+  {
     title: "Atena",
     description: "Inteligência para pesquisa, fomento e inovação.",
     icon: Sparkles
@@ -81,6 +87,11 @@ const quickAccess = [
     title: "Patentes e Inovação",
     description: "Orientações para proteger descobertas.",
     icon: Lightbulb
+  },
+  {
+    title: "Centros e Núcleos",
+    description: "Conheça as estruturas de pesquisa vinculadas à COCEN.",
+    icon: Network
   },
   {
     title: "Atena",
@@ -128,6 +139,7 @@ const publicHelpLinks: Record<string, string> = {
   Fomento: "/fomento",
   Documentação: "/templates",
   Patentes: "/patentes",
+  "Centros e Núcleos": "/centros",
   Atena: "/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat"
 };
 
@@ -137,6 +149,7 @@ const quickAccessLinks: Record<string, string> = {
   "Fomento e Editais": "/fomento",
   "Trilhas de Apoio": "/trilhas",
   "Patentes e Inovação": "/patentes",
+  "Centros e Núcleos": "/centros",
   Atena: "/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat"
 };
 
@@ -174,7 +187,7 @@ export default function PublicHomePage() {
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:gap-4">
-                <Button asChild size="lg" className="h-12 px-5 text-sm shadow-lg shadow-accent/20 sm:h-14 sm:px-8 sm:text-base">
+                <Button asChild size="lg" className="h-12 px-5 text-sm shadow-lg shadow-primary/20 sm:h-14 sm:px-8 sm:text-base">
                   <Link href="/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat">Conversar com a Atena</Link>
                 </Button>
                 <Button
@@ -202,7 +215,7 @@ export default function PublicHomePage() {
                     <Link
                       key={suggestion}
                       href={suggestionLinks[suggestion] ?? "/fomento"}
-                      className="rounded-full bg-muted px-3 py-1.5 text-xs font-bold text-muted-foreground transition hover:bg-accent/10 hover:text-accent"
+                      className="rounded-full bg-muted px-3 py-1.5 text-xs font-bold text-muted-foreground transition hover:bg-primary-soft hover:text-accent"
                     >
                       {suggestion}
                     </Link>
@@ -237,7 +250,7 @@ export default function PublicHomePage() {
               />
               <div className="absolute bottom-7 left-6 hidden max-w-[19rem] rounded-2xl border border-white/70 bg-white/95 p-4 shadow-[0_18px_45px_rgba(15,23,42,0.16)] backdrop-blur lg:block xl:left-[-18px]">
                 <div className="flex gap-4">
-                  <span className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
+                  <span className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-soft text-accent">
                     <FileText className="h-5 w-5" />
                   </span>
                   <div>
@@ -274,7 +287,7 @@ export default function PublicHomePage() {
               Escolha o tipo de apoio que você precisa e siga para o conteúdo certo.
             </p>
           </div>
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             {helpCards.map((card) => {
               const Icon = card.icon;
 
@@ -282,7 +295,7 @@ export default function PublicHomePage() {
                 <Link
                   key={card.title}
                   href={publicHelpLinks[card.title] ?? "/"}
-                  className="group rounded-2xl border bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-accent/60 hover:shadow-lg"
+                  className="group rounded-2xl border bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-primary/60 hover:shadow-lg"
                 >
                   <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-muted text-accent transition group-hover:bg-accent group-hover:text-white">
                     <Icon className="h-6 w-6" />
@@ -323,7 +336,7 @@ export default function PublicHomePage() {
                   <Link
                     key={card.title}
                     href={quickAccessLinks[card.title] ?? "/"}
-                    className="group min-h-[230px] rounded-xl border bg-white p-9 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-accent/60 hover:shadow-lg"
+                    className="group min-h-[230px] rounded-xl border bg-white p-9 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-primary/60 hover:shadow-lg"
                   >
                     <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-muted text-accent transition group-hover:bg-accent group-hover:text-white">
                       <Icon className="h-6 w-6" />
@@ -410,14 +423,14 @@ export default function PublicHomePage() {
                     <Link
                       key={question}
                       href="/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat"
-                      className="flex items-center gap-4 rounded-2xl border bg-muted/20 p-5 text-left font-semibold shadow-sm transition hover:border-accent/60 hover:bg-accent/5"
+                      className="flex items-center gap-4 rounded-2xl border bg-muted/20 p-5 text-left font-semibold shadow-sm transition hover:border-primary/60 hover:bg-primary-soft"
                     >
                       <AtenaAvatar className="h-8 w-8 shrink-0 shadow-none" />
                       {question}
                     </Link>
                   ))}
                 </div>
-                <div className="mt-6 rounded-2xl border border-accent/30 bg-accent/5 p-5">
+                <div className="mt-6 rounded-2xl border border-primary/30 bg-primary-soft p-5">
                   <p className="font-black text-accent">Valor para o pesquisador</p>
                   <p className="mt-2 text-sm leading-6 text-muted-foreground">
                     A Atena ajuda a localizar orientações, reduzir retrabalho e transformar termos administrativos em

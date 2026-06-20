@@ -37,7 +37,7 @@ export default function TemplatesPage() {
             <CardHeader className="space-y-4">
               <div className="flex flex-row items-start justify-between gap-4">
                 <div className="flex gap-3">
-                  <span className="mt-1 flex h-12 w-12 items-center justify-center rounded-md bg-accent/10 text-accent">
+                  <span className="mt-1 flex h-12 w-12 items-center justify-center rounded-md bg-primary-soft text-accent">
                     <FileCheck2 className="h-6 w-6" />
                   </span>
                   <div>
