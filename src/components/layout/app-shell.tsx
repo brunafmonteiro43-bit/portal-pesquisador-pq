@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  ArrowLeft,
   Bell,
   BookOpenText,
   Bot,
@@ -98,6 +99,13 @@ export function AppShell({ children, role }: { children: React.ReactNode; role: 
             <p className="mt-1 text-sm font-medium text-white/62">Bem-vindo ao seu ambiente</p>
           </div>
           <div className="mt-8 flex-1">{renderNavigation()}</div>
+          <Link
+            href="/"
+            className="mb-4 flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.06] px-4 text-sm font-bold text-white transition hover:border-white/25 hover:bg-white/10"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Voltar ao Portal Público
+          </Link>
           <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-xs leading-5 text-white/60">
             <p className="font-bold text-white">Ambiente do Pesquisador</p>
             <p>COCEN/UNICAMP</p>
@@ -118,6 +126,12 @@ export function AppShell({ children, role }: { children: React.ReactNode; role: 
             <Search className="mr-3 h-4 w-4 text-slate-400" />
             <input className="h-12 min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-slate-400" placeholder="Buscar no ambiente..." />
           </div>
+          <Button asChild variant="outline" className="hidden h-11 rounded-xl px-4 text-sm font-bold text-slate-700 hover:text-accent xl:inline-flex">
+            <Link href="/">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Portal Público
+            </Link>
+          </Button>
           <Button variant="ghost" size="icon" aria-label="Notificações" className="rounded-full text-slate-600 hover:text-accent">
             <Bell className="h-5 w-5" />
           </Button>
@@ -141,6 +155,14 @@ export function AppShell({ children, role }: { children: React.ReactNode; role: 
           </Button>
         </div>
         {renderNavigation(true)}
+        <Link
+          href="/"
+          onClick={() => setOpen(false)}
+          className="mt-6 flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.06] px-4 text-sm font-bold text-white transition hover:border-white/25 hover:bg-white/10"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Voltar ao Portal Público
+        </Link>
       </aside>
 
       {open && <button className="fixed inset-0 z-40 bg-slate-950/60 lg:hidden" onClick={() => setOpen(false)} aria-label="Fechar menu" />}
