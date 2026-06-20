@@ -104,7 +104,7 @@ export function AppShell({ children, role }: { children: React.ReactNode; role: 
             className="mb-4 flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.06] px-4 text-sm font-bold text-white transition hover:border-white/25 hover:bg-white/10"
           >
             <ArrowLeft className="h-4 w-4" />
-            Voltar ao Portal Público
+            Voltar para a Home
           </Link>
           <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-xs leading-5 text-white/60">
             <p className="font-bold text-white">Ambiente do Pesquisador</p>
@@ -129,7 +129,7 @@ export function AppShell({ children, role }: { children: React.ReactNode; role: 
           <Button asChild variant="outline" className="hidden h-11 rounded-xl px-4 text-sm font-bold text-slate-700 hover:text-accent xl:inline-flex">
             <Link href="/">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Portal Público
+              Voltar para a Home
             </Link>
           </Button>
           <Button variant="ghost" size="icon" aria-label="Notificações" className="rounded-full text-slate-600 hover:text-accent">
@@ -161,7 +161,7 @@ export function AppShell({ children, role }: { children: React.ReactNode; role: 
           className="mt-6 flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.06] px-4 text-sm font-bold text-white transition hover:border-white/25 hover:bg-white/10"
         >
           <ArrowLeft className="h-4 w-4" />
-          Voltar ao Portal Público
+          Voltar para a Home
         </Link>
       </aside>
 
