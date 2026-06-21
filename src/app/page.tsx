@@ -20,10 +20,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 const institutionalIndicators = [
-  { value: "+500", label: "modelos e documentos" },
-  { value: "+120", label: "editais monitorados" },
-  { value: "+50", label: "fluxos administrativos" },
-  { value: "+100", label: "termos do glossário" }
+  { value: "23", label: "Centros e Núcleos" },
+  { value: "+500", label: "documentos e modelos" },
+  { value: "24h", label: "editais atualizados" },
+  { value: "Atena", label: "especializada" }
 ];
 
 const quickSuggestions = ["FAPESP", "CAPES", "Patentes", "Convênios", "Prestação de contas"];
@@ -48,6 +48,11 @@ const helpCards = [
     title: "Patentes",
     description: "Entenda sigilo, comunicação de invenção, Inova Unicamp e INPI.",
     icon: Lightbulb
+  },
+  {
+    title: "Centros e Núcleos",
+    description: "Acesse a rede interdisciplinar de centros e núcleos da COCEN.",
+    icon: Landmark
   },
   {
     title: "Atena",
@@ -81,6 +86,11 @@ const quickAccess = [
     title: "Patentes e Inovação",
     description: "Orientações para proteger descobertas.",
     icon: Lightbulb
+  },
+  {
+    title: "Centros e Núcleos",
+    description: "Conheça a estrutura pública de centros e núcleos interdisciplinares.",
+    icon: Landmark
   },
   {
     title: "Atena",
@@ -128,6 +138,7 @@ const publicHelpLinks: Record<string, string> = {
   Fomento: "/fomento",
   Documentação: "/templates",
   Patentes: "/patentes",
+  "Centros e Núcleos": "/centros",
   Atena: "/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat"
 };
 
@@ -137,6 +148,7 @@ const quickAccessLinks: Record<string, string> = {
   "Fomento e Editais": "/fomento",
   "Trilhas de Apoio": "/trilhas",
   "Patentes e Inovação": "/patentes",
+  "Centros e Núcleos": "/centros",
   Atena: "/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat"
 };
 
@@ -154,9 +166,9 @@ export default function PublicHomePage() {
       <PublicHeader />
 
       <main>
-        <section className="relative overflow-hidden">
+        <section className="relative overflow-hidden bg-[radial-gradient(circle_at_12%_8%,rgba(185,28,28,0.10),transparent_30%),linear-gradient(180deg,#fff_0%,#f8fafc_100%)]">
           <div className="absolute inset-x-0 top-0 h-px bg-border" />
-          <div className="mx-auto grid min-h-[calc(100vh-118px)] max-w-7xl gap-10 px-4 py-10 sm:py-14 lg:grid-cols-[1fr_0.84fr] lg:items-center lg:gap-12 lg:py-20">
+          <div className="mx-auto grid max-w-7xl gap-10 px-4 py-10 sm:py-14 md:gap-12 lg:min-h-[calc(100vh-116px)] lg:grid-cols-[1.04fr_0.86fr] lg:items-center lg:gap-14 lg:py-20 xl:py-24">
             <div>
               <div className="inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border bg-white px-3 py-2 text-xs font-bold shadow-sm sm:px-4 sm:text-sm">
                 <span className="h-2 w-2 rounded-full bg-accent" />
@@ -165,10 +177,10 @@ export default function PublicHomePage() {
                 <span className="text-muted-foreground">Pesquisa • Inovação • Fomento</span>
               </div>
 
-              <h1 className="mt-7 max-w-4xl text-4xl font-black leading-[1.02] tracking-normal text-foreground sm:text-5xl md:text-7xl">
+              <h1 className="mt-6 max-w-4xl text-[2.45rem] font-black leading-[1.03] tracking-[-0.04em] text-slate-950 sm:text-5xl md:text-6xl xl:text-7xl">
                 Simplificando a gestão da pesquisa universitária.
               </h1>
-              <p className="mt-5 max-w-3xl text-lg font-semibold leading-7 text-foreground sm:mt-7 sm:text-2xl sm:leading-9">
+              <p className="mt-5 max-w-3xl text-base font-semibold leading-7 text-slate-700 sm:mt-6 sm:text-xl sm:leading-8 lg:text-2xl lg:leading-9">
                 Centralize editais, modelos, fluxos administrativos, patentes e suporte especializado em um único
                 ambiente.
               </p>
@@ -187,7 +199,7 @@ export default function PublicHomePage() {
                 </Button>
               </div>
 
-              <div className="mt-7 max-w-3xl rounded-2xl border bg-white p-3 shadow-[0_20px_60px_rgba(0,0,0,0.10)] sm:mt-8">
+              <div className="mt-7 max-w-3xl rounded-3xl border border-slate-200 bg-white p-3 shadow-[0_24px_70px_rgba(15,23,42,0.12)] sm:mt-8">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                   <div className="flex min-h-14 flex-1 items-center gap-3 px-3 text-sm text-muted-foreground sm:min-h-16 sm:px-4 sm:text-base">
                     <Search className="h-5 w-5 shrink-0 text-accent" />
@@ -233,9 +245,9 @@ export default function PublicHomePage() {
                 width={860}
                 height={760}
                 priority
-                className="aspect-[1.12] w-full rounded-2xl object-cover shadow-[0_20px_60px_rgba(0,0,0,0.16)] sm:aspect-[0.92] lg:max-w-[45vw] lg:shadow-[0_28px_80px_rgba(0,0,0,0.18)]"
+                className="aspect-[1.45] w-full rounded-[1.7rem] border border-white object-cover shadow-[0_20px_60px_rgba(15,23,42,0.14)] sm:aspect-[1.15] md:aspect-[1.35] lg:aspect-[0.92] lg:max-w-[45vw] lg:shadow-[0_30px_90px_rgba(15,23,42,0.20)]"
               />
-              <div className="absolute bottom-7 left-6 hidden max-w-[19rem] rounded-2xl border border-white/70 bg-white/95 p-4 shadow-[0_18px_45px_rgba(15,23,42,0.16)] backdrop-blur lg:block xl:left-[-18px]">
+              <div className="mt-4 rounded-2xl border border-white/70 bg-white/95 p-4 shadow-[0_18px_45px_rgba(15,23,42,0.14)] backdrop-blur lg:absolute lg:bottom-7 lg:left-6 lg:mt-0 lg:max-w-[19rem] xl:left-[-18px]">
                 <div className="flex gap-4">
                   <span className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
                     <FileText className="h-5 w-5" />
@@ -274,7 +286,7 @@ export default function PublicHomePage() {
               Escolha o tipo de apoio que você precisa e siga para o conteúdo certo.
             </p>
           </div>
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             {helpCards.map((card) => {
               const Icon = card.icon;
 
@@ -315,7 +327,7 @@ export default function PublicHomePage() {
               </p>
             </div>
 
-            <div className="mt-14 grid gap-7 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-14 grid gap-7 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {quickAccess.map((card) => {
                 const Icon = card.icon;
 

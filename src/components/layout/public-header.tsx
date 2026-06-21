@@ -7,108 +7,105 @@ import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 const publicNav = [
-  { label: "Início", href: "/" },
-  { label: "Glossário", href: "/glossario" },
-  { label: "Modelos e Templates", href: "/templates" },
-  { label: "Fomento e Editais", href: "/fomento" },
-  { label: "Trilhas de Apoio", href: "/trilhas" },
-  { label: "Patentes", href: "/patentes" },
-  { label: "Atena", href: "/login?callbackUrl=%2Fchat%3Fintent%3Duse-atena&message=atena-use" }
+  { label: "Início", mobileLabel: "Início", href: "/" },
+  { label: "Glossário", mobileLabel: "Glossário", href: "/glossario" },
+  { label: "Modelos e Templates", mobileLabel: "Modelos", href: "/templates" },
+  { label: "Fomento e Editais", mobileLabel: "Editais", href: "/fomento" },
+  { label: "Trilhas de Apoio", mobileLabel: "Trilhas", href: "/trilhas" },
+  { label: "Patentes", mobileLabel: "Patentes", href: "/patentes" },
+  { label: "Centros e Núcleos", mobileLabel: "Centros", href: "/centros" },
+  { label: "Atena", mobileLabel: "Atena", href: "/login?callbackUrl=%2Fchat%3Fintent%3Duse-atena&message=atena-use" }
 ];
 
 export function PublicHeader({ compact = false }: { compact?: boolean }) {
   const pathname = usePathname();
-  const titleSize = compact ? "text-base" : "text-base xl:text-lg 2xl:text-xl";
+  const titleSize = compact ? "text-lg" : "text-xl sm:text-2xl lg:text-xl 2xl:text-2xl";
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 shadow-[0_8px_24px_rgba(15,23,42,0.06)] backdrop-blur">
-      <div className="mx-auto flex max-w-[112rem] flex-col gap-2 px-4 py-2 lg:grid lg:grid-cols-[minmax(18rem,auto)_minmax(0,1fr)_auto] lg:items-center lg:gap-4 lg:px-5 lg:py-3 xl:grid-cols-[minmax(20rem,auto)_minmax(0,1fr)_auto] xl:gap-5 2xl:grid-cols-[minmax(26rem,auto)_minmax(0,1fr)_auto] 2xl:gap-6 2xl:px-8">
-        <div className="flex min-w-0 items-center justify-between gap-3 lg:justify-start">
-          <div className="flex shrink-0 items-center gap-2.5">
-            <Link href="https://www.unicamp.br/" aria-label="Acessar site da UNICAMP">
-              <Image
-                src="/assets/logo-unicamp.png"
-                alt="UNICAMP"
-                width={56}
-                height={56}
-                className="h-8 w-auto object-contain sm:h-9 2xl:h-12"
-              />
-            </Link>
-            <Link href="https://www.cocen.unicamp.br/" aria-label="Acessar site da COCEN">
-              <Image
-                src="/assets/logo-cocen.jpg"
-                alt="COCEN"
-                width={150}
-                height={46}
-                className="hidden h-7 w-auto object-contain sm:block 2xl:h-10"
-              />
+    <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 shadow-[0_10px_30px_rgba(15,23,42,0.07)] backdrop-blur-xl">
+      <div className="mx-auto max-w-[118rem] px-4 py-3 lg:px-6 xl:px-8">
+        <div className="grid gap-3 lg:grid-cols-[minmax(25rem,0.95fr)_minmax(34rem,1.45fr)_minmax(20rem,0.72fr)] lg:items-center lg:gap-5 2xl:grid-cols-[minmax(33rem,1fr)_minmax(43rem,1.5fr)_minmax(24rem,0.8fr)]">
+          <div className="min-w-0">
+            <div className="flex items-center justify-between gap-3 lg:justify-start">
+              <div className="flex shrink-0 items-center gap-3 sm:gap-4 lg:gap-5">
+                <Link href="https://www.unicamp.br/" aria-label="Acessar site da UNICAMP" className="shrink-0">
+                  <Image
+                    src="/assets/logo-unicamp.png"
+                    alt="UNICAMP"
+                    width={64}
+                    height={64}
+                    className="h-10 w-auto object-contain sm:h-12 lg:h-11 2xl:h-14"
+                  />
+                </Link>
+                <Link href="https://www.cocen.unicamp.br/" aria-label="Acessar site da COCEN" className="shrink-0">
+                  <Image
+                    src="/assets/logo-cocen.jpg"
+                    alt="COCEN"
+                    width={180}
+                    height={54}
+                    className="h-9 w-auto rounded-sm object-contain sm:h-11 lg:h-10 2xl:h-12"
+                  />
+                </Link>
+              </div>
+
+              <Button asChild className="h-10 shrink-0 whitespace-nowrap px-3 text-xs shadow-sm sm:px-4 sm:text-sm lg:hidden">
+                <Link href="/login">
+                  <LockKeyhole className="mr-1.5 h-3.5 w-3.5" />
+                  Entrar
+                </Link>
+              </Button>
+            </div>
+
+            <Link href="/" className="mt-3 block min-w-0 border-l-4 border-accent pl-4 lg:mt-0 lg:inline-block lg:border-l-[5px] lg:pl-5 lg:align-middle 2xl:ml-5">
+              <span className={`block font-black leading-none tracking-[-0.025em] text-slate-950 ${titleSize}`}>
+                Portal do Pesquisador
+              </span>
+              <span className="mt-1 block text-xs font-bold leading-tight text-accent sm:text-sm lg:text-xs 2xl:text-sm">
+                Pesquisa • Inovação • Fomento
+              </span>
+              <span className="mt-0.5 block text-[0.68rem] font-black uppercase tracking-[0.18em] text-slate-500 sm:text-xs lg:text-[0.65rem] 2xl:text-xs">
+                COCEN / UNICAMP
+              </span>
             </Link>
           </div>
 
-          <Link href="/" className="min-w-0">
-            <span className={`block whitespace-nowrap font-black leading-tight tracking-normal text-foreground ${titleSize}`}>
-              Portal do Pesquisador
-            </span>
-            <span className="block whitespace-nowrap text-[0.64rem] font-semibold leading-tight text-slate-700 2xl:text-[0.68rem]">
-              Pesquisa • Inovação • Fomento
-            </span>
-            <span className="block whitespace-nowrap text-[0.58rem] font-bold uppercase tracking-wide text-slate-500 2xl:text-[0.6rem]">
-              COCEN / UNICAMP
-            </span>
-          </Link>
+          <nav className="-mx-4 flex min-w-0 items-center gap-2 overflow-x-auto px-4 pb-1 text-sm font-bold [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:justify-center lg:gap-1.5 lg:overflow-visible lg:px-0 lg:pb-0 lg:text-[0.76rem] xl:gap-2 xl:text-[0.82rem] 2xl:gap-3 2xl:text-sm">
+            {publicNav.map((item) => {
+              const isActive = item.href === pathname;
 
-          <div className="flex shrink-0 items-center gap-2 lg:hidden">
-            <Button asChild className="h-9 whitespace-nowrap px-3 text-xs">
+              return (
+                <Link
+                  key={`${item.label}-${item.href}`}
+                  href={item.href}
+                  className={
+                    isActive
+                      ? "relative shrink-0 rounded-full bg-accent px-3.5 py-2.5 text-white shadow-sm lg:px-2.5 xl:px-3 2xl:px-4"
+                      : "relative shrink-0 rounded-full px-3.5 py-2.5 text-slate-700 transition hover:bg-red-50 hover:text-accent lg:px-2.5 xl:px-3 2xl:px-4"
+                  }
+                >
+                  <span className="lg:hidden">{item.mobileLabel}</span>
+                  <span className="hidden lg:inline">{item.label}</span>
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+            <label className="flex h-11 min-w-0 items-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 px-3 text-sm text-muted-foreground shadow-inner transition focus-within:border-accent focus-within:bg-white lg:h-10 2xl:h-11">
+              <Search className="h-4 w-4 shrink-0 text-accent" />
+              <span className="sr-only">Pesquisar no Portal</span>
+              <input
+                className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
+                placeholder="Buscar no portal..."
+              />
+            </label>
+            <Button asChild className="hidden h-10 shrink-0 whitespace-nowrap px-4 text-sm shadow-md shadow-red-900/10 2xl:h-11 2xl:px-5 lg:inline-flex">
               <Link href="/login">
-                <LockKeyhole className="mr-1.5 h-3.5 w-3.5" />
-                Entrar
+                <LockKeyhole className="mr-2 h-4 w-4" />
+                Entrar no Ambiente
               </Link>
             </Button>
           </div>
-        </div>
-
-        <nav className="-mx-4 flex min-w-0 max-w-[100vw] flex-nowrap items-center gap-1 overflow-x-auto whitespace-nowrap px-4 pb-1 text-[0.72rem] font-medium [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:justify-center lg:overflow-visible lg:px-0 lg:pb-0 xl:gap-1 xl:text-[0.76rem] 2xl:gap-2 2xl:text-sm">
-          {publicNav.map((item) => {
-            const isActive = item.href === pathname;
-
-            return (
-              <Link
-                key={`${item.label}-${item.href}`}
-                href={item.href}
-                className={
-                  isActive
-                    ? "group relative shrink-0 rounded-lg bg-accent/10 px-2 py-2 text-accent transition-colors duration-200 hover:bg-accent/15 xl:px-2.5 2xl:px-3"
-                    : "group relative shrink-0 rounded-lg px-2 py-2 text-slate-700 transition-colors duration-200 hover:bg-slate-50 hover:text-accent xl:px-2.5 2xl:px-3"
-                }
-              >
-                {item.label}
-                <span
-                  className={
-                    isActive
-                      ? "absolute inset-x-2 bottom-1 h-0.5 rounded-full bg-accent"
-                      : "absolute inset-x-2 bottom-1 h-0.5 origin-left scale-x-0 rounded-full bg-accent transition-transform duration-200 ease-out group-hover:scale-x-100"
-                  }
-                />
-              </Link>
-            );
-          })}
-        </nav>
-
-        <div className="hidden shrink-0 items-center gap-2 lg:flex">
-          <label className="hidden h-9 min-w-0 items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 text-sm text-muted-foreground shadow-sm transition-colors focus-within:border-accent lg:flex lg:w-24 xl:w-28 2xl:w-48">
-            <Search className="h-4 w-4 shrink-0 text-accent" />
-            <span className="sr-only">Pesquisar no Portal</span>
-            <input
-              className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
-              placeholder="Pesquisar no portal..."
-            />
-          </label>
-          <Button asChild className="h-9 whitespace-nowrap px-3.5 text-sm 2xl:px-5">
-            <Link href="/login">
-              <LockKeyhole className="mr-2 h-4 w-4" />
-              Entrar no Portal
-            </Link>
-          </Button>
         </div>
       </div>
     </header>
