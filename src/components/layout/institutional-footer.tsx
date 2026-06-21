@@ -4,8 +4,8 @@ import Link from "next/link";
 
 export function InstitutionalFooter() {
   return (
-    <footer className="mt-14 bg-[#252d30] text-white">
-      <div className="border-b border-white/10 bg-[#2d3639]">
+    <footer className="connection-pattern-dark mt-14 bg-[#252d30] text-white">
+      <div className="relative border-b border-white/10 bg-[#2d3639]">
         <div className="mx-auto grid max-w-7xl gap-6 px-4 py-8 sm:gap-8 sm:py-10 md:grid-cols-[1.25fr_0.9fr_1fr] lg:grid-cols-[1.35fr_0.8fr_1.05fr] lg:items-center">
           <div>
             <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3 sm:gap-4 sm:p-4">
@@ -55,7 +55,7 @@ export function InstitutionalFooter() {
         </div>
       </div>
 
-      <div className="mx-auto grid max-w-7xl gap-7 px-4 py-10 sm:gap-8 sm:py-12 md:grid-cols-2 lg:grid-cols-[1.35fr_0.8fr_0.8fr]">
+      <div className="relative mx-auto grid max-w-7xl gap-7 px-4 py-10 sm:gap-8 sm:py-12 md:grid-cols-2 lg:grid-cols-[1.35fr_0.8fr_0.8fr]">
         <div>
           <h3 className="flex items-center gap-2 text-lg font-bold"><MapPin className="h-5 w-5 text-accent" /> Localização</h3>
           <div className="mt-3 h-px w-24 bg-white/20" />

@@ -64,8 +64,8 @@ const assistantTopics = ["Rubricas", "FAPESP", "Funcamp", "Prestação de contas
 
 export default function DashboardPage() {
   return (
-    <div className="space-y-8">
-      <section className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8 dark:bg-card">
+    <div className="connection-pattern space-y-8">
+      <section className="connection-pattern overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8 dark:bg-card">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-sm font-bold uppercase tracking-wide text-accent">Ambiente do Pesquisador</p>
@@ -94,7 +94,7 @@ export default function DashboardPage() {
           const Icon = item.icon;
 
           return (
-            <Card key={item.label} className="rounded-2xl border-slate-200 bg-white shadow-sm">
+            <Card key={item.label} className="connection-corner rounded-2xl border-slate-200 bg-white shadow-sm">
               <CardContent className="p-5">
                 <div className="flex items-center justify-between gap-3">
                   <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-accent/10 text-accent">
@@ -128,7 +128,7 @@ export default function DashboardPage() {
               <Link
                 key={module.href}
                 href={module.href}
-                className="group rounded-2xl border bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-md dark:bg-card"
+                className="connection-corner group rounded-2xl border bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-md dark:bg-card"
               >
                 <div className="flex items-start justify-between gap-4">
                   {module.key === "chat" ? (
@@ -180,7 +180,7 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="rounded-2xl border-accent/30 bg-accent text-white shadow-sm">
+        <Card className="connection-pattern-dark rounded-2xl border-accent/30 bg-accent text-white shadow-sm">
           <CardContent className="p-6">
             <div className="flex items-start justify-between gap-4">
               <div>

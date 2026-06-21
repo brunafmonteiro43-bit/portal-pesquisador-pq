@@ -166,8 +166,10 @@ export default function PublicHomePage() {
       <PublicHeader />
 
       <main>
-        <section className="relative overflow-hidden bg-[radial-gradient(circle_at_12%_8%,rgba(185,28,28,0.10),transparent_30%),linear-gradient(180deg,#fff_0%,#f8fafc_100%)]">
+        <section className="connection-pattern relative overflow-hidden bg-[radial-gradient(circle_at_12%_8%,rgba(185,28,28,0.10),transparent_30%),linear-gradient(180deg,#fff_0%,#f8fafc_100%)]">
           <div className="absolute inset-x-0 top-0 h-px bg-border" />
+          <div className="absolute -left-24 top-28 h-64 w-64 rounded-full border border-slate-200/70 opacity-40" />
+          <div className="absolute -right-20 bottom-10 h-72 w-72 rounded-full border border-red-900/10 opacity-50" />
           <div className="mx-auto grid max-w-7xl gap-10 px-4 py-10 sm:py-14 md:gap-12 lg:min-h-[calc(100vh-116px)] lg:grid-cols-[1.04fr_0.86fr] lg:items-center lg:gap-14 lg:py-20 xl:py-24">
             <div>
               <div className="inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border bg-white px-3 py-2 text-xs font-bold shadow-sm sm:px-4 sm:text-sm">
@@ -271,7 +273,7 @@ export default function PublicHomePage() {
         <section className="border-y bg-muted/20 py-14">
           <div className="mx-auto grid max-w-7xl gap-4 px-4 sm:grid-cols-2 lg:grid-cols-4">
             {institutionalIndicators.map((indicator) => (
-              <div key={indicator.label} className="rounded-2xl border bg-white p-6 text-center shadow-sm">
+              <div key={indicator.label} className="connection-corner rounded-2xl border bg-white p-6 text-center shadow-sm">
                 <p className="text-4xl font-black text-accent">{indicator.value}</p>
                 <p className="mt-2 text-sm font-bold text-muted-foreground">{indicator.label}</p>
               </div>
@@ -294,7 +296,7 @@ export default function PublicHomePage() {
                 <Link
                   key={card.title}
                   href={publicHelpLinks[card.title] ?? "/"}
-                  className="group rounded-2xl border bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-accent/60 hover:shadow-lg"
+                  className="connection-corner group rounded-2xl border bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-accent/60 hover:shadow-lg"
                 >
                   <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-muted text-accent transition group-hover:bg-accent group-hover:text-white">
                     <Icon className="h-6 w-6" />
@@ -335,7 +337,7 @@ export default function PublicHomePage() {
                   <Link
                     key={card.title}
                     href={quickAccessLinks[card.title] ?? "/"}
-                    className="group min-h-[230px] rounded-xl border bg-white p-9 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-accent/60 hover:shadow-lg"
+                    className="connection-corner group min-h-[230px] rounded-xl border bg-white p-9 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-accent/60 hover:shadow-lg"
                   >
                     <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-muted text-accent transition group-hover:bg-accent group-hover:text-white">
                       <Icon className="h-6 w-6" />
@@ -389,7 +391,7 @@ export default function PublicHomePage() {
 
         <section id="assistente" className="bg-muted/20 py-24">
           <div className="mx-auto max-w-7xl px-4">
-            <div className="grid gap-10 rounded-3xl border bg-white p-8 shadow-sm lg:grid-cols-[0.9fr_1.1fr] lg:p-12">
+            <div className="connection-pattern grid gap-10 rounded-3xl border bg-white p-8 shadow-sm lg:grid-cols-[0.9fr_1.1fr] lg:p-12">
               <div>
                 <div className="flex items-center gap-4">
                   <AtenaAvatar className="h-20 w-20" />

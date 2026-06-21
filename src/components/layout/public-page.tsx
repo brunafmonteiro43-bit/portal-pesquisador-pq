@@ -32,7 +32,7 @@ export function PublicPage({
     <div className="min-h-screen bg-[#f8fafc] text-foreground">
       <PublicHeader />
       <main>
-        <section className="border-b bg-white">
+        <section className="connection-pattern border-b bg-white">
           <div className="mx-auto max-w-7xl px-4 py-12 md:py-16">
             <Badge variant="secondary" className="text-accent">
               {eyebrow}
@@ -58,7 +58,7 @@ export function PublicPage({
         <section className="mx-auto max-w-7xl px-4 py-14">
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {items.map((item) => (
-              <Card key={item.title} className="rounded-2xl border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-accent/50 hover:shadow-md">
+              <Card key={item.title} className="connection-corner rounded-2xl border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-accent/50 hover:shadow-md">
                 <CardContent className="p-6">
                   {item.meta ? <p className="text-xs font-black uppercase tracking-[0.16em] text-accent">{item.meta}</p> : null}
                   <h2 className="mt-2 text-2xl font-black tracking-[-0.02em] text-slate-950">{item.title}</h2>
@@ -77,7 +77,7 @@ export function PublicPage({
             ))}
           </div>
 
-          <div className="mt-12 rounded-3xl border bg-white p-6 shadow-sm md:flex md:items-center md:justify-between">
+          <div className="connection-pattern mt-12 rounded-3xl border bg-white p-6 shadow-sm md:flex md:items-center md:justify-between">
             <div>
               <p className="text-sm font-black uppercase tracking-[0.16em] text-accent">Atena</p>
               <h2 className="mt-2 text-2xl font-black">Precisa de orientação personalizada?</h2>
