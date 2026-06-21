@@ -60,13 +60,13 @@ export function FavoritesList() {
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   <Button asChild size="sm" variant="outline">
-                    <Link href="/templates">Ver documentos</Link>
+                    <Link href="/dashboard/modelos">Ver documentos</Link>
                   </Button>
                   <Button asChild size="sm" variant="outline">
-                    <Link href="/oportunidades">Ver editais</Link>
+                    <Link href="/dashboard/oportunidades">Ver editais</Link>
                   </Button>
                   <Button asChild size="sm">
-                    <Link href="/glossario">Explorar glossário</Link>
+                    <Link href="/dashboard/glossario">Explorar glossário</Link>
                   </Button>
                 </div>
               </div>

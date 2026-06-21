@@ -25,41 +25,41 @@ export const roleLabels: Record<AppRole, string> = {
 
 export const navItems = [
   { href: "/dashboard", label: "Início", shortLabel: "Início", icon: "LayoutDashboard", roles: allRoles },
-  { href: "/glossario", label: "Glossário Facilitado", shortLabel: "Glossário", icon: "BookOpenText", roles: allRoles },
-  { href: "/templates", label: "Modelos e Templates", shortLabel: "Templates", icon: "Files", roles: allRoles },
-  { href: "/centros", label: "Centros e Núcleos", shortLabel: "Centros", icon: "Building2", roles: allRoles },
-  { href: "/oportunidades", label: "Central de Oportunidades", shortLabel: "Oportunidades", icon: "CalendarDays", roles: allRoles },
+  { href: "/dashboard/glossario", label: "Glossário Facilitado", shortLabel: "Glossário", icon: "BookOpenText", roles: allRoles },
+  { href: "/dashboard/modelos", label: "Modelos e Templates", shortLabel: "Templates", icon: "Files", roles: allRoles },
+  { href: "/dashboard/centros", label: "Centros e Núcleos", shortLabel: "Centros", icon: "Building2", roles: allRoles },
+  { href: "/dashboard/oportunidades", label: "Central de Oportunidades", shortLabel: "Oportunidades", icon: "CalendarDays", roles: allRoles },
   {
-    href: "/fomento",
+    href: "/dashboard/editais",
     label: "Fomento e Editais",
     shortLabel: "Fomento",
     icon: "Landmark",
     roles: ["RESEARCHER", "CENTER_MANAGER", "COCEN_ADMIN", "SUPER_ADMIN"] satisfies AppRole[]
   },
   {
-    href: "/trilhas",
+    href: "/dashboard/trilhas",
     label: "Trilhas de Apoio",
     shortLabel: "Trilhas",
     icon: "GitBranch",
     roles: allRoles
   },
   {
-    href: "/patentes",
+    href: "/dashboard/patentes",
     label: "Patentes e Inovação",
     shortLabel: "Patentes",
     icon: "Lightbulb",
     roles: ["RESEARCHER", "INNOVATION_OFFICE", "COCEN_ADMIN", "SUPER_ADMIN"] satisfies AppRole[]
   },
-  { href: "/favoritos", label: "Meus Favoritos", shortLabel: "Favoritos", icon: "Star", roles: allRoles },
-  { href: "/faq", label: "Central de Dúvidas", shortLabel: "Dúvidas", icon: "CircleHelp", roles: allRoles },
+  { href: "/dashboard/favoritos", label: "Meus Favoritos", shortLabel: "Favoritos", icon: "Star", roles: allRoles },
+  { href: "/dashboard/duvidas", label: "Central de Dúvidas", shortLabel: "Dúvidas", icon: "CircleHelp", roles: allRoles },
   {
-    href: "/chat",
+    href: "/dashboard/atena",
     label: "Atena",
     shortLabel: "Atena",
     icon: "Bot",
     roles: allRoles
   },
-  { href: "/admin", label: "Gestão COCEN", shortLabel: "Gestão", icon: "ShieldCheck", roles: adminRoles }
+  { href: "/dashboard/gestao", label: "Gestão COCEN", shortLabel: "Gestão", icon: "ShieldCheck", roles: adminRoles }
 ];
 
 export function canAccessPath(role: AppRole, pathname: string) {

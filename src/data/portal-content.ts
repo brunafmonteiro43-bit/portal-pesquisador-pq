@@ -103,92 +103,92 @@ export const moduleCards = [
   {
     key: "glossario",
     title: "Glossário Facilitado",
-    href: "/glossario",
+    href: "/dashboard/glossario",
     count: "Termos administrativos, financeiros e jurídicos",
     description: "Termos técnicos explicados de forma simples e prática para pesquisadores."
   },
   {
     key: "templates",
     title: "Modelos e Templates",
-    href: "/templates",
+    href: "/dashboard/modelos",
     count: "Formulários, manuais e checklists",
     description: "Templates, formulários e documentos necessários para seus projetos."
   },
   {
     key: "fomento",
     title: "Fomento e Editais",
-    href: "/fomento",
+    href: "/dashboard/editais",
     count: "FAPESP, CNPq, CAPES, FINEP e empresas",
     description: "Oportunidades de financiamento e chamadas abertas para pesquisa."
   },
   {
     key: "trilhas",
     title: "Trilhas de Apoio",
-    href: "/trilhas",
+    href: "/dashboard/trilhas",
     count: "Fluxos administrativos visuais",
     description: "Guias passo a passo para processos administrativos e acadêmicos."
   },
   {
     key: "patentes",
     title: "Patentes e Inovação",
-    href: "/patentes",
+    href: "/dashboard/patentes",
     count: "Sigilo, Inova Unicamp, INPI e royalties",
     description: "Proteção intelectual, transferência de tecnologia e inovação."
   },
   {
     key: "chat",
     title: "Atena",
-    href: "/chat",
+    href: "/dashboard/atena",
     count: "Respostas com base documental",
     description: "Inteligência para pesquisa, fomento, inovação e documentação acadêmica."
   }
 ];
 
 export const quickActions = [
-  { title: "Submeter um Projeto", href: "/trilhas", description: "Da ideia à submissão institucional." },
-  { title: "Encontrar Editais", href: "/oportunidades", description: "Filtre oportunidades por agência e área." },
-  { title: "Abrir Projeto Funcamp", href: "/trilhas", description: "Fluxo de abertura e documentação." },
-  { title: "Fazer Prestação de Contas", href: "/trilhas", description: "Comprovantes, relatórios e prazos." },
-  { title: "Registrar uma Patente", href: "/patentes", description: "Sigilo, comunicação e Inova Unicamp." },
-  { title: "Formalizar uma Parceria", href: "/trilhas", description: "Minutas, jurídico e convênios." },
-  { title: "Solicitar Recursos para Viagem", href: "/templates", description: "Modelos e checklists de solicitação." },
-  { title: "Consultar Modelos e Formulários", href: "/templates", description: "Arquivos versionados e prontos para uso." }
+  { title: "Submeter um Projeto", href: "/dashboard/trilhas", description: "Da ideia à submissão institucional." },
+  { title: "Encontrar Editais", href: "/dashboard/oportunidades", description: "Filtre oportunidades por agência e área." },
+  { title: "Abrir Projeto Funcamp", href: "/dashboard/trilhas", description: "Fluxo de abertura e documentação." },
+  { title: "Fazer Prestação de Contas", href: "/dashboard/trilhas", description: "Comprovantes, relatórios e prazos." },
+  { title: "Registrar uma Patente", href: "/dashboard/patentes", description: "Sigilo, comunicação e Inova Unicamp." },
+  { title: "Formalizar uma Parceria", href: "/dashboard/trilhas", description: "Minutas, jurídico e convênios." },
+  { title: "Solicitar Recursos para Viagem", href: "/dashboard/modelos", description: "Modelos e checklists de solicitação." },
+  { title: "Consultar Modelos e Formulários", href: "/dashboard/modelos", description: "Arquivos versionados e prontos para uso." }
 ];
 
 export const serviceCards = [
   {
     title: "Funcamp",
-    href: "/trilhas",
+    href: "/dashboard/trilhas",
     description: "Apoio para abertura, execução e acompanhamento de projetos com fundação de apoio.",
     links: ["Formulários", "Manuais e Normas", "Checklists"]
   },
   {
     title: "FAPESP",
-    href: "/fomento",
+    href: "/dashboard/editais",
     description: "Editais, modelos de projeto e orientações para submissão e prestação de contas.",
     links: ["Editais", "Modelos de Projeto", "Prestação de Contas"]
   },
   {
     title: "CNPq / CAPES / FINEP",
-    href: "/oportunidades",
+    href: "/dashboard/oportunidades",
     description: "Chamadas, bolsas e guias de submissão para diferentes áreas de pesquisa.",
     links: ["Chamadas", "Bolsas", "Guias de Submissão"]
   },
   {
     title: "Convênios e Parcerias",
-    href: "/trilhas",
+    href: "/dashboard/trilhas",
     description: "Minutas, fluxos e documentos jurídicos para parcerias institucionais.",
     links: ["Minutas", "Fluxos", "Documentos Jurídicos"]
   },
   {
     title: "Patentes e Inovação",
-    href: "/patentes",
+    href: "/dashboard/patentes",
     description: "Comunicação de invenção, sigilo, Inova Unicamp e transferência de tecnologia.",
     links: ["Comunicação de Invenção", "Inova Unicamp", "Guia de Sigilo"]
   },
   {
     title: "Glossário Facilitado",
-    href: "/glossario",
+    href: "/dashboard/glossario",
     description: "Tradução institucional de termos administrativos, financeiros e jurídicos.",
     links: ["Termos Administrativos", "Termos Financeiros", "Termos Jurídicos"]
   }
@@ -475,7 +475,7 @@ export const fundingCalls: FundingCall[] = [
     deadline: "14/07/2026",
     value: "Conforme orçamento aprovado",
     audience: "Pesquisadores com vínculo institucional",
-    link: "/fomento",
+    link: "/dashboard/editais",
     closingSoon: true,
     summary: "Submissão de propostas para projetos de pesquisa regular.",
     categories: ["Material de consumo", "Serviços", "Equipamentos"],
@@ -490,7 +490,7 @@ export const fundingCalls: FundingCall[] = [
     deadline: "Previsão no segundo semestre",
     value: "Faixas por porte de projeto",
     audience: "Grupos de pesquisa",
-    link: "/fomento",
+    link: "/dashboard/editais",
     summary: "Financiamento de projetos de pesquisa científica, tecnológica e de inovação.",
     categories: ["Custeio", "Capital", "Bolsas"],
     requiredDocuments: ["Projeto detalhado", "Currículo Lattes", "Plano de aplicação", "Declaração de vínculo"]
@@ -504,7 +504,7 @@ export const fundingCalls: FundingCall[] = [
     deadline: "29/06/2026",
     value: "Bolsas e custeio institucional",
     audience: "Programas e pesquisadores vinculados",
-    link: "/fomento",
+    link: "/dashboard/editais",
     closingSoon: true,
     summary: "Apoio à formação, internacionalização e consolidação de programas vinculados à pesquisa.",
     categories: ["Mobilidade", "Bolsas", "Eventos"],
@@ -519,7 +519,7 @@ export const fundingCalls: FundingCall[] = [
     deadline: "02/08/2026",
     value: "Até R$ 2 milhões por proposta",
     audience: "Projetos com potencial de inovação",
-    link: "/fomento",
+    link: "/dashboard/editais",
     summary: "Apoio a projetos inovadores com potencial de transferência tecnológica e parceria externa.",
     categories: ["Inovação", "Empresa parceira", "Prototipagem"],
     requiredDocuments: ["Plano de inovação", "Orçamento", "Termo de parceria", "Resumo de propriedade intelectual"]
@@ -533,7 +533,7 @@ export const fundingCalls: FundingCall[] = [
     deadline: "Calendário negociado",
     value: "Conforme acordo de parceria",
     audience: "Centros, Núcleos e grupos de pesquisa",
-    link: "/oportunidades",
+    link: "/dashboard/oportunidades",
     summary: "Oportunidades de cooperação com empresas para pesquisa aplicada, serviços e inovação.",
     categories: ["Parceria", "Convênio", "Propriedade intelectual"],
     requiredDocuments: ["Plano de trabalho", "Minuta de cooperação", "Documentos do parceiro", "Declaração de infraestrutura"]
@@ -547,7 +547,7 @@ export const fundingCalls: FundingCall[] = [
     deadline: "Setembro/2026",
     value: "Mobilidade e custeio",
     audience: "Pesquisadores em rede internacional",
-    link: "/oportunidades",
+    link: "/dashboard/oportunidades",
     summary: "Apoio a redes, missões e projetos colaborativos com instituições estrangeiras.",
     categories: ["Internacionalização", "Mobilidade", "Redes"],
     requiredDocuments: ["Carta de parceria", "Plano de missão", "Currículo da equipe", "Orçamento de mobilidade"]
@@ -561,7 +561,7 @@ export const fundingCalls: FundingCall[] = [
     deadline: "18/08/2026",
     value: "Conforme porte do equipamento",
     audience: "Centros, Núcleos e unidades com uso compartilhado",
-    link: "/fomento",
+    link: "/dashboard/editais",
     summary: "Chamada demonstrativa para aquisição e compartilhamento de equipamentos estratégicos de pesquisa.",
     categories: ["Equipamentos", "Infraestrutura", "Uso compartilhado"],
     requiredDocuments: ["Justificativa técnica", "Plano de uso compartilhado", "Cotações", "Anuência da unidade"]
@@ -575,7 +575,7 @@ export const fundingCalls: FundingCall[] = [
     deadline: "Outubro/2026",
     value: "Bolsas, missões e custeio",
     audience: "Grupos com cooperação internacional ativa",
-    link: "/fomento",
+    link: "/dashboard/editais",
     summary: "Apoio a mobilidade, redes internacionais e fortalecimento de projetos conjuntos.",
     categories: ["Bolsas", "Mobilidade", "Cooperação"],
     requiredDocuments: ["Plano de internacionalização", "Carta de cooperação", "Cronograma", "Orçamento"]
@@ -589,7 +589,7 @@ export const fundingCalls: FundingCall[] = [
     deadline: "Calendário anual",
     value: "Conforme modalidade",
     audience: "Pesquisadores com produção científica consolidada",
-    link: "/fomento",
+    link: "/dashboard/editais",
     summary: "Acompanhamento demonstrativo de chamada para produtividade em pesquisa e desenvolvimento tecnológico.",
     categories: ["Bolsas", "Produtividade", "Currículo"],
     requiredDocuments: ["Currículo Lattes", "Projeto de pesquisa", "Produção científica", "Comprovante de vínculo"]

@@ -98,11 +98,11 @@ export function GlossaryBrowser({ terms }: { terms: GlossaryTerm[] }) {
                   ))}
                 </div>
                 <Button asChild>
-                  <Link href={`/login?callbackUrl=%2Fchat%3Ftermo%3D${term.slug}&message=atena-chat`}>
+                  <Link href={`/login?callbackUrl=%2Fdashboard%2Fatena%3Ftermo%3D${term.slug}&message=atena-chat`}>
                     <Bot className="mr-2 h-4 w-4" /> Perguntar à Atena
                   </Link>
                 </Button>
-                <FavoriteButton item={{ id: term.slug, type: "termo", title: term.term, href: "/glossario" }} />
+                <FavoriteButton item={{ id: term.slug, type: "termo", title: term.term, href: "/dashboard/glossario" }} />
               </div>
             </CardContent>
           </Card>

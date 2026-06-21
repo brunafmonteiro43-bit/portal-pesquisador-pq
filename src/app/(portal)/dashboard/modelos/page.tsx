@@ -71,7 +71,7 @@ export default function TemplatesPage() {
                   <Button>
                     <Download className="mr-2 h-4 w-4" /> Baixar
                   </Button>
-                  <FavoriteButton item={{ id: template.slug, type: "documento", title: template.title, href: "/templates" }} />
+                  <FavoriteButton item={{ id: template.slug, type: "documento", title: template.title, href: "/dashboard/modelos" }} />
                 </div>
               </div>
             </CardContent>

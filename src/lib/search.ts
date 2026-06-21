@@ -62,7 +62,7 @@ export function searchPortalContent(query: string, module?: string): PortalSearc
         results.push({
           title: item.title,
           module: "Modelos e Templates",
-          href: "/templates",
+          href: "/modelos",
           excerpt: item.description
         });
       }
@@ -87,7 +87,7 @@ export function searchPortalContent(query: string, module?: string): PortalSearc
         results.push({
           title: item.title,
           module: "Fomento e Editais",
-          href: "/fomento",
+          href: "/fomento-editais",
           excerpt: item.summary
         });
       }
@@ -134,7 +134,7 @@ export function searchPortalContent(query: string, module?: string): PortalSearc
         results.push({
           title: item.question,
           module: "Central de Dúvidas",
-          href: "/faq",
+          href: "/busca",
           excerpt: item.answer
         });
       }
@@ -147,7 +147,7 @@ export function searchPortalContent(query: string, module?: string): PortalSearc
         results.push({
           title: item.title,
           module: "Base documental",
-          href: "/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat",
+          href: "/login?callbackUrl=%2Fdashboard%2Fatena%3Fintent%3Dchat-atena&message=atena-chat",
           excerpt: item.content
         });
       }
@@ -162,7 +162,7 @@ export function searchPortalContent(query: string, module?: string): PortalSearc
           ? "Perguntar sobre rubrica à Atena"
           : "Perguntar à Atena",
       module: "Atena",
-      href: "/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat",
+      href: "/login?callbackUrl=%2Fdashboard%2Fatena%3Fintent%3Dchat-atena&message=atena-chat",
       excerpt:
         "Receba resposta simples, passo a passo, documentos relacionados e fonte consultada com base nos conteúdos do portal."
     });

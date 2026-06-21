@@ -45,9 +45,6 @@ const icons = {
 
 function getDashboardLabel(label: string, href: string) {
   if (href === "/dashboard") return "Dashboard";
-  if (label === "Central de Oportunidades") return "Editais";
-  if (label === "Modelos e Templates") return "Documentos";
-  if (label === "Trilhas de Apoio") return "Serviços";
   return label;
 }
 

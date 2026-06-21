@@ -135,26 +135,26 @@ const researchJourney = ["Ideia", "Fomento", "Execução", "Inovação", "Presta
 
 const publicHelpLinks: Record<string, string> = {
   Pesquisa: "/trilhas",
-  Fomento: "/fomento",
-  Documentação: "/templates",
+  Fomento: "/fomento-editais",
+  Documentação: "/modelos",
   Patentes: "/patentes",
-  "Centros e Núcleos": "/centros",
-  Atena: "/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat"
+  "Centros e Núcleos": "/centros-nucleos",
+  Atena: "/login?callbackUrl=%2Fdashboard%2Fatena%3Fintent%3Dchat-atena&message=atena-chat"
 };
 
 const quickAccessLinks: Record<string, string> = {
   "Glossário Facilitado": "/glossario",
-  "Modelos e Templates": "/templates",
-  "Fomento e Editais": "/fomento",
+  "Modelos e Templates": "/modelos",
+  "Fomento e Editais": "/fomento-editais",
   "Trilhas de Apoio": "/trilhas",
   "Patentes e Inovação": "/patentes",
-  "Centros e Núcleos": "/centros",
-  Atena: "/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat"
+  "Centros e Núcleos": "/centros-nucleos",
+  Atena: "/login?callbackUrl=%2Fdashboard%2Fatena%3Fintent%3Dchat-atena&message=atena-chat"
 };
 
 const suggestionLinks: Record<string, string> = {
-  FAPESP: "/fomento",
-  CAPES: "/fomento",
+  FAPESP: "/fomento-editais",
+  CAPES: "/fomento-editais",
   Patentes: "/patentes",
   Convênios: "/trilhas",
   "Prestação de contas": "/trilhas"
@@ -187,7 +187,7 @@ export default function PublicHomePage() {
 
               <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:gap-4">
                 <Button asChild size="lg" className="h-12 px-5 text-sm shadow-lg shadow-accent/20 sm:h-14 sm:px-8 sm:text-base">
-                  <Link href="/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat">Conversar com a Atena</Link>
+                  <Link href="/login?callbackUrl=%2Fdashboard%2Fatena%3Fintent%3Dchat-atena&message=atena-chat">Conversar com a Atena</Link>
                 </Button>
                 <Button
                   asChild
@@ -206,14 +206,14 @@ export default function PublicHomePage() {
                     <span>Pesquise editais, modelos, rubricas, convênios, patentes ou fluxos administrativos...</span>
                   </div>
                   <Button asChild className="h-11 px-7 sm:h-12">
-                    <Link href="/fomento">Pesquisar</Link>
+                    <Link href="/fomento-editais">Pesquisar</Link>
                   </Button>
                 </div>
                 <div className="mt-3 flex flex-wrap gap-2 border-t pt-3">
                   {quickSuggestions.map((suggestion) => (
                     <Link
                       key={suggestion}
-                      href={suggestionLinks[suggestion] ?? "/fomento"}
+                      href={suggestionLinks[suggestion] ?? "/fomento-editais"}
                       className="rounded-full bg-muted px-3 py-1.5 text-xs font-bold text-muted-foreground transition hover:bg-accent/10 hover:text-accent"
                     >
                       {suggestion}
@@ -358,7 +358,7 @@ export default function PublicHomePage() {
               </p>
             </div>
             <Button asChild variant="outline">
-              <Link href="/fomento">Ver oportunidades</Link>
+              <Link href="/fomento-editais">Ver oportunidades</Link>
             </Button>
           </div>
 
@@ -378,7 +378,7 @@ export default function PublicHomePage() {
                   </div>
                 </div>
                 <Button asChild variant="ghost" className="w-fit text-accent hover:text-accent">
-                  <Link href="/fomento">
+                  <Link href="/fomento-editais">
                     Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -407,10 +407,10 @@ export default function PublicHomePage() {
                 </p>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <Button asChild size="lg">
-                    <Link href="/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat">Perguntar à Atena</Link>
+                    <Link href="/login?callbackUrl=%2Fdashboard%2Fatena%3Fintent%3Dchat-atena&message=atena-chat">Perguntar à Atena</Link>
                   </Button>
                   <Button asChild variant="outline" size="lg">
-                    <Link href="/templates">Ver documentos relacionados</Link>
+                    <Link href="/modelos">Ver documentos relacionados</Link>
                   </Button>
                 </div>
               </div>
@@ -421,7 +421,7 @@ export default function PublicHomePage() {
                   {assistantQuestions.map((question) => (
                     <Link
                       key={question}
-                      href="/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat"
+                      href="/login?callbackUrl=%2Fdashboard%2Fatena%3Fintent%3Dchat-atena&message=atena-chat"
                       className="flex items-center gap-4 rounded-2xl border bg-muted/20 p-5 text-left font-semibold shadow-sm transition hover:border-accent/60 hover:bg-accent/5"
                     >
                       <AtenaAvatar className="h-8 w-8 shrink-0 shadow-none" />

@@ -29,7 +29,7 @@ export default function TrilhasPage() {
                   <CardTitle className="mt-3 text-2xl">{trail.title}</CardTitle>
                   <p className="mt-2 text-sm text-muted-foreground">{trail.summary}</p>
                 </div>
-                <FavoriteButton item={{ id: trail.slug, type: "trilha", title: trail.title, href: "/trilhas" }} />
+                <FavoriteButton item={{ id: trail.slug, type: "trilha", title: trail.title, href: "/dashboard/trilhas" }} />
               </div>
             </CardHeader>
             <CardContent className="space-y-6 p-5">

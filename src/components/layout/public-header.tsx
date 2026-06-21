@@ -9,12 +9,12 @@ import { Button } from "@/components/ui/button";
 const publicNav = [
   { label: "Início", mobileLabel: "Início", href: "/" },
   { label: "Glossário", mobileLabel: "Glossário", href: "/glossario" },
-  { label: "Modelos e Templates", mobileLabel: "Modelos", href: "/templates" },
-  { label: "Fomento e Editais", mobileLabel: "Editais", href: "/fomento" },
+  { label: "Modelos e Templates", mobileLabel: "Modelos", href: "/modelos" },
+  { label: "Fomento e Editais", mobileLabel: "Editais", href: "/fomento-editais" },
   { label: "Trilhas de Apoio", mobileLabel: "Trilhas", href: "/trilhas" },
   { label: "Patentes", mobileLabel: "Patentes", href: "/patentes" },
-  { label: "Centros e Núcleos", mobileLabel: "Centros", href: "/centros" },
-  { label: "Atena", mobileLabel: "Atena", href: "/login?callbackUrl=%2Fchat%3Fintent%3Duse-atena&message=atena-use" }
+  { label: "Centros e Núcleos", mobileLabel: "Centros", href: "/centros-nucleos" },
+  { label: "Atena", mobileLabel: "Atena", href: "/login?callbackUrl=%2Fdashboard%2Fatena%3Fintent%3Duse-atena&message=atena-use" }
 ];
 
 export function PublicHeader({ compact = false }: { compact?: boolean }) {

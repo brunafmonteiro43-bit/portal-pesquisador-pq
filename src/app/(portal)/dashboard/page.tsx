@@ -77,7 +77,7 @@ export default function DashboardPage() {
             </p>
           </div>
           <Button asChild className="h-12 px-6">
-            <Link href="/chat">
+            <Link href="/dashboard/atena">
               Perguntar à Atena <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
@@ -198,7 +198,7 @@ export default function DashboardPage() {
               ))}
             </div>
             <Button asChild variant="secondary" className="mt-7">
-              <Link href="/chat">
+              <Link href="/dashboard/atena">
                 Perguntar à Atena <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -269,7 +269,7 @@ export default function DashboardPage() {
             <h2 className="text-xl font-black">Editais recentes</h2>
             <div className="mt-5 space-y-3">
               {fundingCalls.slice(0, 3).map((call) => (
-                <Link key={call.slug} href="/oportunidades" className="block rounded-xl border p-4 transition hover:border-accent">
+                <Link key={call.slug} href="/dashboard/oportunidades" className="block rounded-xl border p-4 transition hover:border-accent">
                   <div className="flex items-center justify-between gap-3">
                     <p className="text-sm font-bold">{call.title}</p>
                     <Badge variant="secondary">{call.agency}</Badge>

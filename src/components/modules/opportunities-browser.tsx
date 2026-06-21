@@ -63,7 +63,7 @@ export function OpportunitiesBrowser({ calls }: { calls: FundingCall[] }) {
                   <StatusPill status={call.status} />
                   {call.closingSoon ? <Badge variant="secondary" className="text-accent">Encerramento próximo</Badge> : null}
                 </div>
-                <FavoriteButton item={{ id: call.slug, type: "edital", title: call.title, href: "/oportunidades" }} />
+                <FavoriteButton item={{ id: call.slug, type: "edital", title: call.title, href: "/dashboard/oportunidades" }} />
               </div>
               <CardTitle className="text-xl">{call.title}</CardTitle>
             </CardHeader>

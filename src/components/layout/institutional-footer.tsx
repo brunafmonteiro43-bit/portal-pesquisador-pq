@@ -27,9 +27,9 @@ export function InstitutionalFooter() {
             <h3 className="text-sm font-black uppercase tracking-[0.16em] text-white/70">Links Institucionais</h3>
             <div className="mt-5 grid gap-3 text-sm font-semibold text-white/82">
               <Link className="transition hover:text-white" href="/">Sobre o Portal</Link>
-              <Link className="transition hover:text-white" href="/centros">Centros e Núcleos</Link>
-              <Link className="transition hover:text-white" href="/fomento">Fomento e Editais</Link>
-              <Link className="transition hover:text-white" href="/templates">Modelos e Templates</Link>
+              <Link className="transition hover:text-white" href="/centros-nucleos">Centros e Núcleos</Link>
+              <Link className="transition hover:text-white" href="/fomento-editais">Fomento e Editais</Link>
+              <Link className="transition hover:text-white" href="/modelos">Modelos e Templates</Link>
               <Link className="transition hover:text-white" href="/patentes">Patentes</Link>
             </div>
           </div>
