@@ -65,18 +65,18 @@ const assistantTopics = ["Rubricas", "FAPESP", "Funcamp", "Prestação de contas
 export default function DashboardPage() {
   return (
     <div className="space-y-8">
-      <section className="rounded-2xl border bg-white p-6 shadow-sm md:p-8 dark:bg-card">
+      <section className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8 dark:bg-card">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <Button asChild variant="ghost" className="mb-5 px-0 text-muted-foreground hover:text-accent">
               <Link href="/">← Ver Portal Público</Link>
             </Button>
-            <p className="text-sm font-bold uppercase tracking-wide text-accent">Olá, Pesquisador(a)</p>
-            <h1 className="mt-2 text-4xl font-black tracking-normal text-foreground md:text-5xl">
-              O que você precisa hoje?
+            <p className="text-sm font-bold uppercase tracking-wide text-accent">Ambiente do Pesquisador</p>
+            <h1 className="mt-2 text-4xl font-black tracking-[-0.03em] text-foreground md:text-5xl">
+              Olá, Pesquisador(a).
             </h1>
             <p className="mt-3 max-w-2xl text-base text-muted-foreground">
-              Organize documentos, acompanhe prazos e avance nos fluxos de pesquisa com menos etapas.
+              Um painel institucional para acompanhar editais, projetos, documentos, trilhas e suporte especializado da Atena.
             </p>
           </div>
           <Button asChild className="h-12 px-6">
@@ -88,6 +88,29 @@ export default function DashboardPage() {
         <div className="mt-7">
           <GlobalSearch placeholder="Buscar edital, rubrica, patente, modelo, FAQ ou documento..." />
         </div>
+      </section>
+
+
+
+      <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+        {workItems.map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <Card key={item.label} className="rounded-2xl border-slate-200 bg-white shadow-sm">
+              <CardContent className="p-5">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-accent/10 text-accent">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <span className="text-3xl font-black tracking-[-0.04em] text-slate-950">{item.value}</span>
+                </div>
+                <p className="mt-4 font-black text-slate-900">{item.label}</p>
+                <p className="mt-1 text-sm leading-5 text-muted-foreground">{item.detail}</p>
+              </CardContent>
+            </Card>
+          );
+        })}
       </section>
 
       <section className="space-y-4">
@@ -142,21 +165,20 @@ export default function DashboardPage() {
               </div>
               <Clock3 className="h-5 w-5 text-muted-foreground" />
             </div>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              {workItems.map((item) => {
-                const Icon = item.icon;
-
-                return (
-                  <div key={item.label} className="rounded-xl border bg-muted/20 p-4">
-                    <div className="flex items-center justify-between gap-3">
-                      <Icon className="h-5 w-5 text-accent" />
-                      <span className="text-2xl font-black">{item.value}</span>
+            <div className="mt-6 space-y-3">
+              {["Abertura de projeto", "Proteção de patente", "Prestação de contas"].map((trail, index) => (
+                <div key={trail} className="rounded-xl border bg-slate-50 p-4">
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <p className="font-black">{trail}</p>
+                      <p className="mt-1 text-sm text-muted-foreground">Etapa {index + 2} de 5 em andamento</p>
                     </div>
-                    <p className="mt-4 font-bold">{item.label}</p>
-                    <p className="mt-1 text-sm text-muted-foreground">{item.detail}</p>
+                    <span className="rounded-full bg-accent/10 px-3 py-1 text-xs font-black text-accent">
+                      {index === 0 ? "60%" : index === 1 ? "40%" : "75%"}
+                    </span>
                   </div>
-                );
-              })}
+                </div>
+              ))}
             </div>
           </CardContent>
         </Card>
