@@ -68,9 +68,6 @@ export default function DashboardPage() {
       <section className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8 dark:bg-card">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <Button asChild variant="ghost" className="mb-5 px-0 text-muted-foreground hover:text-accent">
-              <Link href="/">← Ver Portal Público</Link>
-            </Button>
             <p className="text-sm font-bold uppercase tracking-wide text-accent">Ambiente do Pesquisador</p>
             <h1 className="mt-2 text-4xl font-black tracking-[-0.03em] text-foreground md:text-5xl">
               Olá, Pesquisador(a).

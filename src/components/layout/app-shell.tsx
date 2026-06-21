@@ -73,6 +73,16 @@ export function AppShell({ children, role }: { children: React.ReactNode; role: 
           <p className="text-lg font-black">Olá, {roleLabels[role]}</p>
           <p className="mt-1 text-sm leading-6 text-white/62">Acompanhe pesquisa, fomento, documentos e apoio institucional.</p>
         </div>
+
+        <Button
+          asChild
+          variant="outline"
+          className="mt-4 w-full justify-start border-white/15 bg-white text-slate-800 shadow-sm hover:bg-slate-100 hover:text-slate-950"
+        >
+          <Link href="/" onClick={() => mobile && setOpen(false)}>
+            ← Ver Portal Público
+          </Link>
+        </Button>
       </div>
 
       <nav className="min-h-0 flex-1 space-y-1 overflow-y-auto px-3 pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:px-4">
@@ -105,13 +115,6 @@ export function AppShell({ children, role }: { children: React.ReactNode; role: 
         })}
       </nav>
 
-      <div className="border-t border-white/10 p-4 lg:p-5">
-        <Button asChild variant="outline" className="w-full justify-start border-white/15 bg-white/[0.06] text-white hover:bg-white/10 hover:text-white">
-          <Link href="/" onClick={() => mobile && setOpen(false)}>
-            ← Ver Portal Público
-          </Link>
-        </Button>
-      </div>
     </div>
   );
 
@@ -141,6 +144,9 @@ export function AppShell({ children, role }: { children: React.ReactNode; role: 
           </div>
 
           <div className="ml-auto flex items-center gap-2">
+            <Button asChild variant="outline" className="hidden border-slate-200 bg-white text-slate-700 shadow-sm hover:bg-slate-50 hover:text-slate-950 lg:inline-flex">
+              <Link href="/">← Ver Portal Público</Link>
+            </Button>
             <Button variant="outline" size="icon" aria-label="Notificações">
               <Bell className="h-4 w-4" />
             </Button>
