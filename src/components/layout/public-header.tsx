@@ -23,8 +23,8 @@ export function PublicHeader({ compact = false }: { compact?: boolean }) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 shadow-[0_10px_30px_rgba(15,23,42,0.07)] backdrop-blur-xl">
-      <div className="mx-auto max-w-[118rem] px-4 py-3 lg:px-6 xl:px-8">
-        <div className="grid gap-3 lg:grid-cols-[minmax(25rem,0.95fr)_minmax(34rem,1.45fr)_minmax(20rem,0.72fr)] lg:items-center lg:gap-5 2xl:grid-cols-[minmax(33rem,1fr)_minmax(43rem,1.5fr)_minmax(24rem,0.8fr)]">
+      <div className="mx-auto max-w-[118rem] px-4 py-4 lg:px-6 lg:py-3 xl:px-8">
+        <div className="grid gap-4 lg:grid-cols-[minmax(25rem,0.95fr)_minmax(34rem,1.45fr)_minmax(20rem,0.72fr)] lg:items-center lg:gap-5 2xl:grid-cols-[minmax(33rem,1fr)_minmax(43rem,1.5fr)_minmax(24rem,0.8fr)]">
           <div className="min-w-0">
             <div className="flex items-center justify-between gap-3 lg:justify-start">
               <div className="flex shrink-0 items-center gap-3 sm:gap-4 lg:gap-5">
@@ -56,7 +56,7 @@ export function PublicHeader({ compact = false }: { compact?: boolean }) {
               </Button>
             </div>
 
-            <Link href="/" className="mt-3 block min-w-0 border-l-4 border-accent pl-4 lg:mt-0 lg:inline-block lg:border-l-[5px] lg:pl-5 lg:align-middle 2xl:ml-5">
+            <Link href="/" className="mt-4 block min-w-0 rounded-2xl border border-slate-100 border-l-4 border-l-accent bg-slate-50/70 px-4 py-3 shadow-sm lg:mt-0 lg:border-0 lg:border-l-[5px] lg:bg-transparent lg:px-0 lg:py-0 lg:shadow-none lg:inline-block lg:pl-5 lg:align-middle 2xl:ml-5">
               <span className={`block font-black leading-none tracking-[-0.025em] text-slate-950 ${titleSize}`}>
                 Portal do Pesquisador
               </span>
@@ -69,7 +69,7 @@ export function PublicHeader({ compact = false }: { compact?: boolean }) {
             </Link>
           </div>
 
-          <nav className="-mx-4 flex min-w-0 items-center gap-2 overflow-x-auto px-4 pb-1 text-sm font-bold [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:justify-center lg:gap-1.5 lg:overflow-visible lg:px-0 lg:pb-0 lg:text-[0.76rem] xl:gap-2 xl:text-[0.82rem] 2xl:gap-3 2xl:text-sm">
+          <nav className="-mx-4 flex min-w-0 items-center gap-2.5 overflow-x-auto px-4 pb-1.5 pt-0.5 text-sm font-bold [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:justify-center lg:gap-1.5 lg:overflow-visible lg:px-0 lg:pb-0 lg:text-[0.76rem] xl:gap-2 xl:text-[0.82rem] 2xl:gap-3 2xl:text-sm">
             {publicNav.map((item) => {
               const isActive = item.href === pathname;
 
@@ -79,8 +79,8 @@ export function PublicHeader({ compact = false }: { compact?: boolean }) {
                   href={item.href}
                   className={
                     isActive
-                      ? "relative shrink-0 rounded-full bg-accent px-3.5 py-2.5 text-white shadow-sm lg:px-2.5 xl:px-3 2xl:px-4"
-                      : "relative shrink-0 rounded-full px-3.5 py-2.5 text-slate-700 transition hover:bg-red-50 hover:text-accent lg:px-2.5 xl:px-3 2xl:px-4"
+                      ? "relative shrink-0 rounded-full bg-accent px-4 py-2.5 text-white shadow-sm lg:px-2.5 xl:px-3 2xl:px-4"
+                      : "relative shrink-0 rounded-full px-4 py-2.5 text-slate-700 transition hover:bg-red-50 hover:text-accent lg:px-2.5 xl:px-3 2xl:px-4"
                   }
                 >
                   <span className="lg:hidden">{item.mobileLabel}</span>

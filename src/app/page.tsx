@@ -177,10 +177,10 @@ export default function PublicHomePage() {
                 <span className="text-muted-foreground">Pesquisa • Inovação • Fomento</span>
               </div>
 
-              <h1 className="mt-6 max-w-4xl text-[2.45rem] font-black leading-[1.03] tracking-[-0.04em] text-slate-950 sm:text-5xl md:text-6xl xl:text-7xl">
+              <h1 className="mt-6 max-w-4xl text-[2.18rem] font-black leading-[1.08] tracking-[-0.04em] text-slate-950 sm:text-5xl md:text-6xl xl:text-7xl">
                 Simplificando a gestão da pesquisa universitária.
               </h1>
-              <p className="mt-5 max-w-3xl text-base font-semibold leading-7 text-slate-700 sm:mt-6 sm:text-xl sm:leading-8 lg:text-2xl lg:leading-9">
+              <p className="mt-4 max-w-3xl text-base font-semibold leading-7 text-slate-700 sm:mt-6 sm:text-xl sm:leading-8 lg:text-2xl lg:leading-9">
                 Centralize editais, modelos, fluxos administrativos, patentes e suporte especializado em um único
                 ambiente.
               </p>
@@ -236,7 +236,7 @@ export default function PublicHomePage() {
             </div>
 
             <div className="relative lg:justify-self-end">
-              <div className="absolute right-[-16px] top-8 z-10 hidden rounded-xl border bg-white px-6 py-4 font-bold shadow-xl md:flex">
+              <div className="absolute right-3 top-4 z-10 hidden rounded-xl md:right-5 md:top-6 lg:right-[-16px] lg:top-8 border bg-white px-6 py-4 font-bold shadow-xl md:flex">
                 <Sparkles className="mr-3 h-5 w-5 text-accent" /> Pesquisa • Inovação • Impacto
               </div>
               <Image
@@ -245,9 +245,9 @@ export default function PublicHomePage() {
                 width={860}
                 height={760}
                 priority
-                className="aspect-[1.45] w-full rounded-[1.7rem] border border-white object-cover shadow-[0_20px_60px_rgba(15,23,42,0.14)] sm:aspect-[1.15] md:aspect-[1.35] lg:aspect-[0.92] lg:max-w-[45vw] lg:shadow-[0_30px_90px_rgba(15,23,42,0.20)]"
+                className="max-h-[22rem] aspect-[1.55] w-full rounded-[1.7rem] border border-white object-cover shadow-[0_20px_60px_rgba(15,23,42,0.14)] sm:max-h-[28rem] sm:aspect-[1.25] md:aspect-[1.35] lg:max-h-none lg:aspect-[0.92] lg:max-w-[45vw] lg:shadow-[0_30px_90px_rgba(15,23,42,0.20)]"
               />
-              <div className="mt-4 rounded-2xl border border-white/70 bg-white/95 p-4 shadow-[0_18px_45px_rgba(15,23,42,0.14)] backdrop-blur lg:absolute lg:bottom-7 lg:left-6 lg:mt-0 lg:max-w-[19rem] xl:left-[-18px]">
+              <div className="mt-4 rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-[0_18px_45px_rgba(15,23,42,0.14)] backdrop-blur lg:absolute lg:bottom-7 lg:left-6 lg:mt-0 lg:max-w-[19rem] xl:left-[-18px]">
                 <div className="flex gap-4">
                   <span className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
                     <FileText className="h-5 w-5" />
