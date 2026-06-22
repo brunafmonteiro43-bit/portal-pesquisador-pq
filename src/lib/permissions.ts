@@ -27,6 +27,7 @@ export const navItems = [
   { href: "/dashboard", label: "Início", shortLabel: "Início", icon: "LayoutDashboard", roles: allRoles },
   { href: "/glossario", label: "Glossário Facilitado", shortLabel: "Glossário", icon: "BookOpenText", roles: allRoles },
   { href: "/templates", label: "Modelos e Templates", shortLabel: "Templates", icon: "Files", roles: allRoles },
+  { href: "/projetos", label: "Projetos de Pesquisa", shortLabel: "Projetos", icon: "Files", roles: allRoles },
   { href: "/centros", label: "Centros e Núcleos", shortLabel: "Centros", icon: "Building2", roles: allRoles },
   { href: "/oportunidades", label: "Central de Oportunidades", shortLabel: "Oportunidades", icon: "CalendarDays", roles: allRoles },
   {
