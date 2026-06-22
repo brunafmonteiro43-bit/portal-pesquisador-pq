@@ -23,8 +23,15 @@ import {
   researchProjects
 } from "@/data/research-projects";
 
-export default function ResearchProjectDetailPage({ params }: { params: { slug: string } }) {
-  const project = researchProjects.find((item) => item.slug === params.slug);
+type PageProps = {
+  params: Promise<{
+    slug: string;
+  }>;
+};
+
+export default async function ResearchProjectDetailPage({ params }: PageProps) {
+  const { slug } = await params;
+  const project = researchProjects.find((item) => item.slug === slug);
 
   if (!project) notFound();
 
