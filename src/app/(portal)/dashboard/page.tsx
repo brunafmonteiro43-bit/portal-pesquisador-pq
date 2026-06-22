@@ -5,6 +5,7 @@ import {
   CalendarDays,
   Clock3,
   FileText,
+  FolderKanban,
   Landmark,
   Lightbulb,
   Route,
@@ -23,6 +24,7 @@ import { featuredDeadlines, fundingCalls, moduleCards, mostAccessedDocuments } f
 const moduleIconMap = {
   glossario: BookOpenText,
   templates: FileText,
+  projetos: FolderKanban,
   fomento: Landmark,
   trilhas: Route,
   patentes: Lightbulb,
@@ -32,6 +34,7 @@ const moduleIconMap = {
 const moduleActions = {
   glossario: "Consultar termo",
   templates: "Abrir biblioteca",
+  projetos: "Gerenciar projetos",
   fomento: "Ver editais",
   trilhas: "Continuar fluxo",
   patentes: "Ver guia",
@@ -116,7 +119,7 @@ export default function DashboardPage() {
             <p className="text-sm font-bold uppercase tracking-wide text-accent">Acesso rápido</p>
             <h2 className="text-2xl font-black tracking-normal">Módulos de trabalho</h2>
           </div>
-          <Badge variant="secondary">6 áreas principais</Badge>
+          <Badge variant="secondary">7 áreas principais</Badge>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">

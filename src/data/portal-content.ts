@@ -115,6 +115,13 @@ export const moduleCards = [
     description: "Templates, formulários e documentos necessários para seus projetos."
   },
   {
+    key: "projetos",
+    title: "Projetos de Pesquisa",
+    href: "/dashboard/projetos",
+    count: "Documentos, notas fiscais e prestação de contas",
+    description: "Acompanhe projetos, rubricas, prazos, pendências e comprovantes em um só lugar."
+  },
+  {
     key: "fomento",
     title: "Fomento e Editais",
     href: "/dashboard/editais",
