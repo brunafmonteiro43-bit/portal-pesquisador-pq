@@ -64,7 +64,7 @@ export function AppShell({ children, role }: { children: React.ReactNode; role: 
           </span>
           <div className="min-w-0">
             <p className="truncate text-sm font-black uppercase tracking-[0.18em] text-white/55">COCEN / UNICAMP</p>
-            <h1 className="truncate text-xl font-black leading-tight">Ambiente do Pesquisador</h1>
+            <h1 className="text-xl font-black leading-tight">Ambiente do Pesquisador</h1>
           </div>
         </div>
 
@@ -108,7 +108,7 @@ export function AppShell({ children, role }: { children: React.ReactNode; role: 
               >
                 <Icon className="h-4 w-4" />
               </span>
-              <span className="truncate">{label}</span>
+              <span className="min-w-0 whitespace-normal leading-snug">{label}</span>
             </Link>
           );
         })}
