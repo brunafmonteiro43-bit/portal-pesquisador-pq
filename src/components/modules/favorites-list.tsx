@@ -63,7 +63,7 @@ export function FavoritesList() {
                     <Link href="/dashboard/modelos">Ver documentos</Link>
                   </Button>
                   <Button asChild size="sm" variant="outline">
-                    <Link href="/dashboard/oportunidades">Ver editais</Link>
+                    <Link href="/dashboard/fomento-oportunidades">Ver editais</Link>
                   </Button>
                   <Button asChild size="sm">
                     <Link href="/dashboard/glossario">Explorar glossário</Link>

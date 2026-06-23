@@ -123,10 +123,10 @@ export const moduleCards = [
   },
   {
     key: "fomento",
-    title: "Fomento e Editais",
-    href: "/dashboard/editais",
+    title: "Fomento e Oportunidades",
+    href: "/dashboard/fomento-oportunidades",
     count: "FAPESP, CNPq, CAPES, FINEP e empresas",
-    description: "Oportunidades de financiamento e chamadas abertas para pesquisa."
+    description: "Editais, chamadas, parcerias e oportunidades de financiamento para pesquisa."
   },
   {
     key: "trilhas",
@@ -153,7 +153,7 @@ export const moduleCards = [
 
 export const quickActions = [
   { title: "Submeter um Projeto", href: "/dashboard/trilhas", description: "Da ideia à submissão institucional." },
-  { title: "Encontrar Editais", href: "/dashboard/oportunidades", description: "Filtre oportunidades por agência e área." },
+  { title: "Encontrar Editais", href: "/dashboard/fomento-oportunidades", description: "Filtre oportunidades por agência e área." },
   { title: "Abrir Projeto Funcamp", href: "/dashboard/trilhas", description: "Fluxo de abertura e documentação." },
   { title: "Fazer Prestação de Contas", href: "/dashboard/trilhas", description: "Comprovantes, relatórios e prazos." },
   { title: "Registrar uma Patente", href: "/dashboard/patentes", description: "Sigilo, comunicação e Inova Unicamp." },
@@ -171,13 +171,13 @@ export const serviceCards = [
   },
   {
     title: "FAPESP",
-    href: "/dashboard/editais",
+    href: "/dashboard/fomento-oportunidades",
     description: "Editais, modelos de projeto e orientações para submissão e prestação de contas.",
     links: ["Editais", "Modelos de Projeto", "Prestação de Contas"]
   },
   {
     title: "CNPq / CAPES / FINEP",
-    href: "/dashboard/oportunidades",
+    href: "/dashboard/fomento-oportunidades",
     description: "Chamadas, bolsas e guias de submissão para diferentes áreas de pesquisa.",
     links: ["Chamadas", "Bolsas", "Guias de Submissão"]
   },
@@ -482,7 +482,7 @@ export const fundingCalls: FundingCall[] = [
     deadline: "14/07/2026",
     value: "Conforme orçamento aprovado",
     audience: "Pesquisadores com vínculo institucional",
-    link: "/dashboard/editais",
+    link: "/dashboard/fomento-oportunidades",
     closingSoon: true,
     summary: "Submissão de propostas para projetos de pesquisa regular.",
     categories: ["Material de consumo", "Serviços", "Equipamentos"],
@@ -497,7 +497,7 @@ export const fundingCalls: FundingCall[] = [
     deadline: "Previsão no segundo semestre",
     value: "Faixas por porte de projeto",
     audience: "Grupos de pesquisa",
-    link: "/dashboard/editais",
+    link: "/dashboard/fomento-oportunidades",
     summary: "Financiamento de projetos de pesquisa científica, tecnológica e de inovação.",
     categories: ["Custeio", "Capital", "Bolsas"],
     requiredDocuments: ["Projeto detalhado", "Currículo Lattes", "Plano de aplicação", "Declaração de vínculo"]
@@ -511,7 +511,7 @@ export const fundingCalls: FundingCall[] = [
     deadline: "29/06/2026",
     value: "Bolsas e custeio institucional",
     audience: "Programas e pesquisadores vinculados",
-    link: "/dashboard/editais",
+    link: "/dashboard/fomento-oportunidades",
     closingSoon: true,
     summary: "Apoio à formação, internacionalização e consolidação de programas vinculados à pesquisa.",
     categories: ["Mobilidade", "Bolsas", "Eventos"],
@@ -526,7 +526,7 @@ export const fundingCalls: FundingCall[] = [
     deadline: "02/08/2026",
     value: "Até R$ 2 milhões por proposta",
     audience: "Projetos com potencial de inovação",
-    link: "/dashboard/editais",
+    link: "/dashboard/fomento-oportunidades",
     summary: "Apoio a projetos inovadores com potencial de transferência tecnológica e parceria externa.",
     categories: ["Inovação", "Empresa parceira", "Prototipagem"],
     requiredDocuments: ["Plano de inovação", "Orçamento", "Termo de parceria", "Resumo de propriedade intelectual"]
@@ -536,11 +536,11 @@ export const fundingCalls: FundingCall[] = [
     slug: "empresas-parceiras",
     agency: "Empresas",
     area: "Pesquisa aplicada",
-    status: "Em prospecção",
+    status: "Próximo",
     deadline: "Calendário negociado",
     value: "Conforme acordo de parceria",
     audience: "Centros, Núcleos e grupos de pesquisa",
-    link: "/dashboard/oportunidades",
+    link: "/dashboard/fomento-oportunidades",
     summary: "Oportunidades de cooperação com empresas para pesquisa aplicada, serviços e inovação.",
     categories: ["Parceria", "Convênio", "Propriedade intelectual"],
     requiredDocuments: ["Plano de trabalho", "Minuta de cooperação", "Documentos do parceiro", "Declaração de infraestrutura"]
@@ -554,7 +554,7 @@ export const fundingCalls: FundingCall[] = [
     deadline: "Setembro/2026",
     value: "Mobilidade e custeio",
     audience: "Pesquisadores em rede internacional",
-    link: "/dashboard/oportunidades",
+    link: "/dashboard/fomento-oportunidades",
     summary: "Apoio a redes, missões e projetos colaborativos com instituições estrangeiras.",
     categories: ["Internacionalização", "Mobilidade", "Redes"],
     requiredDocuments: ["Carta de parceria", "Plano de missão", "Currículo da equipe", "Orçamento de mobilidade"]
@@ -568,7 +568,7 @@ export const fundingCalls: FundingCall[] = [
     deadline: "18/08/2026",
     value: "Conforme porte do equipamento",
     audience: "Centros, Núcleos e unidades com uso compartilhado",
-    link: "/dashboard/editais",
+    link: "/dashboard/fomento-oportunidades",
     summary: "Chamada demonstrativa para aquisição e compartilhamento de equipamentos estratégicos de pesquisa.",
     categories: ["Equipamentos", "Infraestrutura", "Uso compartilhado"],
     requiredDocuments: ["Justificativa técnica", "Plano de uso compartilhado", "Cotações", "Anuência da unidade"]
@@ -582,7 +582,7 @@ export const fundingCalls: FundingCall[] = [
     deadline: "Outubro/2026",
     value: "Bolsas, missões e custeio",
     audience: "Grupos com cooperação internacional ativa",
-    link: "/dashboard/editais",
+    link: "/dashboard/fomento-oportunidades",
     summary: "Apoio a mobilidade, redes internacionais e fortalecimento de projetos conjuntos.",
     categories: ["Bolsas", "Mobilidade", "Cooperação"],
     requiredDocuments: ["Plano de internacionalização", "Carta de cooperação", "Cronograma", "Orçamento"]
@@ -592,11 +592,11 @@ export const fundingCalls: FundingCall[] = [
     slug: "cnpq-bolsas-produtividade",
     agency: "CNPq",
     area: "Todas as áreas",
-    status: "Monitorado",
+    status: "Próximo",
     deadline: "Calendário anual",
     value: "Conforme modalidade",
     audience: "Pesquisadores com produção científica consolidada",
-    link: "/dashboard/editais",
+    link: "/dashboard/fomento-oportunidades",
     summary: "Acompanhamento demonstrativo de chamada para produtividade em pesquisa e desenvolvimento tecnológico.",
     categories: ["Bolsas", "Produtividade", "Currículo"],
     requiredDocuments: ["Currículo Lattes", "Projeto de pesquisa", "Produção científica", "Comprovante de vínculo"]
@@ -1257,7 +1257,7 @@ export const knowledgeSnippets = [
 export const auditEvents = [
   { id: "1", action: "Termo atualizado", detail: "Rubrica revisada no Glossário Facilitado", when: "há 12 min" },
   { id: "2", action: "Documento versionado", detail: "Comunicação de invenção publicada na versão v1.2", when: "há 38 min" },
-  { id: "3", action: "Edital cadastrado", detail: "FINEP adicionada ao painel de Fomento e Editais", when: "há 1 h" }
+  { id: "3", action: "Edital cadastrado", detail: "FINEP adicionada ao painel de Fomento e Oportunidades", when: "há 1 h" }
 ];
 
 export const adminQueues = [

@@ -26,7 +26,7 @@ const fundingCalls: Omit<FundingCallMatch, "compatibility">[] = [
       "Equipe executora com vínculo institucional ou parceiro elegível",
       "Demonstração de potencial inovador e viabilidade técnica"
     ],
-    demoLink: "/fomento-editais?edital=fapesp-inovacao-2026",
+    demoLink: "/dashboard/fomento-oportunidades?edital=fapesp-inovacao-2026",
     documents: ["Projeto de pesquisa", "Plano de trabalho", "Cronograma físico-financeiro", "Currículo Lattes"]
   },
   {
@@ -42,7 +42,7 @@ const fundingCalls: Omit<FundingCallMatch, "compatibility">[] = [
       "Orçamento por rubrica",
       "Comprovação de infraestrutura disponível"
     ],
-    demoLink: "/fomento-editais?edital=fapesp-regular-saude-2026",
+    demoLink: "/dashboard/fomento-oportunidades?edital=fapesp-regular-saude-2026",
     documents: ["Projeto científico", "Súmula curricular", "Orçamento por rubricas", "Anuência da unidade"]
   },
   {
@@ -58,7 +58,7 @@ const fundingCalls: Omit<FundingCallMatch, "compatibility">[] = [
       "Currículo Lattes atualizado",
       "Equipe e metas compatíveis com o orçamento"
     ],
-    demoLink: "/fomento-editais?edital=cnpq-universal-2026",
+    demoLink: "/dashboard/fomento-oportunidades?edital=cnpq-universal-2026",
     documents: ["Projeto completo", "Plano de aplicação", "Currículos da equipe", "Declarações institucionais"]
   },
   {
@@ -74,7 +74,7 @@ const fundingCalls: Omit<FundingCallMatch, "compatibility">[] = [
       "Plano de uso compartilhado da infraestrutura",
       "Contrapartidas e governança do projeto"
     ],
-    demoLink: "/fomento-editais?edital=finep-ambientes-inovacao",
+    demoLink: "/dashboard/fomento-oportunidades?edital=finep-ambientes-inovacao",
     documents: ["Plano de infraestrutura", "Carta de apoio", "Mapa de riscos", "Orçamento detalhado"]
   },
   {
@@ -90,7 +90,7 @@ const fundingCalls: Omit<FundingCallMatch, "compatibility">[] = [
       "Justificativa de uso acadêmico",
       "Plano de manutenção e acesso"
     ],
-    demoLink: "/fomento-editais?edital=capes-proequipamentos",
+    demoLink: "/dashboard/fomento-oportunidades?edital=capes-proequipamentos",
     documents: ["Plano de uso", "Lista de equipamentos", "Ata ou anuência do programa", "Orçamentos"]
   },
   {
@@ -106,7 +106,7 @@ const fundingCalls: Omit<FundingCallMatch, "compatibility">[] = [
       "Plano de mobilidade ou intercâmbio",
       "Resultados esperados com impacto social"
     ],
-    demoLink: "/fomento-editais?edital=internacional-saude-digital",
+    demoLink: "/dashboard/fomento-oportunidades?edital=internacional-saude-digital",
     documents: ["Carta de parceria", "Projeto em inglês", "Plano de mobilidade", "Orçamento consolidado"]
   }
 ];
@@ -191,7 +191,7 @@ export function answerFundingSearch(question: string) {
       `Critério usado: agência, área de pesquisa, proximidade de prazo, público-alvo e documentos exigidos.\n\n` +
       `Áreas relacionadas: ${topAreas.join(", ")}.\n\n` +
       "Use os cartões abaixo para ver detalhes ou salvar a oportunidade nos favoritos. Esta é uma base simulada para apresentação institucional, sem consulta externa em tempo real.",
-    citations: ["Base simulada de editais COCEN", "Central de Oportunidades"],
+    citations: ["Base simulada de editais COCEN", "Fomento e Oportunidades"],
     opportunities: matches
   };
 }

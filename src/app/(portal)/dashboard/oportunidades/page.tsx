@@ -1,6 +1,5 @@
-import { OpportunitiesBrowser } from "@/components/modules/opportunities-browser";
-import { fundingCalls } from "@/data/portal-content";
+import { redirect } from "next/navigation";
 
 export default function OportunidadesPage() {
-  return <OpportunitiesBrowser calls={fundingCalls} />;
+  redirect("/dashboard/fomento-oportunidades");
 }

@@ -35,7 +35,7 @@ const moduleActions = {
   glossario: "Consultar termo",
   templates: "Abrir biblioteca",
   projetos: "Gerenciar projetos",
-  fomento: "Ver editais",
+  fomento: "Ver oportunidades",
   trilhas: "Continuar fluxo",
   patentes: "Ver guia",
   chat: "Iniciar conversa"
@@ -272,7 +272,7 @@ export default function DashboardPage() {
             <h2 className="text-xl font-black">Editais recentes</h2>
             <div className="mt-5 space-y-3">
               {fundingCalls.slice(0, 3).map((call) => (
-                <Link key={call.slug} href="/dashboard/oportunidades" className="block rounded-xl border p-4 transition hover:border-accent">
+                <Link key={call.slug} href="/dashboard/fomento-oportunidades" className="block rounded-xl border p-4 transition hover:border-accent">
                   <div className="flex items-center justify-between gap-3">
                     <p className="text-sm font-bold">{call.title}</p>
                     <Badge variant="secondary">{call.agency}</Badge>
