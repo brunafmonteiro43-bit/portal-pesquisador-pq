@@ -29,7 +29,7 @@ export function PublicHeader({ compact = false }: { compact?: boolean }) {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 shadow-[0_10px_30px_rgba(15,23,42,0.07)] backdrop-blur-xl">
       <div className="mx-auto max-w-[118rem] px-4 py-3 lg:px-6 lg:py-3 xl:px-8">
-        <div className="grid gap-2 lg:grid-cols-[12rem_minmax(0,1fr)_14.5rem] lg:items-center lg:gap-2 xl:grid-cols-[16rem_minmax(0,1fr)_16rem] xl:gap-3 2xl:grid-cols-[18rem_minmax(0,1fr)_17rem] 2xl:gap-4 min-[1800px]:grid-cols-[22rem_minmax(0,1fr)_19rem]">
+        <div className="grid gap-2 lg:grid-cols-[12rem_minmax(0,1fr)_14.5rem] lg:items-center lg:gap-2 xl:grid-cols-[16rem_minmax(0,1fr)_16rem] xl:gap-3 2xl:grid-cols-[18rem_minmax(0,1fr)_21rem] 2xl:gap-4 min-[1800px]:grid-cols-[22rem_minmax(0,1fr)_25rem]">
           <div className="min-w-0">
             <div className="flex items-center justify-between gap-3 lg:justify-start">
               <div className="flex shrink-0 items-center gap-3 sm:gap-4 lg:gap-5">
@@ -96,7 +96,7 @@ export function PublicHeader({ compact = false }: { compact?: boolean }) {
             })}
           </nav>
 
-          <div className="grid gap-2 lg:grid-cols-[minmax(5.75rem,1fr)_auto] lg:items-center xl:grid-cols-[minmax(7rem,1fr)_auto] min-[1800px]:grid-cols-[minmax(9rem,1fr)_auto]">
+          <div className="grid gap-2 lg:grid-cols-[minmax(5.75rem,1fr)_auto] lg:items-center xl:grid-cols-[minmax(7rem,1fr)_auto] 2xl:grid-cols-[minmax(11rem,1fr)_auto] min-[1800px]:grid-cols-[minmax(14rem,1fr)_auto]">
             <form action="/busca" role="search" className="flex h-10 min-w-0 items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm text-muted-foreground shadow-inner transition focus-within:border-accent focus-within:bg-white lg:h-10 2xl:h-11">
               <Search className="h-4 w-4 shrink-0 text-accent" />
               <span className="sr-only">Pesquisar no Portal</span>
