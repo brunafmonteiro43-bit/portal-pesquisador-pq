@@ -107,7 +107,7 @@ export function PublicHeader({ compact = false }: { compact?: boolean }) {
               />
               <button type="submit" className="sr-only">Pesquisar</button>
             </form>
-            <Button asChild className="hidden h-10 shrink-0 whitespace-nowrap px-3 text-xs xl:px-4 xl:text-sm shadow-md shadow-red-900/10 2xl:h-11 2xl:px-5 lg:inline-flex">
+            <Button asChild className="hidden h-10 shrink-0 whitespace-nowrap px-3 text-xs shadow-md shadow-red-900/10 2xl:h-11 2xl:px-5 2xl:text-sm lg:inline-flex">
               <Link href="/login">
                 <LockKeyhole className="mr-2 h-4 w-4" />
                 Entrar no Ambiente
