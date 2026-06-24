@@ -52,6 +52,10 @@ export function LoginForm() {
         </div>
         <CardTitle className="text-2xl">Portal do Pesquisador</CardTitle>
         <p className="text-sm text-muted-foreground">COCEN/UNICAMP</p>
+        <p className="text-sm leading-6 text-muted-foreground">
+          Acesse o Ambiente do Pesquisador para acompanhar projetos, documentos, prazos, notas fiscais, prestação de
+          contas e conversar com a Atena.
+        </p>
       </CardHeader>
       <CardContent>
         {loginMessage === "atena-chat" || loginMessage === "atena-use" || loginMessage === "atena" ? (

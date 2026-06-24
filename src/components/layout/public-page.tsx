@@ -43,13 +43,25 @@ export function PublicPage({
                 <p className="mt-5 max-w-3xl text-lg leading-8 text-muted-foreground">{description}</p>
               </div>
               <div className="rounded-3xl border bg-slate-50 p-4 shadow-inner">
-                <div className="flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-sm">
+                <form action="/busca" role="search" className="flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-sm">
                   <Search className="h-5 w-5 text-accent" />
-                  <span className="text-sm font-semibold text-muted-foreground">Buscar nesta área pública...</span>
-                </div>
+                  <label className="sr-only" htmlFor="public-page-search">
+                    Buscar nesta área pública
+                  </label>
+                  <input
+                    id="public-page-search"
+                    name="q"
+                    className="min-w-0 flex-1 bg-transparent text-sm font-semibold outline-none placeholder:text-muted-foreground"
+                    placeholder="Buscar nesta área pública..."
+                  />
+                  <button type="submit" className="sr-only">Pesquisar</button>
+                </form>
                 <Button asChild className="mt-4 w-full">
                   <Link href={ctaHref}>{ctaLabel}</Link>
                 </Button>
+                <p className="mt-3 text-xs font-semibold leading-5 text-muted-foreground">
+                  Favoritar, conversar com a Atena, acompanhar projetos e anexar documentos ou notas fiscais exigem login.
+                </p>
               </div>
             </div>
           </div>

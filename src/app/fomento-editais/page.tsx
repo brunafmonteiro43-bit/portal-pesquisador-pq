@@ -10,5 +10,5 @@ const items = [
 ];
 
 export default function PublicFomentoEditaisPage() {
-  return <PublicPage eyebrow="Fomento aberto" title="Fomento e Editais" description="Chamadas, prazos e oportunidades demonstrativas para orientar a comunidade de pesquisa." items={items} />;
+  return <PublicPage eyebrow="Fomento aberto" title="Fomento e Oportunidades" description="Editais, chamadas, prazos e oportunidades demonstrativas para orientar a comunidade de pesquisa." items={items} />;
 }

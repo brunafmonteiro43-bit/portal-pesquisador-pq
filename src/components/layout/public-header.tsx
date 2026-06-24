@@ -10,7 +10,7 @@ const publicNav = [
   { label: "Início", mobileLabel: "Início", href: "/" },
   { label: "Glossário", mobileLabel: "Glossário", href: "/glossario" },
   { label: "Modelos e Templates", mobileLabel: "Modelos", href: "/modelos" },
-  { label: "Fomento e Editais", mobileLabel: "Editais", href: "/fomento-editais" },
+  { label: "Fomento e Oportunidades", mobileLabel: "Fomento", href: "/fomento-editais" },
   { label: "Trilhas de Apoio", mobileLabel: "Trilhas", href: "/trilhas" },
   { label: "Patentes", mobileLabel: "Patentes", href: "/patentes" },
   { label: "Centros e Núcleos", mobileLabel: "Centros", href: "/centros-nucleos" },
@@ -91,14 +91,16 @@ export function PublicHeader({ compact = false }: { compact?: boolean }) {
           </nav>
 
           <div className="grid gap-2 lg:grid-cols-[minmax(7.5rem,1fr)_auto] lg:items-center">
-            <label className="flex h-10 min-w-0 items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm text-muted-foreground shadow-inner transition focus-within:border-accent focus-within:bg-white lg:h-10 2xl:h-11">
+            <form action="/busca" role="search" className="flex h-10 min-w-0 items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm text-muted-foreground shadow-inner transition focus-within:border-accent focus-within:bg-white lg:h-10 2xl:h-11">
               <Search className="h-4 w-4 shrink-0 text-accent" />
               <span className="sr-only">Pesquisar no Portal</span>
               <input
+                name="q"
                 className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
-                placeholder="Buscar..."
+                placeholder="Buscar no portal..."
               />
-            </label>
+              <button type="submit" className="sr-only">Pesquisar</button>
+            </form>
             <Button asChild className="hidden h-10 shrink-0 whitespace-nowrap px-3 text-xs xl:px-4 xl:text-sm shadow-md shadow-red-900/10 2xl:h-11 2xl:px-5 lg:inline-flex">
               <Link href="/login">
                 <LockKeyhole className="mr-2 h-4 w-4" />

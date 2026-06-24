@@ -28,7 +28,7 @@ export function InstitutionalFooter() {
             <div className="mt-5 grid gap-3 text-sm font-semibold text-white/82">
               <Link className="transition hover:text-white" href="/">Sobre o Portal</Link>
               <Link className="transition hover:text-white" href="/centros-nucleos">Centros e Núcleos</Link>
-              <Link className="transition hover:text-white" href="/fomento-editais">Fomento e Editais</Link>
+              <Link className="transition hover:text-white" href="/fomento-editais">Fomento e Oportunidades</Link>
               <Link className="transition hover:text-white" href="/modelos">Modelos e Templates</Link>
               <Link className="transition hover:text-white" href="/patentes">Patentes</Link>
             </div>

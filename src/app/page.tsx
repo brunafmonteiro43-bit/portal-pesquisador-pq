@@ -73,7 +73,7 @@ const quickAccess = [
     icon: FileText
   },
   {
-    title: "Fomento e Editais",
+    title: "Fomento e Oportunidades",
     description: "Chamadas e prazos de financiamento.",
     icon: CalendarDays
   },
@@ -145,19 +145,11 @@ const publicHelpLinks: Record<string, string> = {
 const quickAccessLinks: Record<string, string> = {
   "Glossário Facilitado": "/glossario",
   "Modelos e Templates": "/modelos",
-  "Fomento e Editais": "/fomento-editais",
+  "Fomento e Oportunidades": "/fomento-editais",
   "Trilhas de Apoio": "/trilhas",
   "Patentes e Inovação": "/patentes",
   "Centros e Núcleos": "/centros-nucleos",
   Atena: "/login?callbackUrl=%2Fdashboard%2Fatena%3Fintent%3Dchat-atena&message=atena-chat"
-};
-
-const suggestionLinks: Record<string, string> = {
-  FAPESP: "/fomento-editais",
-  CAPES: "/fomento-editais",
-  Patentes: "/patentes",
-  Convênios: "/trilhas",
-  "Prestação de contas": "/trilhas"
 };
 
 export default function PublicHomePage() {
@@ -200,29 +192,43 @@ export default function PublicHomePage() {
                   <Link href="#acesso-rapido">Explorar Recursos</Link>
                 </Button>
               </div>
+              <p className="mt-4 max-w-3xl text-sm font-semibold leading-6 text-slate-600">
+                Consulte conteúdos públicos do portal ou entre no Ambiente do Pesquisador para acompanhar projetos,
+                documentos, notas fiscais, prazos e interagir com a Atena.
+              </p>
+              <p className="mt-2 max-w-3xl text-xs font-semibold leading-5 text-muted-foreground">
+                Ações como favoritar, conversar com a Atena, acompanhar projeto, anexar documentos e anexar notas
+                fiscais exigem login.
+              </p>
 
-              <div className="mt-7 max-w-3xl rounded-3xl border border-slate-200 bg-white p-3 shadow-[0_24px_70px_rgba(15,23,42,0.12)] sm:mt-8">
+              <form action="/busca" role="search" className="mt-7 max-w-3xl rounded-3xl border border-slate-200 bg-white p-3 shadow-[0_24px_70px_rgba(15,23,42,0.12)] sm:mt-8">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                   <div className="flex min-h-14 flex-1 items-center gap-3 px-3 text-sm text-muted-foreground sm:min-h-16 sm:px-4 sm:text-base">
                     <Search className="h-5 w-5 shrink-0 text-accent" />
-                    <span>Pesquise editais, modelos, rubricas, convênios, patentes ou fluxos administrativos...</span>
+                    <label className="sr-only" htmlFor="home-public-search">Pesquisar no Portal</label>
+                    <input
+                      id="home-public-search"
+                      name="q"
+                      className="min-w-0 flex-1 bg-transparent font-semibold outline-none placeholder:text-muted-foreground"
+                      placeholder="Pesquise editais, modelos, rubricas, convênios, patentes ou fluxos administrativos..."
+                    />
                   </div>
-                  <Button asChild className="h-11 px-7 sm:h-12">
-                    <Link href="/fomento-editais">Pesquisar</Link>
+                  <Button className="h-11 px-7 sm:h-12" type="submit">
+                    Pesquisar
                   </Button>
                 </div>
                 <div className="mt-3 flex flex-wrap gap-2 border-t pt-3">
                   {quickSuggestions.map((suggestion) => (
                     <Link
                       key={suggestion}
-                      href={suggestionLinks[suggestion] ?? "/fomento-editais"}
+                      href={`/busca?q=${encodeURIComponent(suggestion)}`}
                       className="rounded-full bg-muted px-3 py-1.5 text-xs font-bold text-muted-foreground transition hover:bg-accent/10 hover:text-accent"
                     >
                       {suggestion}
                     </Link>
                   ))}
                 </div>
-              </div>
+              </form>
 
               <div className="mt-7 grid max-w-3xl gap-3 sm:mt-8 sm:grid-cols-2">
                 {heroIndicators.map((indicator) => (
