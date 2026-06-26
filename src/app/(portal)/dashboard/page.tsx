@@ -2,6 +2,7 @@ import {
   ArrowRight,
   BookOpenText,
   Bot,
+  Building2,
   CalendarDays,
   Clock3,
   FileText,
@@ -28,6 +29,7 @@ const moduleIconMap = {
   fomento: Landmark,
   trilhas: Route,
   patentes: Lightbulb,
+  centros: Building2,
   chat: Bot
 };
 
@@ -38,6 +40,7 @@ const moduleActions = {
   fomento: "Ver oportunidades",
   trilhas: "Continuar fluxo",
   patentes: "Ver guia",
+  centros: "Conhecer centros",
   chat: "Iniciar conversa"
 };
 
@@ -119,7 +122,7 @@ export default function DashboardPage() {
             <p className="text-sm font-bold uppercase tracking-wide text-accent">Acesso rápido</p>
             <h2 className="text-2xl font-black tracking-normal">Módulos de trabalho</h2>
           </div>
-          <Badge variant="secondary">7 áreas principais</Badge>
+          <Badge variant="secondary">8 áreas principais</Badge>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">

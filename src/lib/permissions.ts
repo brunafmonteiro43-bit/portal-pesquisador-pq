@@ -25,10 +25,7 @@ export const roleLabels: Record<AppRole, string> = {
 
 export const navItems = [
   { href: "/dashboard", label: "Início", shortLabel: "Início", icon: "LayoutDashboard", roles: allRoles },
-  { href: "/dashboard/glossario", label: "Glossário Facilitado", shortLabel: "Glossário", icon: "BookOpenText", roles: allRoles },
-  { href: "/dashboard/modelos", label: "Modelos e Templates", shortLabel: "Templates", icon: "Files", roles: allRoles },
   { href: "/dashboard/projetos", label: "Projetos de Pesquisa", shortLabel: "Projetos", icon: "FolderKanban", roles: allRoles },
-  { href: "/dashboard/centros", label: "Centros e Núcleos", shortLabel: "Centros", icon: "Building2", roles: allRoles },
   {
     href: "/dashboard/fomento-oportunidades",
     label: "Fomento e Oportunidades",
@@ -36,6 +33,7 @@ export const navItems = [
     icon: "Landmark",
     roles: allRoles
   },
+  { href: "/dashboard/modelos", label: "Modelos e Templates", shortLabel: "Templates", icon: "Files", roles: allRoles },
   {
     href: "/dashboard/trilhas",
     label: "Trilhas de Apoio",
@@ -50,6 +48,8 @@ export const navItems = [
     icon: "Lightbulb",
     roles: ["RESEARCHER", "INNOVATION_OFFICE", "COCEN_ADMIN", "SUPER_ADMIN"] satisfies AppRole[]
   },
+  { href: "/dashboard/centros", label: "Centros e Núcleos", shortLabel: "Centros", icon: "Building2", roles: allRoles },
+  { href: "/dashboard/glossario", label: "Glossário Facilitado", shortLabel: "Glossário", icon: "BookOpenText", roles: allRoles },
   { href: "/dashboard/favoritos", label: "Meus Favoritos", shortLabel: "Favoritos", icon: "Star", roles: allRoles },
   { href: "/dashboard/duvidas", label: "Central de Dúvidas", shortLabel: "Dúvidas", icon: "CircleHelp", roles: allRoles },
   {

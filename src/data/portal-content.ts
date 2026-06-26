@@ -101,13 +101,6 @@ export const adminMetrics: Metric[] = [
 
 export const moduleCards = [
   {
-    key: "glossario",
-    title: "Glossário Facilitado",
-    href: "/dashboard/glossario",
-    count: "Termos administrativos, financeiros e jurídicos",
-    description: "Termos técnicos explicados de forma simples e prática para pesquisadores."
-  },
-  {
     key: "projetos",
     title: "Projetos de Pesquisa",
     href: "/dashboard/projetos",
@@ -115,18 +108,18 @@ export const moduleCards = [
     description: "Acompanhe projetos, rubricas, prazos, pendências e comprovantes em um só lugar."
   },
   {
-    key: "templates",
-    title: "Modelos e Templates",
-    href: "/dashboard/modelos",
-    count: "Formulários, manuais e checklists",
-    description: "Templates, formulários e documentos necessários para seus projetos."
-  },
-  {
     key: "fomento",
     title: "Fomento e Oportunidades",
     href: "/dashboard/fomento-oportunidades",
     count: "FAPESP, CNPq, CAPES, FINEP e empresas",
     description: "Editais, chamadas, parcerias e oportunidades de financiamento para pesquisa."
+  },
+  {
+    key: "templates",
+    title: "Modelos e Templates",
+    href: "/dashboard/modelos",
+    count: "Formulários, manuais e checklists",
+    description: "Templates, formulários e documentos necessários para seus projetos."
   },
   {
     key: "trilhas",
@@ -141,6 +134,20 @@ export const moduleCards = [
     href: "/dashboard/patentes",
     count: "Sigilo, Inova Unicamp, INPI e royalties",
     description: "Proteção intelectual, transferência de tecnologia e inovação."
+  },
+  {
+    key: "centros",
+    title: "Centros e Núcleos",
+    href: "/dashboard/centros",
+    count: "Rede interdisciplinar COCEN/UNICAMP",
+    description: "Conheça centros, núcleos, áreas de atuação e linhas de pesquisa."
+  },
+  {
+    key: "glossario",
+    title: "Glossário Facilitado",
+    href: "/dashboard/glossario",
+    count: "Termos administrativos, financeiros e jurídicos",
+    description: "Termos técnicos explicados de forma simples e prática para pesquisadores."
   },
   {
     key: "chat",
