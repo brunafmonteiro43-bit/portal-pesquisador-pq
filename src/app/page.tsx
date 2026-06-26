@@ -162,8 +162,8 @@ export default function PublicHomePage() {
           <div className="absolute inset-x-0 top-0 h-px bg-border" />
           <div className="absolute -left-24 top-28 h-64 w-64 rounded-full border border-slate-200/70 opacity-40" />
           <div className="absolute -right-20 bottom-10 h-72 w-72 rounded-full border border-red-900/10 opacity-50" />
-          <div className="mx-auto grid max-w-7xl gap-10 px-4 py-10 sm:py-14 md:gap-12 lg:min-h-[calc(100vh-116px)] lg:grid-cols-[1.04fr_0.86fr] lg:items-center lg:gap-14 lg:py-20 xl:py-24">
-            <div>
+          <div className="mx-auto grid max-w-[90rem] gap-10 px-4 py-10 sm:py-14 md:gap-12 lg:min-h-[calc(100vh-116px)] lg:grid-cols-[minmax(0,1.02fr)_minmax(26rem,0.88fr)] lg:items-center lg:gap-12 lg:px-6 lg:py-16 xl:gap-16 xl:px-8 xl:py-20 2xl:py-24">
+            <div className="lg:max-w-[46rem] xl:max-w-[50rem]">
               <div className="inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border bg-white px-3 py-2 text-xs font-bold shadow-sm sm:px-4 sm:text-sm">
                 <span className="h-2 w-2 rounded-full bg-accent" />
                 <span className="text-accent">Ambiente Institucional</span>
@@ -171,23 +171,23 @@ export default function PublicHomePage() {
                 <span className="text-muted-foreground">Pesquisa • Inovação • Fomento</span>
               </div>
 
-              <h1 className="mt-6 max-w-4xl text-[2.18rem] font-black leading-[1.08] tracking-[-0.04em] text-slate-950 sm:text-5xl md:text-6xl xl:text-7xl">
+              <h1 className="mt-6 max-w-4xl text-[2.18rem] font-black leading-[1.08] tracking-[-0.04em] text-slate-950 sm:text-5xl md:text-6xl xl:text-[4.25rem] 2xl:text-7xl">
                 Simplificando a gestão da pesquisa universitária.
               </h1>
-              <p className="mt-4 max-w-3xl text-base font-semibold leading-7 text-slate-700 sm:mt-6 sm:text-xl sm:leading-8 lg:text-2xl lg:leading-9">
+              <p className="mt-4 max-w-3xl text-base font-semibold leading-7 text-slate-700 sm:mt-6 sm:text-xl sm:leading-8 lg:text-[1.35rem] lg:leading-9 xl:text-2xl">
                 Centralize editais, modelos, fluxos administrativos, patentes e suporte especializado em um único
                 ambiente.
               </p>
 
-              <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:gap-4">
-                <Button asChild size="lg" className="h-12 px-5 text-sm shadow-lg shadow-accent/20 sm:h-14 sm:px-8 sm:text-base">
+              <div className="mt-8 flex max-w-[34rem] flex-wrap items-stretch gap-3 sm:mt-10 sm:gap-4">
+                <Button asChild size="lg" className="h-12 min-w-[10rem] flex-1 px-4 text-sm shadow-lg shadow-accent/20 sm:h-14 sm:min-w-[12rem] sm:flex-none sm:px-7 sm:text-base">
                   <Link href="/login?callbackUrl=%2Fdashboard%2Fatena%3Fintent%3Dchat-atena&message=atena-chat">Conversar com a Atena</Link>
                 </Button>
                 <Button
                   asChild
                   variant="outline"
                   size="lg"
-                  className="h-12 border-accent px-5 text-sm font-bold text-accent hover:bg-accent hover:text-white sm:h-14 sm:px-9 sm:text-base"
+                  className="h-12 min-w-[10rem] flex-1 border-accent px-4 text-sm font-bold text-accent hover:bg-accent hover:text-white sm:h-14 sm:min-w-[12rem] sm:flex-none sm:px-7 sm:text-base"
                 >
                   <Link href="#acesso-rapido">Explorar Recursos</Link>
                 </Button>
@@ -201,7 +201,7 @@ export default function PublicHomePage() {
                 fiscais exigem login.
               </p>
 
-              <form action="/busca" role="search" className="mt-7 max-w-3xl rounded-3xl border border-slate-200 bg-white p-3 shadow-[0_24px_70px_rgba(15,23,42,0.12)] sm:mt-8">
+              <form action="/busca" role="search" className="mt-7 max-w-[44rem] rounded-3xl border border-slate-200 bg-white p-3 shadow-[0_24px_70px_rgba(15,23,42,0.12)] sm:mt-8">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                   <div className="flex min-h-14 flex-1 items-center gap-3 px-3 text-sm text-muted-foreground sm:min-h-16 sm:px-4 sm:text-base">
                     <Search className="h-5 w-5 shrink-0 text-accent" />
@@ -243,8 +243,8 @@ export default function PublicHomePage() {
               </div>
             </div>
 
-            <div className="relative lg:justify-self-end">
-              <div className="absolute right-3 top-4 z-10 hidden rounded-xl md:right-5 md:top-6 lg:right-[-16px] lg:top-8 border bg-white px-6 py-4 font-bold shadow-xl md:flex">
+            <div className="relative mx-auto w-full max-w-[38rem] lg:mx-0 lg:max-w-[34rem] lg:justify-self-end xl:max-w-[38rem]">
+              <div className="absolute right-3 top-4 z-10 hidden rounded-xl md:right-5 md:top-6 lg:right-[-10px] lg:top-8 border bg-white px-5 py-3 text-sm font-bold shadow-xl md:flex xl:px-6 xl:py-4 xl:text-base">
                 <Sparkles className="mr-3 h-5 w-5 text-accent" /> Pesquisa • Inovação • Impacto
               </div>
               <Image
@@ -253,9 +253,9 @@ export default function PublicHomePage() {
                 width={860}
                 height={760}
                 priority
-                className="max-h-[22rem] aspect-[1.55] w-full rounded-[1.7rem] border border-white object-cover shadow-[0_20px_60px_rgba(15,23,42,0.14)] sm:max-h-[28rem] sm:aspect-[1.25] md:aspect-[1.35] lg:max-h-none lg:aspect-[0.92] lg:max-w-[45vw] lg:shadow-[0_30px_90px_rgba(15,23,42,0.20)]"
+                className="max-h-[22rem] aspect-[1.55] w-full rounded-[1.7rem] border border-white object-cover shadow-[0_20px_60px_rgba(15,23,42,0.14)] sm:max-h-[28rem] sm:aspect-[1.25] md:aspect-[1.35] lg:max-h-none lg:aspect-[0.94] lg:shadow-[0_30px_90px_rgba(15,23,42,0.20)] xl:aspect-[0.98]"
               />
-              <div className="mt-4 rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-[0_18px_45px_rgba(15,23,42,0.14)] backdrop-blur lg:absolute lg:bottom-7 lg:left-6 lg:mt-0 lg:max-w-[19rem] xl:left-[-18px]">
+              <div className="mt-4 rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-[0_18px_45px_rgba(15,23,42,0.14)] backdrop-blur sm:p-5 lg:absolute lg:bottom-7 lg:left-5 lg:mt-0 lg:max-w-[19rem] xl:left-[-14px]">
                 <div className="flex gap-4">
                   <span className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
                     <FileText className="h-5 w-5" />
