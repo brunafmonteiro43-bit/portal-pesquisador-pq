@@ -245,7 +245,7 @@ export default function PublicHomePage() {
 
             <div className="relative mx-auto w-full max-w-[38rem] self-center min-[860px]:mx-0 min-[860px]:max-w-[34rem] min-[860px]:justify-self-end lg:max-w-[37rem] xl:max-w-[41rem]">
               <div className="absolute right-3 top-4 z-10 hidden rounded-xl md:right-5 md:top-6 lg:right-[-8px] lg:top-7 border bg-white px-5 py-3 text-sm font-bold shadow-xl md:flex xl:px-6 xl:py-4 xl:text-base">
-                <Sparkles className="mr-3 h-5 w-5 text-accent" /> Pesquisa • Inovação • Impacto
+                <Sparkles className="mr-3 h-5 w-5 text-accent" /> Pesquisa • Inovação • Fomento
               </div>
               <Image
                 src="/assets/hero-laboratorio-unicamp.png"
