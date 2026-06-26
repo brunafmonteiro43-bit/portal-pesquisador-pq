@@ -162,48 +162,48 @@ export default function PublicHomePage() {
           <div className="absolute inset-x-0 top-0 h-px bg-border" />
           <div className="absolute -left-24 top-28 h-64 w-64 rounded-full border border-slate-200/70 opacity-40" />
           <div className="absolute -right-20 bottom-10 h-72 w-72 rounded-full border border-red-900/10 opacity-50" />
-          <div className="mx-auto grid max-w-[90rem] gap-10 px-4 py-10 sm:py-14 md:gap-12 lg:min-h-[calc(100vh-116px)] lg:grid-cols-[minmax(0,1.02fr)_minmax(26rem,0.88fr)] lg:items-center lg:gap-12 lg:px-6 lg:py-16 xl:gap-16 xl:px-8 xl:py-20 2xl:py-24">
-            <div className="lg:max-w-[46rem] xl:max-w-[50rem]">
-              <div className="inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border bg-white px-3 py-2 text-xs font-bold shadow-sm sm:px-4 sm:text-sm">
+          <div className="mx-auto grid max-w-[88rem] gap-8 px-4 py-8 sm:py-10 md:gap-10 min-[860px]:grid-cols-[minmax(0,0.92fr)_minmax(20rem,0.88fr)] min-[860px]:items-center min-[860px]:py-10 lg:min-h-[580px] lg:grid-cols-[minmax(0,0.92fr)_minmax(25rem,1fr)] lg:gap-10 lg:px-6 lg:py-9 xl:min-h-[620px] xl:gap-14 xl:px-8 xl:py-10 2xl:py-12">
+            <div className="min-[860px]:max-w-[38rem] lg:max-w-[40rem] xl:max-w-[42rem]">
+              <div className="inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border bg-white px-3 py-1.5 text-xs font-bold shadow-sm sm:px-4">
                 <span className="h-2 w-2 rounded-full bg-accent" />
                 <span className="text-accent">Ambiente Institucional</span>
                 <span className="text-muted-foreground">•</span>
                 <span className="text-muted-foreground">Pesquisa • Inovação • Fomento</span>
               </div>
 
-              <h1 className="mt-6 max-w-4xl text-[2.18rem] font-black leading-[1.08] tracking-[-0.04em] text-slate-950 sm:text-5xl md:text-6xl xl:text-[4.25rem] 2xl:text-7xl">
+              <h1 className="mt-4 max-w-4xl text-[1.9rem] font-black leading-[1.07] tracking-normal text-slate-950 sm:mt-5 sm:text-[2.65rem] md:text-[2.95rem] min-[860px]:text-[2.45rem] lg:text-[2.95rem] xl:text-[3.35rem] 2xl:text-[3.85rem]">
                 Simplificando a gestão da pesquisa universitária.
               </h1>
-              <p className="mt-4 max-w-3xl text-base font-semibold leading-7 text-slate-700 sm:mt-6 sm:text-xl sm:leading-8 lg:text-[1.35rem] lg:leading-9 xl:text-2xl">
+              <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-slate-700 sm:mt-4 sm:text-lg sm:leading-8 lg:text-lg lg:leading-8 xl:text-xl">
                 Centralize editais, modelos, fluxos administrativos, patentes e suporte especializado em um único
                 ambiente.
               </p>
 
-              <div className="mt-8 flex max-w-[34rem] flex-wrap items-stretch gap-3 sm:mt-10 sm:gap-4">
-                <Button asChild size="lg" className="h-12 min-w-[10rem] flex-1 px-4 text-sm shadow-lg shadow-accent/20 sm:h-14 sm:min-w-[12rem] sm:flex-none sm:px-7 sm:text-base">
+              <div className="mt-5 grid max-w-[32rem] grid-cols-1 gap-2.5 min-[420px]:grid-cols-2 sm:mt-6 sm:gap-3">
+                <Button asChild size="lg" className="h-12 w-full px-4 text-sm shadow-lg shadow-accent/20 sm:h-[3.25rem] sm:px-6 sm:text-base lg:h-12">
                   <Link href="/login?callbackUrl=%2Fdashboard%2Fatena%3Fintent%3Dchat-atena&message=atena-chat">Conversar com a Atena</Link>
                 </Button>
                 <Button
                   asChild
                   variant="outline"
                   size="lg"
-                  className="h-12 min-w-[10rem] flex-1 border-accent px-4 text-sm font-bold text-accent hover:bg-accent hover:text-white sm:h-14 sm:min-w-[12rem] sm:flex-none sm:px-7 sm:text-base"
+                  className="h-12 w-full border-accent px-4 text-sm font-bold text-accent hover:bg-accent hover:text-white sm:h-[3.25rem] sm:px-6 sm:text-base lg:h-12"
                 >
                   <Link href="#acesso-rapido">Explorar Recursos</Link>
                 </Button>
               </div>
-              <p className="mt-4 max-w-3xl text-sm font-semibold leading-6 text-slate-600">
+              <p className="mt-2.5 max-w-2xl text-xs font-semibold leading-5 text-slate-600 sm:mt-3 sm:text-sm sm:leading-6">
                 Consulte conteúdos públicos do portal ou entre no Ambiente do Pesquisador para acompanhar projetos,
                 documentos, notas fiscais, prazos e interagir com a Atena.
               </p>
-              <p className="mt-2 max-w-3xl text-xs font-semibold leading-5 text-muted-foreground">
+              <p className="mt-1.5 hidden max-w-2xl text-xs font-semibold leading-5 text-muted-foreground lg:block">
                 Ações como favoritar, conversar com a Atena, acompanhar projeto, anexar documentos e anexar notas
                 fiscais exigem login.
               </p>
 
-              <form action="/busca" role="search" className="mt-7 max-w-[44rem] rounded-3xl border border-slate-200 bg-white p-3 shadow-[0_24px_70px_rgba(15,23,42,0.12)] sm:mt-8">
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                  <div className="flex min-h-14 flex-1 items-center gap-3 px-3 text-sm text-muted-foreground sm:min-h-16 sm:px-4 sm:text-base">
+              <form action="/busca" role="search" className="mt-3.5 max-w-[40rem] rounded-2xl border border-slate-200 bg-white p-2.5 shadow-[0_18px_48px_rgba(15,23,42,0.12)] sm:mt-4">
+                <div className="flex flex-col gap-2.5 min-[520px]:flex-row min-[520px]:items-center">
+                  <div className="flex min-h-12 flex-1 items-center gap-3 px-3 text-sm text-muted-foreground sm:min-h-[3.25rem] sm:px-4 sm:text-base">
                     <Search className="h-5 w-5 shrink-0 text-accent" />
                     <label className="sr-only" htmlFor="home-public-search">Pesquisar no Portal</label>
                     <input
@@ -213,11 +213,11 @@ export default function PublicHomePage() {
                       placeholder="Pesquise editais, modelos, rubricas, convênios, patentes ou fluxos administrativos..."
                     />
                   </div>
-                  <Button className="h-11 px-7 sm:h-12" type="submit">
+                  <Button className="h-11 shrink-0 px-7 sm:h-12" type="submit">
                     Pesquisar
                   </Button>
                 </div>
-                <div className="mt-3 flex flex-wrap gap-2 border-t pt-3">
+                <div className="mt-2.5 hidden flex-wrap gap-2 border-t pt-2.5 sm:flex">
                   {quickSuggestions.map((suggestion) => (
                     <Link
                       key={suggestion}
@@ -230,21 +230,21 @@ export default function PublicHomePage() {
                 </div>
               </form>
 
-              <div className="mt-7 grid max-w-3xl gap-3 sm:mt-8 sm:grid-cols-2">
+              <div className="mt-3 flex max-w-[40rem] flex-wrap gap-2">
                 {heroIndicators.map((indicator) => (
                   <div
                     key={indicator}
-                    className="flex items-center gap-3 rounded-xl border bg-white px-4 py-3 text-sm font-bold shadow-sm"
+                    className="flex items-center gap-2 rounded-full border bg-white/85 px-3.5 py-2 text-xs font-bold text-slate-700 shadow-sm"
                   >
-                    <CheckCircle2 className="h-4 w-4 text-accent" />
+                    <CheckCircle2 className="h-3.5 w-3.5 text-accent" />
                     {indicator}
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="relative mx-auto w-full max-w-[38rem] lg:mx-0 lg:max-w-[34rem] lg:justify-self-end xl:max-w-[38rem]">
-              <div className="absolute right-3 top-4 z-10 hidden rounded-xl md:right-5 md:top-6 lg:right-[-10px] lg:top-8 border bg-white px-5 py-3 text-sm font-bold shadow-xl md:flex xl:px-6 xl:py-4 xl:text-base">
+            <div className="relative mx-auto w-full max-w-[38rem] self-center min-[860px]:mx-0 min-[860px]:max-w-[34rem] min-[860px]:justify-self-end lg:max-w-[37rem] xl:max-w-[41rem]">
+              <div className="absolute right-3 top-4 z-10 hidden rounded-xl md:right-5 md:top-6 lg:right-[-8px] lg:top-7 border bg-white px-5 py-3 text-sm font-bold shadow-xl md:flex xl:px-6 xl:py-4 xl:text-base">
                 <Sparkles className="mr-3 h-5 w-5 text-accent" /> Pesquisa • Inovação • Impacto
               </div>
               <Image
@@ -253,9 +253,9 @@ export default function PublicHomePage() {
                 width={860}
                 height={760}
                 priority
-                className="max-h-[22rem] aspect-[1.55] w-full rounded-[1.7rem] border border-white object-cover shadow-[0_20px_60px_rgba(15,23,42,0.14)] sm:max-h-[28rem] sm:aspect-[1.25] md:aspect-[1.35] lg:max-h-none lg:aspect-[0.94] lg:shadow-[0_30px_90px_rgba(15,23,42,0.20)] xl:aspect-[0.98]"
+                className="max-h-[17rem] aspect-[1.55] w-full rounded-[1.7rem] border border-white object-cover shadow-[0_20px_60px_rgba(15,23,42,0.14)] sm:max-h-[21rem] sm:aspect-[1.32] md:max-h-[24rem] md:aspect-[1.35] min-[860px]:max-h-[25rem] min-[860px]:aspect-[0.98] lg:max-h-[30rem] lg:aspect-[1.03] lg:shadow-[0_30px_90px_rgba(15,23,42,0.20)] xl:max-h-[32rem] xl:aspect-[1.08]"
               />
-              <div className="mt-4 rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-[0_18px_45px_rgba(15,23,42,0.14)] backdrop-blur sm:p-5 lg:absolute lg:bottom-7 lg:left-5 lg:mt-0 lg:max-w-[19rem] xl:left-[-14px]">
+              <div className="mt-3 rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-[0_18px_45px_rgba(15,23,42,0.14)] backdrop-blur sm:p-5 lg:absolute lg:bottom-6 lg:left-5 lg:mt-0 lg:max-w-[20rem] xl:left-[-12px]">
                 <div className="flex gap-4">
                   <span className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
                     <FileText className="h-5 w-5" />
@@ -276,25 +276,25 @@ export default function PublicHomePage() {
           </div>
         </section>
 
-        <section className="border-y bg-muted/20 py-14">
+        <section className="border-y bg-muted/20 py-8 lg:py-10">
           <div className="mx-auto grid max-w-7xl gap-4 px-4 sm:grid-cols-2 lg:grid-cols-4">
             {institutionalIndicators.map((indicator) => (
-              <div key={indicator.label} className="connection-corner rounded-2xl border bg-white p-6 text-center shadow-sm">
-                <p className="text-4xl font-black text-accent">{indicator.value}</p>
+              <div key={indicator.label} className="connection-corner rounded-2xl border bg-white p-4 text-center shadow-sm sm:p-5">
+                <p className="text-3xl font-black text-accent">{indicator.value}</p>
                 <p className="mt-2 text-sm font-bold text-muted-foreground">{indicator.label}</p>
               </div>
             ))}
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 py-20">
+        <section className="mx-auto max-w-7xl px-4 py-14 lg:py-16">
           <div className="text-center">
             <h2 className="text-4xl font-black tracking-normal">Como podemos ajudar?</h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
               Escolha o tipo de apoio que você precisa e siga para o conteúdo certo.
             </p>
           </div>
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+          <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             {helpCards.map((card) => {
               const Icon = card.icon;
 
@@ -313,7 +313,7 @@ export default function PublicHomePage() {
               );
             })}
           </div>
-          <div className="mt-10 rounded-2xl border bg-white p-4 shadow-sm">
+          <div className="mt-8 rounded-2xl border bg-white p-4 shadow-sm">
             <p className="text-center text-sm font-bold uppercase tracking-wide text-accent">Ciclo da pesquisa apoiado pelo portal</p>
             <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center">
               {researchJourney.map((step, index) => (
@@ -326,7 +326,7 @@ export default function PublicHomePage() {
           </div>
         </section>
 
-        <section id="acesso-rapido" className="border-y bg-muted/20 py-20">
+        <section id="acesso-rapido" className="border-y bg-muted/20 py-14 lg:py-16">
           <div className="mx-auto max-w-7xl px-4">
             <div className="text-center">
               <h2 className="text-4xl font-black tracking-normal">Acesso Rápido</h2>
@@ -335,7 +335,7 @@ export default function PublicHomePage() {
               </p>
             </div>
 
-            <div className="mt-14 grid gap-7 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="mt-9 grid gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {quickAccess.map((card) => {
                 const Icon = card.icon;
 
@@ -343,13 +343,13 @@ export default function PublicHomePage() {
                   <Link
                     key={card.title}
                     href={quickAccessLinks[card.title] ?? "/"}
-                    className="connection-corner group min-h-[230px] rounded-xl border bg-white p-9 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-accent/60 hover:shadow-lg"
+                    className="connection-corner group min-h-[200px] rounded-xl border bg-white p-7 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-accent/60 hover:shadow-lg"
                   >
                     <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-muted text-accent transition group-hover:bg-accent group-hover:text-white">
                       <Icon className="h-6 w-6" />
                     </span>
-                    <h3 className="mt-8 text-2xl font-black">{card.title}</h3>
-                    <p className="mt-4 max-w-sm leading-7 text-muted-foreground">{card.description}</p>
+                    <h3 className="mt-6 text-2xl font-black">{card.title}</h3>
+                    <p className="mt-3 max-w-sm leading-7 text-muted-foreground">{card.description}</p>
                   </Link>
                 );
               })}
@@ -357,7 +357,7 @@ export default function PublicHomePage() {
           </div>
         </section>
 
-        <section id="destaques" className="mx-auto max-w-7xl px-4 py-20">
+        <section id="destaques" className="mx-auto max-w-7xl px-4 py-14 lg:py-16">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <h2 className="text-4xl font-black tracking-normal">Destaques da Semana</h2>
@@ -370,7 +370,7 @@ export default function PublicHomePage() {
             </Button>
           </div>
 
-          <div className="mt-10 grid gap-5">
+          <div className="mt-8 grid gap-4">
             {weeklyHighlights.map((item) => (
               <article
                 key={item.title}
@@ -395,7 +395,7 @@ export default function PublicHomePage() {
           </div>
         </section>
 
-        <section id="assistente" className="bg-muted/20 py-24">
+        <section id="assistente" className="bg-muted/20 py-16">
           <div className="mx-auto max-w-7xl px-4">
             <div className="connection-pattern grid gap-10 rounded-3xl border bg-white p-8 shadow-sm lg:grid-cols-[0.9fr_1.1fr] lg:p-12">
               <div>
