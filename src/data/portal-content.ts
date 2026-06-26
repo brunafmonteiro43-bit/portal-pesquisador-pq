@@ -108,18 +108,18 @@ export const moduleCards = [
     description: "Termos técnicos explicados de forma simples e prática para pesquisadores."
   },
   {
-    key: "templates",
-    title: "Modelos e Templates",
-    href: "/dashboard/modelos",
-    count: "Formulários, manuais e checklists",
-    description: "Templates, formulários e documentos necessários para seus projetos."
-  },
-  {
     key: "projetos",
     title: "Projetos de Pesquisa",
     href: "/dashboard/projetos",
     count: "Documentos, notas fiscais e prestação de contas",
     description: "Acompanhe projetos, rubricas, prazos, pendências e comprovantes em um só lugar."
+  },
+  {
+    key: "templates",
+    title: "Modelos e Templates",
+    href: "/dashboard/modelos",
+    count: "Formulários, manuais e checklists",
+    description: "Templates, formulários e documentos necessários para seus projetos."
   },
   {
     key: "fomento",
