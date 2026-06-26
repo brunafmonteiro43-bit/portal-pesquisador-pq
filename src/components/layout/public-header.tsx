@@ -24,32 +24,45 @@ const publicNav = [
 
 export function PublicHeader({ compact = false }: { compact?: boolean }) {
   const pathname = usePathname();
-  const titleSize = compact ? "text-lg" : "text-xl sm:text-2xl lg:text-xl 2xl:text-2xl";
+  const titleSize = compact ? "text-lg" : "text-base sm:text-xl lg:text-lg 2xl:text-xl";
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white shadow-[0_8px_24px_rgba(15,23,42,0.06)]">
-      <div className="mx-auto max-w-[118rem] px-4 py-3 lg:px-6 lg:py-3 xl:px-8">
-        <div className="grid gap-2 lg:grid-cols-[13rem_minmax(0,1fr)_14.5rem] lg:items-center lg:gap-3 xl:grid-cols-[17rem_minmax(0,1fr)_16rem] xl:gap-4 2xl:grid-cols-[20rem_minmax(0,1fr)_21rem] 2xl:gap-5 min-[1800px]:grid-cols-[24rem_minmax(0,1fr)_25rem]">
+      <div className="mx-auto max-w-[118rem] px-4 py-2.5 lg:px-6 xl:px-8">
+        <div className="grid gap-2 lg:grid-cols-[minmax(19rem,21rem)_minmax(0,1fr)_14.5rem] lg:items-center lg:gap-3 xl:grid-cols-[minmax(21rem,23rem)_minmax(0,1fr)_16rem] xl:gap-4 2xl:grid-cols-[minmax(23rem,25rem)_minmax(0,1fr)_21rem] min-[1800px]:grid-cols-[minmax(27rem,30rem)_minmax(0,1fr)_25rem]">
           <div className="min-w-0">
-            <div className="flex items-center justify-between gap-3 lg:justify-start">
-              <div className="flex shrink-0 items-center gap-3 sm:gap-4 lg:gap-3 2xl:gap-4">
-                <Link href="https://www.unicamp.br/" aria-label="Acessar site da UNICAMP" className="shrink-0">
-                  <Image
-                    src="/assets/logo-unicamp.png"
-                    alt="UNICAMP"
-                    width={64}
-                    height={64}
-                    className="h-10 w-auto object-contain sm:h-11 lg:h-10 2xl:h-12"
-                  />
-                </Link>
-                <Link href="https://www.cocen.unicamp.br/" aria-label="Acessar site da COCEN" className="shrink-0">
-                  <Image
-                    src="/assets/logo-cocen.jpg"
-                    alt="COCEN"
-                    width={180}
-                    height={54}
-                    className="h-8 w-auto rounded-sm object-contain sm:h-9 lg:h-8 2xl:h-10"
-                  />
+            <div className="flex min-w-0 items-center justify-between gap-3">
+              <div className="flex min-w-0 items-center gap-3 sm:gap-4 lg:gap-3.5 2xl:gap-4">
+                <span className="flex shrink-0 items-center gap-2.5 sm:gap-3 lg:gap-2.5 2xl:gap-3">
+                  <Link href="https://www.unicamp.br/" aria-label="Acessar site da UNICAMP" className="shrink-0">
+                    <Image
+                      src="/assets/logo-unicamp.png"
+                      alt="UNICAMP"
+                      width={64}
+                      height={64}
+                      className="h-9 w-auto object-contain sm:h-10 lg:h-9 2xl:h-10"
+                    />
+                  </Link>
+                  <Link href="https://www.cocen.unicamp.br/" aria-label="Acessar site da COCEN" className="shrink-0">
+                    <Image
+                      src="/assets/logo-cocen.jpg"
+                      alt="COCEN"
+                      width={180}
+                      height={54}
+                      className="h-7 w-auto rounded-sm object-contain sm:h-8 lg:h-7 2xl:h-8"
+                    />
+                  </Link>
+                </span>
+                <Link href="/" className="min-w-0 border-l border-slate-200 pl-3 sm:pl-4 lg:pl-3 2xl:pl-4">
+                  <span className={`block font-black leading-tight tracking-normal text-slate-950 sm:truncate ${titleSize}`}>
+                    Portal do Pesquisador
+                  </span>
+                  <span className="mt-0.5 block text-[0.62rem] font-black uppercase leading-tight tracking-[0.13em] text-slate-500 sm:truncate sm:text-[0.68rem] lg:text-[0.6rem] 2xl:text-[0.68rem]">
+                    COCEN / UNICAMP
+                  </span>
+                  <span className="mt-0.5 hidden text-[0.66rem] font-bold leading-tight text-accent sm:block sm:truncate sm:text-xs lg:text-[0.66rem] 2xl:text-xs">
+                    Pesquisa • Inovação • Fomento
+                  </span>
                 </Link>
               </div>
 
@@ -60,21 +73,6 @@ export function PublicHeader({ compact = false }: { compact?: boolean }) {
                 </Link>
               </Button>
             </div>
-
-            <Link href="/" className="mt-2 flex min-w-0 items-stretch gap-3 lg:mt-2 2xl:gap-4">
-              <span aria-hidden="true" className="my-0.5 w-[3px] shrink-0 rounded-full bg-accent/80" />
-              <span className="min-w-0">
-                <span className={`block font-black leading-[1.04] tracking-normal text-slate-950 ${titleSize}`}>
-                  Portal do Pesquisador
-                </span>
-                <span className="mt-1 block text-[0.72rem] font-bold leading-tight text-accent sm:text-sm lg:text-xs 2xl:text-sm">
-                  Pesquisa • Inovação • Fomento
-                </span>
-                <span className="mt-0.5 block text-[0.62rem] font-black uppercase leading-tight tracking-[0.14em] text-slate-500 sm:text-xs lg:text-[0.65rem] 2xl:text-xs">
-                  COCEN / UNICAMP
-                </span>
-              </span>
-            </Link>
           </div>
 
           <nav className="-mx-4 flex min-w-0 items-center gap-2 overflow-x-auto px-4 pb-1 pt-0.5 text-sm font-bold [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:justify-start lg:gap-0.5 lg:overflow-visible lg:px-0 lg:pb-0 lg:text-[0.72rem] xl:gap-1 xl:text-[0.76rem] 2xl:text-[0.78rem] min-[1800px]:gap-2 min-[1800px]:text-[0.86rem]">
