@@ -210,7 +210,7 @@ export default function PublicHomePage() {
                       id="home-public-search"
                       name="q"
                       className="min-w-0 flex-1 bg-transparent font-semibold outline-none placeholder:text-muted-foreground"
-                      placeholder="Pesquise editais, modelos, rubricas, convênios, patentes ou fluxos administrativos..."
+                      placeholder="Pesquise editais, modelos, rubricas ou patentes..."
                     />
                   </div>
                   <Button className="h-11 shrink-0 px-7 sm:h-12" type="submit">

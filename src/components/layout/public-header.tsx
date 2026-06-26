@@ -75,7 +75,7 @@ export function PublicHeader({ compact = false }: { compact?: boolean }) {
             </div>
           </div>
 
-          <nav className="-mx-4 flex min-w-0 items-center gap-2 overflow-x-auto px-4 pb-1 pt-0.5 text-sm font-bold [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:justify-start lg:gap-0.5 lg:overflow-visible lg:px-0 lg:pb-0 lg:text-[0.72rem] xl:gap-1 xl:text-[0.76rem] 2xl:text-[0.78rem] min-[1800px]:gap-2 min-[1800px]:text-[0.86rem]">
+          <nav className="-mx-4 flex min-w-0 items-center gap-2 overflow-x-auto px-4 pb-1 pt-0.5 text-sm font-bold [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:justify-start lg:gap-0.5 lg:overflow-visible lg:px-0 lg:pr-3 lg:pb-0 lg:text-[0.72rem] xl:gap-1 xl:pr-4 xl:text-[0.76rem] 2xl:text-[0.78rem] min-[1800px]:gap-2 min-[1800px]:pr-5 min-[1800px]:text-[0.86rem]">
             {publicNav.map((item) => {
               const isActive = item.href === pathname;
 
@@ -90,14 +90,13 @@ export function PublicHeader({ compact = false }: { compact?: boolean }) {
                   }
                 >
                   <span className="lg:hidden">{item.mobileLabel}</span>
-                  <span className="hidden lg:inline 2xl:hidden">{item.compactLabel}</span>
-                  <span className="hidden 2xl:inline">{item.label}</span>
+                  <span className="hidden lg:inline">{item.compactLabel}</span>
                 </Link>
               );
             })}
           </nav>
 
-          <div className="grid gap-2 lg:grid-cols-[minmax(5.75rem,1fr)_auto] lg:items-center xl:grid-cols-[minmax(7rem,1fr)_auto] 2xl:grid-cols-[minmax(11rem,1fr)_auto] min-[1800px]:grid-cols-[minmax(14rem,1fr)_auto]">
+          <div className="grid gap-2 lg:grid-cols-[minmax(5.75rem,1fr)_auto] lg:items-center xl:grid-cols-[minmax(7rem,1fr)_auto] 2xl:grid-cols-[minmax(8rem,1fr)_auto]">
             <form action="/busca" role="search" className="flex h-10 min-w-0 items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm text-muted-foreground shadow-inner transition focus-within:border-accent focus-within:bg-white lg:h-10 2xl:h-11">
               <Search className="h-4 w-4 shrink-0 text-accent" />
               <span className="sr-only">Pesquisar no Portal</span>
@@ -108,7 +107,7 @@ export function PublicHeader({ compact = false }: { compact?: boolean }) {
               />
               <button type="submit" className="sr-only">Pesquisar</button>
             </form>
-            <Button asChild className="hidden h-10 shrink-0 whitespace-nowrap px-3 text-xs shadow-md shadow-red-900/10 2xl:h-11 2xl:px-5 2xl:text-sm lg:inline-flex">
+            <Button asChild className="hidden h-10 shrink-0 whitespace-nowrap px-3 text-xs shadow-md shadow-red-900/10 lg:inline-flex">
               <Link href="/login">
                 <LockKeyhole className="mr-2 h-4 w-4" />
                 Entrar no Ambiente
