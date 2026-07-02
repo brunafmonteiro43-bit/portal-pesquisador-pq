@@ -1,6 +1,6 @@
 "use client";
 
-import { ExternalLink, Search } from "lucide-react";
+import { CalendarClock, ExternalLink, Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import { FavoriteButton } from "@/components/modules/favorite-button";
 import { SectionHeader } from "@/components/modules/section-header";
@@ -11,7 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import type { FundingCall } from "@/data/portal-content";
 
-const agencies = ["Todos", "FAPESP", "CAPES", "CNPq", "FINEP", "Empresas", "Internacional"];
+const agencies = ["Todos", "FAPESP", "CNPq", "CAPES", "FINEP", "Empresas", "Internacional"];
 
 export function OpportunitiesBrowser({ calls }: { calls: FundingCall[] }) {
   const [agency, setAgency] = useState("Todos");
@@ -35,8 +35,8 @@ export function OpportunitiesBrowser({ calls }: { calls: FundingCall[] }) {
     <div className="space-y-6">
       <SectionHeader
         eyebrow="Fomento"
-        title="Central de Oportunidades"
-        description="Editais e chamadas organizados por agência, prazo, área, público-alvo e status."
+        title="Fomento e Oportunidades"
+        description="Editais, chamadas, oportunidades futuras, parcerias e prazos organizados por agência, área, público-alvo e documentos necessários."
       />
 
       <div className="space-y-3 rounded-lg border bg-card p-4">
@@ -63,14 +63,17 @@ export function OpportunitiesBrowser({ calls }: { calls: FundingCall[] }) {
                   <StatusPill status={call.status} />
                   {call.closingSoon ? <Badge variant="secondary" className="text-accent">Encerramento próximo</Badge> : null}
                 </div>
-                <FavoriteButton item={{ id: call.slug, type: "edital", title: call.title, href: "/oportunidades" }} />
+                <FavoriteButton item={{ id: call.slug, type: "edital", title: call.title, href: "/fomento-oportunidades" }} />
               </div>
               <CardTitle className="text-xl">{call.title}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-sm leading-6 text-muted-foreground">{call.summary}</p>
               <div className="grid gap-3 text-sm sm:grid-cols-2">
-                <p><span className="font-semibold">Prazo:</span> {call.deadline}</p>
+                <p className="flex items-center gap-2">
+                  <CalendarClock className="h-4 w-4 text-accent" />
+                  <span><span className="font-semibold">Prazo:</span> {call.deadline}</span>
+                </p>
                 <p><span className="font-semibold">Área:</span> {call.area}</p>
                 <p><span className="font-semibold">Público-alvo:</span> {call.audience}</p>
                 <p><span className="font-semibold">Valor:</span> {call.value}</p>

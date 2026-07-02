@@ -32,7 +32,7 @@ const moduleIconMap = {
 const moduleActions = {
   glossario: "Consultar termo",
   templates: "Abrir biblioteca",
-  fomento: "Ver editais",
+  fomento: "Ver oportunidades",
   trilhas: "Continuar fluxo",
   patentes: "Ver guia",
   chat: "Iniciar conversa"
@@ -69,14 +69,14 @@ export default function DashboardPage() {
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <Button asChild variant="ghost" className="mb-5 px-0 text-muted-foreground hover:text-accent">
-              <Link href="/">← Ver Portal Público</Link>
+              <Link href="/">← Voltar ao Portal do Pesquisador</Link>
             </Button>
             <p className="text-sm font-bold uppercase tracking-wide text-accent">Olá, Pesquisador(a)</p>
             <h1 className="mt-2 text-4xl font-black tracking-normal text-foreground md:text-5xl">
-              O que você precisa hoje?
+              Ambiente do Pesquisador
             </h1>
             <p className="mt-3 max-w-2xl text-base text-muted-foreground">
-              Organize documentos, acompanhe prazos e avance nos fluxos de pesquisa com menos etapas.
+              Seu espaço personalizado para acompanhar editais, documentos, trilhas, favoritos e interações com a Atena.
             </p>
           </div>
           <Button asChild className="h-12 px-6">
@@ -250,7 +250,7 @@ export default function DashboardPage() {
             <h2 className="text-xl font-black">Editais recentes</h2>
             <div className="mt-5 space-y-3">
               {fundingCalls.slice(0, 3).map((call) => (
-                <Link key={call.slug} href="/oportunidades" className="block rounded-xl border p-4 transition hover:border-accent">
+                <Link key={call.slug} href="/fomento-oportunidades" className="block rounded-xl border p-4 transition hover:border-accent">
                   <div className="flex items-center justify-between gap-3">
                     <p className="text-sm font-bold">{call.title}</p>
                     <Badge variant="secondary">{call.agency}</Badge>

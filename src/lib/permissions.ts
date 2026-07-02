@@ -29,13 +29,12 @@ export const navItems = [
   { href: "/templates", label: "Modelos e Templates", shortLabel: "Templates", icon: "Files", roles: allRoles },
   { href: "/projetos", label: "Projetos de Pesquisa", shortLabel: "Projetos", icon: "Files", roles: allRoles },
   { href: "/centros", label: "Centros e Núcleos", shortLabel: "Centros", icon: "Building2", roles: allRoles },
-  { href: "/oportunidades", label: "Central de Oportunidades", shortLabel: "Oportunidades", icon: "CalendarDays", roles: allRoles },
   {
-    href: "/fomento",
-    label: "Fomento e Editais",
+    href: "/fomento-oportunidades",
+    label: "Fomento e Oportunidades",
     shortLabel: "Fomento",
     icon: "Landmark",
-    roles: ["RESEARCHER", "CENTER_MANAGER", "COCEN_ADMIN", "SUPER_ADMIN"] satisfies AppRole[]
+    roles: allRoles
   },
   {
     href: "/trilhas",

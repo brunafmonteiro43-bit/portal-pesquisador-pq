@@ -63,9 +63,9 @@ export function AppShell({ children, role }: { children: React.ReactNode; role: 
             <Link href="https://www.cocen.unicamp.br/" aria-label="Acessar site da COCEN" className="hidden sm:block">
               <Image src="/assets/logo-cocen.jpg" alt="COCEN" width={130} height={40} className="h-8 w-auto object-contain" />
             </Link>
-            <Link href="/" className="min-w-0">
-              <span className="block truncate text-base font-black text-foreground">Portal do Pesquisador</span>
-              <span className="block truncate text-xs font-semibold text-muted-foreground">Plataforma de gestão da pesquisa</span>
+            <Link href="/dashboard" className="min-w-0">
+              <span className="block truncate text-base font-black text-foreground">Ambiente do Pesquisador</span>
+              <span className="block truncate text-xs font-semibold text-muted-foreground">Espaço operacional da pesquisa</span>
             </Link>
           </div>
 
@@ -79,7 +79,7 @@ export function AppShell({ children, role }: { children: React.ReactNode; role: 
 
           <div className="ml-auto flex items-center gap-2">
             <Button asChild variant="outline" className="hidden sm:inline-flex">
-              <Link href="/">← Ver Portal Público</Link>
+              <Link href="/">← Voltar ao Portal do Pesquisador</Link>
             </Button>
             <Button variant="outline" size="icon" aria-label="Notificações">
               <Bell className="h-4 w-4" />
@@ -122,7 +122,7 @@ export function AppShell({ children, role }: { children: React.ReactNode; role: 
       >
         <div className="mb-4 flex items-center justify-between">
           <div>
-            <p className="font-bold">Portal do Pesquisador</p>
+            <p className="font-bold">Ambiente do Pesquisador</p>
             <p className="text-sm text-muted-foreground">Menu de trabalho</p>
           </div>
           <Button variant="outline" size="icon" onClick={() => setOpen(false)} aria-label="Fechar menu">
@@ -131,7 +131,7 @@ export function AppShell({ children, role }: { children: React.ReactNode; role: 
         </div>
         <Button asChild variant="outline" className="mb-4 w-full justify-start">
           <Link href="/" onClick={() => setOpen(false)}>
-            ← Ver Portal Público
+            ← Voltar ao Portal do Pesquisador
           </Link>
         </Button>
         <nav className="space-y-1">

@@ -8,8 +8,19 @@ const sessionCookieNames = [
   "__Secure-next-auth.session-token"
 ];
 
+const legacyFundingPaths = new Set([
+  "/dashboard/editais",
+  "/dashboard/oportunidades",
+  "/dashboard/fomento-oportunidades"
+]);
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  if (legacyFundingPaths.has(pathname)) {
+    return NextResponse.redirect(new URL("/fomento-oportunidades", request.nextUrl));
+  }
+
   const hasSessionCookie = sessionCookieNames.some((name) => request.cookies.has(name));
 
   if (!hasSessionCookie) {

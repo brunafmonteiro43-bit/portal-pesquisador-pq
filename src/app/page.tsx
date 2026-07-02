@@ -393,6 +393,9 @@ export default function PublicHomePage() {
                   Conecte editais, oportunidades de fomento, patentes, modelos, fluxos administrativos, convênios,
                   prestação de contas, normas institucionais e trilhas de apoio em respostas claras.
                 </p>
+                <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-muted-foreground">
+                  A Atena está disponível no Ambiente do Pesquisador para usuários autenticados.
+                </p>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <Button asChild size="lg">
                     <Link href="/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat">Perguntar à Atena</Link>

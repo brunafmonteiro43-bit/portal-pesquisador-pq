@@ -51,7 +51,7 @@ export function ChatPanel() {
     {
       role: "assistant",
       content:
-        "Olá! Eu sou a Atena, assistente inteligente do Portal do Pesquisador. Sou especializada em pesquisa, inovação, fomento, patentes, documentação institucional e apoio aos pesquisadores da Unicamp. Também posso buscar editais de fomento em uma base demonstrativa do portal."
+        "Olá! Eu sou a Atena, assistente inteligente disponível no Ambiente do Pesquisador. Sou especializada em pesquisa, inovação, fomento, patentes, documentação institucional e apoio aos pesquisadores da Unicamp. Também posso buscar editais de fomento em uma base demonstrativa do portal."
     }
   ]);
 
@@ -120,7 +120,7 @@ export function ChatPanel() {
       <SectionHeader
         eyebrow="Atena – Assistente de Pesquisa e Inovação"
         title="Atena"
-        description="Assistente inteligente do Portal do Pesquisador, especializada em pesquisa, inovação, fomento, patentes, documentação institucional e apoio aos pesquisadores da Unicamp."
+        description="Atena – Assistente de Pesquisa e Inovação. Disponível no Ambiente do Pesquisador para apoiar consultas sobre editais, documentos, patentes, convênios, prestação de contas e fluxos administrativos."
       />
 
       <div className="grid gap-4 lg:grid-cols-[0.85fr_1.4fr]">

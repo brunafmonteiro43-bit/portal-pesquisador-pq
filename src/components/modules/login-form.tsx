@@ -50,8 +50,10 @@ export function LoginForm() {
         <div className="mb-2 flex h-11 w-11 items-center justify-center rounded-md bg-primary text-sm font-bold text-primary-foreground">
           PQ
         </div>
-        <CardTitle className="text-2xl">Portal do Pesquisador</CardTitle>
-        <p className="text-sm text-muted-foreground">COCEN/UNICAMP</p>
+        <CardTitle className="text-2xl">Ambiente do Pesquisador</CardTitle>
+        <p className="text-sm text-muted-foreground">
+          Acesso restrito para pesquisadores, gestores e administradores autorizados da COCEN/UNICAMP.
+        </p>
       </CardHeader>
       <CardContent>
         {loginMessage === "atena-chat" || loginMessage === "atena-use" || loginMessage === "atena" ? (

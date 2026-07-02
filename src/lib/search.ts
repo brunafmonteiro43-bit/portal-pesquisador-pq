@@ -86,8 +86,8 @@ export function searchPortalContent(query: string, module?: string): PortalSearc
       ) {
         results.push({
           title: item.title,
-          module: "Fomento e Editais",
-          href: "/fomento",
+          module: "Fomento e Oportunidades",
+          href: "/fomento-oportunidades",
           excerpt: item.summary
         });
       }

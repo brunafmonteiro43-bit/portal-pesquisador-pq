@@ -63,7 +63,7 @@ export function FavoritesList() {
                     <Link href="/templates">Ver documentos</Link>
                   </Button>
                   <Button asChild size="sm" variant="outline">
-                    <Link href="/oportunidades">Ver editais</Link>
+                    <Link href="/fomento-oportunidades">Ver editais</Link>
                   </Button>
                   <Button asChild size="sm">
                     <Link href="/glossario">Explorar glossário</Link>

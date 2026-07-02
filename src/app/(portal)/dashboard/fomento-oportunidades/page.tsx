@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
-export default function OportunidadesPage() {
+export default function DashboardFomentoOportunidadesPage() {
   redirect("/fomento-oportunidades");
 }

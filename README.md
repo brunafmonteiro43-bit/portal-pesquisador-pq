@@ -2,7 +2,7 @@
 
 Portal web institucional da COCEN/UNICAMP para apoiar pesquisadores durante o ciclo da pesquisa: ideia, fomento, submissão, execução, inovação, documentação e prestação de contas.
 
-O projeto combina uma **home pública institucional** com uma **área autenticada em formato de plataforma SaaS de produtividade**, mantendo módulos de glossário, documentos, editais, trilhas administrativas, patentes, favoritos, FAQ, chatbot com RAG e gestão COCEN.
+O projeto combina uma **home pública institucional** com o **Ambiente do Pesquisador**, área autenticada em formato de plataforma SaaS de produtividade, mantendo módulos de glossário, documentos, editais, trilhas administrativas, patentes, favoritos, FAQ, chatbot com RAG e gestão COCEN.
 
 ## Objetivo
 
@@ -44,7 +44,7 @@ Ela apresenta:
 - cabeçalho institucional com logos UNICAMP e COCEN;
 - menu público;
 - busca discreta no cabeçalho;
-- botão `Entrar no Portal`;
+- botão `Entrar no Ambiente`;
 - hero institucional com foco em pesquisa, inovação e fomento;
 - acesso rápido aos principais módulos;
 - destaques da semana;
@@ -56,7 +56,7 @@ Ela apresenta:
 O fluxo principal é:
 
 ```txt
-Home pública (/) -> Login (/login) -> Dashboard interno (/dashboard)
+Home pública (/) -> Login (/login) -> Ambiente do Pesquisador (/dashboard)
 ```
 
 O botão do hero `Conversar com o Assistente do Pesquisador` usa:
@@ -67,16 +67,16 @@ O botão do hero `Conversar com o Assistente do Pesquisador` usa:
 
 Assim, o usuário passa pelo login e, após autenticação, entra diretamente no Assistente do Pesquisador.
 
-### Área autenticada
+### Ambiente do Pesquisador
 
-A área interna é protegida por middleware e usa uma experiência visual de plataforma de produtividade, inspirada em ferramentas como Notion, Linear, GitHub, ClickUp e Jira.
+O Ambiente do Pesquisador é protegido por middleware e usa uma experiência visual de plataforma de produtividade, inspirada em ferramentas como Notion, Linear, GitHub, ClickUp e Jira.
 
-O dashboard autenticado oferece:
+O Ambiente do Pesquisador oferece:
 
 - cabeçalho compacto com logo pequena, busca global, notificações e perfil;
-- botão `← Ver Portal Público`;
+- botão `← Voltar ao Portal do Pesquisador`;
 - saudação `Olá, Pesquisador(a)`;
-- pergunta central `O que você precisa hoje?`;
+- apresentação `Ambiente do Pesquisador`;
 - busca inteligente;
 - cards de acesso rápido;
 - seção `Meu Trabalho`;
@@ -91,17 +91,18 @@ O dashboard autenticado oferece:
 | --- | --- | --- |
 | `/` | Público | Home institucional do Portal do Pesquisador |
 | `/login` | Público | Tela de autenticação |
-| `/dashboard` | Autenticado | Dashboard interno de produtividade |
-| `/glossario` | Autenticado | Glossário Facilitado com explicação simples, técnica, exemplos e documentos relacionados |
-| `/templates` | Autenticado | Modelos e Documentos com categorias, versões e downloads |
-| `/fomento` | Autenticado | Fomento e Editais por agência, área, status, prazo e valor |
-| `/oportunidades` | Autenticado | Central de Oportunidades com filtros por agência e tipo |
-| `/trilhas` | Autenticado | Trilhas de Apoio Administrativo com fluxos visuais |
-| `/patentes` | Autenticado | Patentes e Inovação, sigilo, Inova Unicamp, INPI e transferência de tecnologia |
-| `/faq` | Autenticado | Central de Dúvidas |
-| `/chat` | Autenticado | Assistente do Pesquisador com respostas em formato simples e orientado |
+| `/dashboard` | Autenticado | Ambiente do Pesquisador, com acompanhamento personalizado |
+| `/glossario` | Público | Glossário Facilitado com explicação simples, técnica, exemplos e documentos relacionados |
+| `/templates` | Público | Modelos e Templates com categorias, versões e downloads |
+| `/fomento` | Público | Redireciona para Fomento e Oportunidades |
+| `/fomento-oportunidades` | Público | Fomento e oportunidades por agência, área, status, prazo e valor |
+| `/oportunidades` | Público | Central de Oportunidades com filtros por agência e tipo |
+| `/trilhas` | Público | Trilhas de Apoio Administrativo com fluxos visuais |
+| `/patentes` | Público | Patentes e Inovação, sigilo, Inova Unicamp, INPI e transferência de tecnologia |
+| `/faq` | Público | Central de Dúvidas |
+| `/chat` | Autenticado | Atena, assistente do Ambiente do Pesquisador |
 | `/favoritos` | Autenticado | Meus Favoritos |
-| `/centros` | Autenticado | Centros e Núcleos da COCEN com busca e filtros |
+| `/centros` | Público | Centros e Núcleos da COCEN com busca e filtros |
 | `/admin` | Autenticado/Admin | Gestão COCEN: termos, documentos, editais, trilhas, FAQs, métricas, upload e versões |
 
 ## Perfis de Acesso
