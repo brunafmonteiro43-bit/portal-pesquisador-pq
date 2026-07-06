@@ -8,13 +8,10 @@ const sessionCookieNames = [
   "__Secure-next-auth.session-token"
 ];
 
-const legacyFundingPaths = new Set([
-  "/dashboard/editais",
-  "/dashboard/oportunidades"
-]);
+const legacyFundingPaths = new Set(["/dashboard/editais", "/dashboard/oportunidades"]);
 
 export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+  const { pathname, search } = request.nextUrl;
 
   if (legacyFundingPaths.has(pathname)) {
     return NextResponse.redirect(new URL("/dashboard/fomento-oportunidades", request.nextUrl));
@@ -24,7 +21,7 @@ export function middleware(request: NextRequest) {
 
   if (!hasSessionCookie) {
     const loginUrl = new URL("/login", request.nextUrl);
-    loginUrl.searchParams.set("callbackUrl", `${pathname}${request.nextUrl.search}`);
+    loginUrl.searchParams.set("callbackUrl", `${pathname}${search}`);
 
     if (pathname.startsWith("/dashboard/atena")) {
       const intent = request.nextUrl.searchParams.get("intent");
@@ -38,8 +35,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    "/dashboard/:path*",
-    "/api/chat/:path*"
-  ]
+  matcher: ["/dashboard", "/dashboard/:path*", "/api/chat/:path*"]
 };
