@@ -20,10 +20,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 const institutionalIndicators = [
-  { value: "+500", label: "modelos e documentos" },
-  { value: "+120", label: "editais monitorados" },
-  { value: "+50", label: "fluxos administrativos" },
-  { value: "+100", label: "termos do glossário" }
+  { value: "23", label: "Centros e Núcleos" },
+  { value: "+500", label: "documentos e modelos" },
+  { value: "24h", label: "editais atualizados" },
+  { value: "Atena", label: "especializada" }
 ];
 
 const quickSuggestions = ["FAPESP", "CAPES", "Patentes", "Convênios", "Prestação de contas"];
@@ -48,6 +48,11 @@ const helpCards = [
     title: "Patentes",
     description: "Entenda sigilo, comunicação de invenção, Inova Unicamp e INPI.",
     icon: Lightbulb
+  },
+  {
+    title: "Centros e Núcleos",
+    description: "Acesse a rede interdisciplinar de centros e núcleos da COCEN.",
+    icon: Landmark
   },
   {
     title: "Atena",
@@ -81,6 +86,11 @@ const quickAccess = [
     title: "Patentes e Inovação",
     description: "Orientações para proteger descobertas.",
     icon: Lightbulb
+  },
+  {
+    title: "Centros e Núcleos",
+    description: "Conheça a estrutura pública de centros e núcleos interdisciplinares.",
+    icon: Landmark
   },
   {
     title: "Atena",
@@ -125,24 +135,26 @@ const researchJourney = ["Ideia", "Fomento", "Execução", "Inovação", "Presta
 
 const publicHelpLinks: Record<string, string> = {
   Pesquisa: "/trilhas",
-  Fomento: "/fomento",
-  Documentação: "/templates",
+  Fomento: "/fomento-editais",
+  Documentação: "/modelos",
   Patentes: "/patentes",
-  Atena: "/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat"
+  "Centros e Núcleos": "/centros-nucleos",
+  Atena: "/login?callbackUrl=%2Fdashboard%2Fatena%3Fintent%3Dchat-atena&message=atena-chat"
 };
 
 const quickAccessLinks: Record<string, string> = {
   "Glossário Facilitado": "/glossario",
-  "Modelos e Templates": "/templates",
-  "Fomento e Editais": "/fomento",
+  "Modelos e Templates": "/modelos",
+  "Fomento e Editais": "/fomento-editais",
   "Trilhas de Apoio": "/trilhas",
   "Patentes e Inovação": "/patentes",
-  Atena: "/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat"
+  "Centros e Núcleos": "/centros-nucleos",
+  Atena: "/login?callbackUrl=%2Fdashboard%2Fatena%3Fintent%3Dchat-atena&message=atena-chat"
 };
 
 const suggestionLinks: Record<string, string> = {
-  FAPESP: "/fomento",
-  CAPES: "/fomento",
+  FAPESP: "/fomento-editais",
+  CAPES: "/fomento-editais",
   Patentes: "/patentes",
   Convênios: "/trilhas",
   "Prestação de contas": "/trilhas"
@@ -154,9 +166,11 @@ export default function PublicHomePage() {
       <PublicHeader />
 
       <main>
-        <section className="relative overflow-hidden">
+        <section className="connection-pattern relative overflow-hidden bg-[radial-gradient(circle_at_12%_8%,rgba(185,28,28,0.10),transparent_30%),linear-gradient(180deg,#fff_0%,#f8fafc_100%)]">
           <div className="absolute inset-x-0 top-0 h-px bg-border" />
-          <div className="mx-auto grid min-h-[calc(100vh-118px)] max-w-7xl gap-10 px-4 py-10 sm:py-14 lg:grid-cols-[1fr_0.84fr] lg:items-center lg:gap-12 lg:py-20">
+          <div className="absolute -left-24 top-28 h-64 w-64 rounded-full border border-slate-200/70 opacity-40" />
+          <div className="absolute -right-20 bottom-10 h-72 w-72 rounded-full border border-red-900/10 opacity-50" />
+          <div className="mx-auto grid max-w-7xl gap-10 px-4 py-10 sm:py-14 md:gap-12 lg:min-h-[calc(100vh-116px)] lg:grid-cols-[1.04fr_0.86fr] lg:items-center lg:gap-14 lg:py-20 xl:py-24">
             <div>
               <div className="inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border bg-white px-3 py-2 text-xs font-bold shadow-sm sm:px-4 sm:text-sm">
                 <span className="h-2 w-2 rounded-full bg-accent" />
@@ -165,17 +179,17 @@ export default function PublicHomePage() {
                 <span className="text-muted-foreground">Pesquisa • Inovação • Fomento</span>
               </div>
 
-              <h1 className="mt-7 max-w-4xl text-4xl font-black leading-[1.02] tracking-normal text-foreground sm:text-5xl md:text-7xl">
+              <h1 className="mt-6 max-w-4xl text-[2.18rem] font-black leading-[1.08] tracking-[-0.04em] text-slate-950 sm:text-5xl md:text-6xl xl:text-7xl">
                 Simplificando a gestão da pesquisa universitária.
               </h1>
-              <p className="mt-5 max-w-3xl text-lg font-semibold leading-7 text-foreground sm:mt-7 sm:text-2xl sm:leading-9">
+              <p className="mt-4 max-w-3xl text-base font-semibold leading-7 text-slate-700 sm:mt-6 sm:text-xl sm:leading-8 lg:text-2xl lg:leading-9">
                 Centralize editais, modelos, fluxos administrativos, patentes e suporte especializado em um único
                 ambiente.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:gap-4">
                 <Button asChild size="lg" className="h-12 px-5 text-sm shadow-lg shadow-accent/20 sm:h-14 sm:px-8 sm:text-base">
-                  <Link href="/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat">Conversar com a Atena</Link>
+                  <Link href="/login?callbackUrl=%2Fdashboard%2Fatena%3Fintent%3Dchat-atena&message=atena-chat">Conversar com a Atena</Link>
                 </Button>
                 <Button
                   asChild
@@ -187,21 +201,21 @@ export default function PublicHomePage() {
                 </Button>
               </div>
 
-              <div className="mt-7 max-w-3xl rounded-2xl border bg-white p-3 shadow-[0_20px_60px_rgba(0,0,0,0.10)] sm:mt-8">
+              <div className="mt-7 max-w-3xl rounded-3xl border border-slate-200 bg-white p-3 shadow-[0_24px_70px_rgba(15,23,42,0.12)] sm:mt-8">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                   <div className="flex min-h-14 flex-1 items-center gap-3 px-3 text-sm text-muted-foreground sm:min-h-16 sm:px-4 sm:text-base">
                     <Search className="h-5 w-5 shrink-0 text-accent" />
                     <span>Pesquise editais, modelos, rubricas, convênios, patentes ou fluxos administrativos...</span>
                   </div>
                   <Button asChild className="h-11 px-7 sm:h-12">
-                    <Link href="/fomento">Pesquisar</Link>
+                    <Link href="/fomento-editais">Pesquisar</Link>
                   </Button>
                 </div>
                 <div className="mt-3 flex flex-wrap gap-2 border-t pt-3">
                   {quickSuggestions.map((suggestion) => (
                     <Link
                       key={suggestion}
-                      href={suggestionLinks[suggestion] ?? "/fomento"}
+                      href={suggestionLinks[suggestion] ?? "/fomento-editais"}
                       className="rounded-full bg-muted px-3 py-1.5 text-xs font-bold text-muted-foreground transition hover:bg-accent/10 hover:text-accent"
                     >
                       {suggestion}
@@ -224,7 +238,7 @@ export default function PublicHomePage() {
             </div>
 
             <div className="relative lg:justify-self-end">
-              <div className="absolute right-[-16px] top-8 z-10 hidden rounded-xl border bg-white px-6 py-4 font-bold shadow-xl md:flex">
+              <div className="absolute right-3 top-4 z-10 hidden rounded-xl md:right-5 md:top-6 lg:right-[-16px] lg:top-8 border bg-white px-6 py-4 font-bold shadow-xl md:flex">
                 <Sparkles className="mr-3 h-5 w-5 text-accent" /> Pesquisa • Inovação • Impacto
               </div>
               <Image
@@ -233,9 +247,9 @@ export default function PublicHomePage() {
                 width={860}
                 height={760}
                 priority
-                className="aspect-[1.12] w-full rounded-2xl object-cover shadow-[0_20px_60px_rgba(0,0,0,0.16)] sm:aspect-[0.92] lg:max-w-[45vw] lg:shadow-[0_28px_80px_rgba(0,0,0,0.18)]"
+                className="max-h-[22rem] aspect-[1.55] w-full rounded-[1.7rem] border border-white object-cover shadow-[0_20px_60px_rgba(15,23,42,0.14)] sm:max-h-[28rem] sm:aspect-[1.25] md:aspect-[1.35] lg:max-h-none lg:aspect-[0.92] lg:max-w-[45vw] lg:shadow-[0_30px_90px_rgba(15,23,42,0.20)]"
               />
-              <div className="absolute bottom-7 left-6 hidden max-w-[19rem] rounded-2xl border border-white/70 bg-white/95 p-4 shadow-[0_18px_45px_rgba(15,23,42,0.16)] backdrop-blur lg:block xl:left-[-18px]">
+              <div className="mt-4 rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-[0_18px_45px_rgba(15,23,42,0.14)] backdrop-blur lg:absolute lg:bottom-7 lg:left-6 lg:mt-0 lg:max-w-[19rem] xl:left-[-18px]">
                 <div className="flex gap-4">
                   <span className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
                     <FileText className="h-5 w-5" />
@@ -259,7 +273,7 @@ export default function PublicHomePage() {
         <section className="border-y bg-muted/20 py-14">
           <div className="mx-auto grid max-w-7xl gap-4 px-4 sm:grid-cols-2 lg:grid-cols-4">
             {institutionalIndicators.map((indicator) => (
-              <div key={indicator.label} className="rounded-2xl border bg-white p-6 text-center shadow-sm">
+              <div key={indicator.label} className="connection-corner rounded-2xl border bg-white p-6 text-center shadow-sm">
                 <p className="text-4xl font-black text-accent">{indicator.value}</p>
                 <p className="mt-2 text-sm font-bold text-muted-foreground">{indicator.label}</p>
               </div>
@@ -274,7 +288,7 @@ export default function PublicHomePage() {
               Escolha o tipo de apoio que você precisa e siga para o conteúdo certo.
             </p>
           </div>
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             {helpCards.map((card) => {
               const Icon = card.icon;
 
@@ -282,7 +296,7 @@ export default function PublicHomePage() {
                 <Link
                   key={card.title}
                   href={publicHelpLinks[card.title] ?? "/"}
-                  className="group rounded-2xl border bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-accent/60 hover:shadow-lg"
+                  className="connection-corner group rounded-2xl border bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-accent/60 hover:shadow-lg"
                 >
                   <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-muted text-accent transition group-hover:bg-accent group-hover:text-white">
                     <Icon className="h-6 w-6" />
@@ -315,7 +329,7 @@ export default function PublicHomePage() {
               </p>
             </div>
 
-            <div className="mt-14 grid gap-7 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-14 grid gap-7 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {quickAccess.map((card) => {
                 const Icon = card.icon;
 
@@ -323,7 +337,7 @@ export default function PublicHomePage() {
                   <Link
                     key={card.title}
                     href={quickAccessLinks[card.title] ?? "/"}
-                    className="group min-h-[230px] rounded-xl border bg-white p-9 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-accent/60 hover:shadow-lg"
+                    className="connection-corner group min-h-[230px] rounded-xl border bg-white p-9 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-accent/60 hover:shadow-lg"
                   >
                     <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-muted text-accent transition group-hover:bg-accent group-hover:text-white">
                       <Icon className="h-6 w-6" />
@@ -346,7 +360,7 @@ export default function PublicHomePage() {
               </p>
             </div>
             <Button asChild variant="outline">
-              <Link href="/fomento">Ver oportunidades</Link>
+              <Link href="/fomento-editais">Ver oportunidades</Link>
             </Button>
           </div>
 
@@ -366,7 +380,7 @@ export default function PublicHomePage() {
                   </div>
                 </div>
                 <Button asChild variant="ghost" className="w-fit text-accent hover:text-accent">
-                  <Link href="/fomento">
+                  <Link href="/fomento-editais">
                     Saiba mais <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -377,7 +391,7 @@ export default function PublicHomePage() {
 
         <section id="assistente" className="bg-muted/20 py-24">
           <div className="mx-auto max-w-7xl px-4">
-            <div className="grid gap-10 rounded-3xl border bg-white p-8 shadow-sm lg:grid-cols-[0.9fr_1.1fr] lg:p-12">
+            <div className="connection-pattern grid gap-10 rounded-3xl border bg-white p-8 shadow-sm lg:grid-cols-[0.9fr_1.1fr] lg:p-12">
               <div>
                 <div className="flex items-center gap-4">
                   <AtenaAvatar className="h-20 w-20" />
@@ -395,10 +409,10 @@ export default function PublicHomePage() {
                 </p>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <Button asChild size="lg">
-                    <Link href="/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat">Perguntar à Atena</Link>
+                    <Link href="/login?callbackUrl=%2Fdashboard%2Fatena%3Fintent%3Dchat-atena&message=atena-chat">Perguntar à Atena</Link>
                   </Button>
                   <Button asChild variant="outline" size="lg">
-                    <Link href="/templates">Ver documentos relacionados</Link>
+                    <Link href="/modelos">Ver documentos relacionados</Link>
                   </Button>
                 </div>
               </div>
@@ -409,7 +423,7 @@ export default function PublicHomePage() {
                   {assistantQuestions.map((question) => (
                     <Link
                       key={question}
-                      href="/login?callbackUrl=%2Fchat%3Fintent%3Dchat-atena&message=atena-chat"
+                      href="/login?callbackUrl=%2Fdashboard%2Fatena%3Fintent%3Dchat-atena&message=atena-chat"
                       className="flex items-center gap-4 rounded-2xl border bg-muted/20 p-5 text-left font-semibold shadow-sm transition hover:border-accent/60 hover:bg-accent/5"
                     >
                       <AtenaAvatar className="h-8 w-8 shrink-0 shadow-none" />

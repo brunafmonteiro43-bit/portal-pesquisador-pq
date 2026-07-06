@@ -16,7 +16,7 @@ export function middleware(request: NextRequest) {
     const loginUrl = new URL("/login", request.nextUrl);
     loginUrl.searchParams.set("callbackUrl", `${pathname}${request.nextUrl.search}`);
 
-    if (pathname.startsWith("/chat")) {
+    if (pathname.startsWith("/dashboard/atena")) {
       const intent = request.nextUrl.searchParams.get("intent");
       loginUrl.searchParams.set("message", intent === "use-atena" ? "atena-use" : "atena-chat");
     }
@@ -30,9 +30,6 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/dashboard/:path*",
-    "/favoritos/:path*",
-    "/chat/:path*",
-    "/api/chat/:path*",
-    "/admin/:path*"
+    "/api/chat/:path*"
   ]
 };

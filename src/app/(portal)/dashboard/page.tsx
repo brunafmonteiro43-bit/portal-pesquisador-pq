@@ -5,6 +5,7 @@ import {
   CalendarDays,
   Clock3,
   FileText,
+  FolderKanban,
   Landmark,
   Lightbulb,
   Route,
@@ -23,6 +24,7 @@ import { featuredDeadlines, fundingCalls, moduleCards, mostAccessedDocuments } f
 const moduleIconMap = {
   glossario: BookOpenText,
   templates: FileText,
+  projetos: FolderKanban,
   fomento: Landmark,
   trilhas: Route,
   patentes: Lightbulb,
@@ -32,6 +34,7 @@ const moduleIconMap = {
 const moduleActions = {
   glossario: "Consultar termo",
   templates: "Abrir biblioteca",
+  projetos: "Gerenciar projetos",
   fomento: "Ver editais",
   trilhas: "Continuar fluxo",
   patentes: "Ver guia",
@@ -64,23 +67,20 @@ const assistantTopics = ["Rubricas", "FAPESP", "Funcamp", "Prestação de contas
 
 export default function DashboardPage() {
   return (
-    <div className="space-y-8">
-      <section className="rounded-2xl border bg-white p-6 shadow-sm md:p-8 dark:bg-card">
+    <div className="connection-pattern space-y-8">
+      <section className="connection-pattern overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8 dark:bg-card">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <Button asChild variant="ghost" className="mb-5 px-0 text-muted-foreground hover:text-accent">
-              <Link href="/">← Ver Portal Público</Link>
-            </Button>
-            <p className="text-sm font-bold uppercase tracking-wide text-accent">Olá, Pesquisador(a)</p>
-            <h1 className="mt-2 text-4xl font-black tracking-normal text-foreground md:text-5xl">
-              O que você precisa hoje?
+            <p className="text-sm font-bold uppercase tracking-wide text-accent">Ambiente do Pesquisador</p>
+            <h1 className="mt-2 text-4xl font-black tracking-[-0.03em] text-foreground md:text-5xl">
+              Olá, Pesquisador(a).
             </h1>
             <p className="mt-3 max-w-2xl text-base text-muted-foreground">
-              Organize documentos, acompanhe prazos e avance nos fluxos de pesquisa com menos etapas.
+              Um painel institucional para acompanhar editais, projetos, documentos, trilhas e suporte especializado da Atena.
             </p>
           </div>
           <Button asChild className="h-12 px-6">
-            <Link href="/chat">
+            <Link href="/dashboard/atena">
               Perguntar à Atena <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
@@ -90,13 +90,36 @@ export default function DashboardPage() {
         </div>
       </section>
 
+
+
+      <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+        {workItems.map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <Card key={item.label} className="connection-corner rounded-2xl border-slate-200 bg-white shadow-sm">
+              <CardContent className="p-5">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-accent/10 text-accent">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <span className="text-3xl font-black tracking-[-0.04em] text-slate-950">{item.value}</span>
+                </div>
+                <p className="mt-4 font-black text-slate-900">{item.label}</p>
+                <p className="mt-1 text-sm leading-5 text-muted-foreground">{item.detail}</p>
+              </CardContent>
+            </Card>
+          );
+        })}
+      </section>
+
       <section className="space-y-4">
         <div className="flex items-end justify-between gap-4">
           <div>
             <p className="text-sm font-bold uppercase tracking-wide text-accent">Acesso rápido</p>
             <h2 className="text-2xl font-black tracking-normal">Módulos de trabalho</h2>
           </div>
-          <Badge variant="secondary">6 áreas principais</Badge>
+          <Badge variant="secondary">7 áreas principais</Badge>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -108,7 +131,7 @@ export default function DashboardPage() {
               <Link
                 key={module.href}
                 href={module.href}
-                className="group rounded-2xl border bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-md dark:bg-card"
+                className="connection-corner group rounded-2xl border bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-md dark:bg-card"
               >
                 <div className="flex items-start justify-between gap-4">
                   {module.key === "chat" ? (
@@ -142,26 +165,25 @@ export default function DashboardPage() {
               </div>
               <Clock3 className="h-5 w-5 text-muted-foreground" />
             </div>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              {workItems.map((item) => {
-                const Icon = item.icon;
-
-                return (
-                  <div key={item.label} className="rounded-xl border bg-muted/20 p-4">
-                    <div className="flex items-center justify-between gap-3">
-                      <Icon className="h-5 w-5 text-accent" />
-                      <span className="text-2xl font-black">{item.value}</span>
+            <div className="mt-6 space-y-3">
+              {["Abertura de projeto", "Proteção de patente", "Prestação de contas"].map((trail, index) => (
+                <div key={trail} className="rounded-xl border bg-slate-50 p-4">
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <p className="font-black">{trail}</p>
+                      <p className="mt-1 text-sm text-muted-foreground">Etapa {index + 2} de 5 em andamento</p>
                     </div>
-                    <p className="mt-4 font-bold">{item.label}</p>
-                    <p className="mt-1 text-sm text-muted-foreground">{item.detail}</p>
+                    <span className="rounded-full bg-accent/10 px-3 py-1 text-xs font-black text-accent">
+                      {index === 0 ? "60%" : index === 1 ? "40%" : "75%"}
+                    </span>
                   </div>
-                );
-              })}
+                </div>
+              ))}
             </div>
           </CardContent>
         </Card>
 
-        <Card className="rounded-2xl border-accent/30 bg-accent text-white shadow-sm">
+        <Card className="connection-pattern-dark rounded-2xl border-accent/30 bg-accent text-white shadow-sm">
           <CardContent className="p-6">
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -179,7 +201,7 @@ export default function DashboardPage() {
               ))}
             </div>
             <Button asChild variant="secondary" className="mt-7">
-              <Link href="/chat">
+              <Link href="/dashboard/atena">
                 Perguntar à Atena <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -250,7 +272,7 @@ export default function DashboardPage() {
             <h2 className="text-xl font-black">Editais recentes</h2>
             <div className="mt-5 space-y-3">
               {fundingCalls.slice(0, 3).map((call) => (
-                <Link key={call.slug} href="/oportunidades" className="block rounded-xl border p-4 transition hover:border-accent">
+                <Link key={call.slug} href="/dashboard/oportunidades" className="block rounded-xl border p-4 transition hover:border-accent">
                   <div className="flex items-center justify-between gap-3">
                     <p className="text-sm font-bold">{call.title}</p>
                     <Badge variant="secondary">{call.agency}</Badge>

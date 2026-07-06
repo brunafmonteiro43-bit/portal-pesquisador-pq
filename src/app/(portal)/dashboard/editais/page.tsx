@@ -16,7 +16,7 @@ export default function FomentoPage() {
         description="Filtros por agência, área de pesquisa, prazo, valor e status. Para uma busca completa, acesse a Central de Oportunidades."
         action={
           <Button asChild variant="outline">
-            <a href="/oportunidades">
+            <a href="/dashboard/oportunidades">
               <SlidersHorizontal className="mr-2 h-4 w-4" /> Central de Oportunidades
             </a>
           </Button>
@@ -70,7 +70,7 @@ export default function FomentoPage() {
                     <ExternalLink className="mr-2 h-4 w-4" /> Abrir edital
                   </a>
                 </Button>
-                <FavoriteButton item={{ id: call.slug, type: "edital", title: call.title, href: "/fomento" }} />
+                <FavoriteButton item={{ id: call.slug, type: "edital", title: call.title, href: "/dashboard/editais" }} />
               </div>
             </CardContent>
           </Card>
