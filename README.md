@@ -447,3 +447,4 @@ O projeto possui:
 - estrutura Prisma preparada;
 - Dockerfile e Docker Compose;
 - rodapé institucional com QR Code real.
+
