@@ -1,32 +1,30 @@
 name: CI - Lint e Tipagem
 
-# Define quando esse robô vai rodar
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
 
 jobs:
-  verificacao:
+  validacao:
     name: Validação de Código
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Baixando o código
+      - name: Clonar o repositório
         uses: actions/checkout@v4
 
-      - name: ⚙️ Configurando o Node.js
+      - name: Configurar o Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Usa a versão 20 do Node (padrão atual)
-          cache: 'npm'       # Troque para 'yarn' ou 'pnpm' se você não usar npm
+          node-version: '24'
 
-      - name: 📦 Instalando dependências
-        run: npm ci # Instala os pacotes exatamente como estão no package-lock.json
+      - name: Instalar dependências
+        run: npm install
 
-      - name: 🧹 Rodando o Linter (Next.js ESLint)
+      - name: Verificar erros de formatação (Lint)
         run: npm run lint
 
-      - name: 🔎 Verificando Tipagem (TypeScript)
+      - name: Verificar erros de tipagem (TypeScript)
         run: npx tsc --noEmit
