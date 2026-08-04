@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Search, Sparkles } from 'lucide-react';
 
 export default function HomePage() {
@@ -94,11 +95,13 @@ export default function HomePage() {
 
           {/* Lado Direito: Imagem do Laboratório */}
           <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none rounded-2xl overflow-hidden shadow-xl border border-slate-200 bg-slate-100">
-              <img
+            <div className="relative mx-auto max-w-md lg:max-w-none rounded-2xl overflow-hidden shadow-xl border border-slate-200 bg-slate-100 h-[420px]">
+              <Image
                 src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80"
                 alt="Pesquisadora no laboratório"
-                className="w-full h-[420px] object-cover"
+                fill
+                className="object-cover"
+                unoptimized
               />
             </div>
           </div>
