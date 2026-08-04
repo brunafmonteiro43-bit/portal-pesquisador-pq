@@ -23,13 +23,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
 
       - name: Instalar dependências
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
 
       - name: Executar verificação de build
         env:
-          NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder-key
+          DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/postgres"
+          NEXT_PUBLIC_SUPABASE_URL: "https://placeholder.supabase.co"
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: "placeholder-key"
         run: pnpm run build
