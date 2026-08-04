@@ -7,24 +7,29 @@ on:
     branches: [ "main" ]
 
 jobs:
-  validacao:
-    name: Validação de Código
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clonar o repositório
+      - name: Checkout do código
         uses: actions/checkout@v4
 
-      - name: Configurar o Node.js
+      - name: Instalar pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.0.0
+
+      - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: 20
+          cache: 'pnpm'
 
       - name: Instalar dependências
-        run: npm install
+        run: pnpm install
 
-      - name: Verificar erros de formatação (Lint)
-        run: npm run lint
-
-      - name: Verificar erros de tipagem (TypeScript)
-        run: npx tsc --noEmit
+      - name: Executar verificação de build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder-key
+        run: pnpm run build
