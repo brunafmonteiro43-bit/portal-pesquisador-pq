@@ -472,11 +472,11 @@ export default function TemplatesPage() {
                         <Star className={savedIds.includes(resource.id) ? "h-3.5 w-3.5 fill-current" : "h-3.5 w-3.5"} aria-hidden="true" /> {savedIds.includes(resource.id) ? "Salvo" : "Salvar recurso"}
                       </button>
                       <button type="button" onClick={() => {
-                        const url = `${window.location.origin}/dashboard/modelos?recurso=${encodeURIComponent(resource.id)}`;
+                        const url = resource.sourceUrl;
                         if (navigator.clipboard?.writeText) void navigator.clipboard.writeText(url);
                         else window.prompt("Copie o link do recurso:", url);
                       }} className="inline-flex min-h-9 items-center gap-2 rounded-md border bg-background px-3 py-2 text-xs font-semibold hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
-                        <Share2 className="h-3.5 w-3.5" aria-hidden="true" /> Compartilhar
+                        <Share2 className="h-3.5 w-3.5" aria-hidden="true" /> Compartilhar fonte oficial
                       </button>
                     </div>
                     <a
