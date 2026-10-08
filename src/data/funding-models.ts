@@ -276,23 +276,7 @@ type FundingResourceMetadata = Pick<FundingModelResource,
 >;
 type BaseFundingModelResource = Omit<FundingModelResource, keyof FundingResourceMetadata>;
 
-type FundingResourceMetadata = Pick<
-  FundingModelResource,
-  | "resourceType"
-  | "section"
-  | "projectStage"
-  | "centers"
-  | "researchLines"
-  | "eligibilitySummary"
-  | "relevanceNote"
-  | "callStatus"
-  | "deadline"
-  | "lastCheckedAt"
-  | "reviewStatus"
-  | "reviewedBy"
->;
 
-type BaseFundingModelResource = Omit<FundingModelResource, keyof FundingResourceMetadata>;
 
 
 const fundingModelResourceBase: BaseFundingModelResource[] = [
