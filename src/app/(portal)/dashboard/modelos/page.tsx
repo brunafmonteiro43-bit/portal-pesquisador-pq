@@ -1,13 +1,16 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   ExternalLink,
   FileText,
   Info,
   RotateCcw,
   Search,
-  ShieldAlert
+  ShieldAlert,
+  Star,
+  Share2,
+  ChevronDown
 } from "lucide-react";
 import { SectionHeader } from "@/components/modules/section-header";
 import { Badge } from "@/components/ui/badge";
@@ -44,6 +47,17 @@ export default function TemplatesPage() {
   const [selectedStatus, setSelectedStatus] =
     useState<(typeof fundingModelCallStatuses)[number]>("Todos os status");
   const [query, setQuery] = useState("");
+  const [savedIds, setSavedIds] = useState<string[]>([]);
+  const [savedOnly, setSavedOnly] = useState(false);
+
+  useEffect(() => {
+    try {
+      const stored = window.localStorage.getItem("cocen-saved-research-resources");
+      if (stored) setSavedIds(JSON.parse(stored) as string[]);
+    } catch {
+      setSavedIds([]);
+    }
+  }, []);
 
   const allResearchLines = useMemo(
     () => Array.from(new Set(cocenCenters.flatMap((center) => center.researchLines))).sort((a, b) => a.localeCompare(b, "pt-BR")),
@@ -86,6 +100,7 @@ export default function TemplatesPage() {
         .toLocaleLowerCase("pt-BR");
 
       return (
+        (!savedOnly || savedIds.includes(resource.id)) &&
         matchesAgency &&
         matchesSection &&
         matchesCenter &&
@@ -98,6 +113,8 @@ export default function TemplatesPage() {
     });
   }, [
     query,
+    savedOnly,
+    savedIds,
     selectedAgency,
     selectedCenter,
     selectedLine,
@@ -116,14 +133,15 @@ export default function TemplatesPage() {
     setSelectedStage("Todas as etapas");
     setSelectedStatus("Todos os status");
     setQuery("");
+    setSavedOnly(false);
   }
 
   return (
     <div className="space-y-6">
       <SectionHeader
         eyebrow="Biblioteca de apoio ao pesquisador"
-        title="Modelos, documentos e orientações de pesquisa"
-        description="Catálogo organizado por agência, etapa do projeto, tema de pesquisa e documentos institucionais, incluindo ética, integridade e compliance."
+        title="Recursos para Pesquisa"
+        description="Encontre modelos, formulários, guias, documentos institucionais e orientações de ética e integridade para apoiar cada etapa da pesquisa."
       />
 
       <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-950">
@@ -143,10 +161,25 @@ export default function TemplatesPage() {
 
       <div className="space-y-3">
         <div>
-          <h2 className="text-sm font-semibold text-foreground">Navegar por etapa</h2>
+          <h2 className="text-sm font-semibold text-foreground">Encontre o recurso que você precisa</h2>
           <p className="mt-1 text-xs text-muted-foreground">
-            Encontre modelos de pesquisa, documentos institucionais, materiais de ética e integridade, eventos, execução e oportunidades internacionais.
+            Comece pelo objetivo. Os atalhos aplicam filtros ao catálogo; confira os requisitos na fonte oficial.
           </p>
+        </div>
+        <div className="flex flex-wrap gap-2" aria-label="Atalhos por objetivo">
+          {[
+            { label: "Elaborar projeto", section: "Elaboração e submissão" },
+            { label: "Preparar submissão", section: "Elaboração e submissão" },
+            { label: "Prestação de contas", section: "Execução e prestação de contas" },
+            { label: "Organizar evento", section: "Apoio a eventos" },
+            { label: "Ética e integridade", section: "Ética, integridade e compliance em pesquisa" },
+            { label: "Fomento internacional", section: "Fomento internacional" }
+          ].map((shortcut) => (
+            <button key={shortcut.label} type="button" onClick={() => setSelectedSection(shortcut.section as (typeof fundingModelResourceSections)[number])} className="rounded-lg border border-primary/20 bg-primary/5 px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">{shortcut.label}</button>
+          ))}
+          <button type="button" onClick={() => setSavedOnly((value) => !value)} aria-pressed={savedOnly} className={savedOnly ? "rounded-lg bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground" : "rounded-lg border px-3 py-2 text-sm font-medium text-foreground hover:bg-muted"}>
+            <Star className="mr-1 inline h-3.5 w-3.5" aria-hidden="true" /> Meus salvos ({savedIds.length})
+          </button>
         </div>
         <div className="flex flex-wrap gap-2" aria-label="Filtrar por seção do catálogo">
           {fundingModelResourceSections.map((section) => {
@@ -171,7 +204,7 @@ export default function TemplatesPage() {
       </div>
 
       <div className="space-y-3">
-        <h2 className="text-sm font-semibold text-foreground">Filtrar por agência</h2>
+        <h2 className="text-sm font-semibold text-foreground">Filtrar por instituição ou agência</h2>
         <div className="flex flex-wrap gap-2" aria-label="Filtrar por agência">
           {fundingModelAgencies.map((agency) => {
             const active = selectedAgency === agency;
@@ -277,7 +310,7 @@ export default function TemplatesPage() {
         </label>
 
         <label>
-          <span className="mb-1.5 block text-xs font-medium text-muted-foreground">Situação da chamada</span>
+          <span className="mb-1.5 block text-xs font-medium text-muted-foreground">Situação do recurso/chamada</span>
           <select
             value={selectedStatus}
             onChange={(event) => setSelectedStatus(event.target.value as (typeof fundingModelCallStatuses)[number])}
@@ -331,19 +364,26 @@ export default function TemplatesPage() {
       ) : (
         <div className="grid gap-4 lg:grid-cols-2">
           {filteredResources.map((resource) => {
-            const centerLabel =
-              resource.centers.length === cocenCenters.length
-                ? "Transversal aos 23 centros e núcleos"
-                : resource.centers.length === 0
-                  ? "Sem associação temática definida"
-                  : resource.centers.join(", ");
-            const lineLabels =
-              resource.researchLines.length === allResearchLines.length
-                ? "Transversal a várias linhas de pesquisa"
-                : resource.researchLines.length > 0
-                  ? resource.researchLines.slice(0, 3).join(" · ") +
-                    (resource.researchLines.length > 3 ? " · +" + (resource.researchLines.length - 3) : "")
-                  : "Linha de pesquisa não informada";
+            const centerLabel = resource.associationStatus === "Transversal"
+              ? "Referência transversal aos centros e núcleos"
+              : resource.associationStatus === "Não classificada"
+                ? "Associação temática ainda não classificada"
+                : resource.centers.join(", ");
+            const lineLabels = resource.associationStatus === "Transversal"
+              ? "Referência geral; não indica aderência a uma linha específica"
+              : resource.researchLines.length > 0
+                ? resource.researchLines.slice(0, 3).join(" · ") + (resource.researchLines.length > 3 ? " · +" + (resource.researchLines.length - 3) : "")
+                : "Linha de pesquisa não informada";
+            const relevanceLabel = resource.associationStatus === "Transversal" ? "Referência geral" : resource.associationStatus === "Temática" ? "Aderência temática sugerida" : "Associação pendente";
+            const actionLabel = resource.resourceType === "Edital de referência" || resource.callStatus === "Chamada aberta"
+              ? "Confira elegibilidade, prazo e documentos exigidos antes de iniciar a submissão."
+              : resource.section === "Ética, integridade e compliance em pesquisa"
+                ? "Consulte a orientação institucional aplicável e confirme com a área responsável quando necessário."
+                : resource.projectStage === "Execução e prestação de contas"
+                  ? "Confira as regras do instrumento concedido e organize os comprovantes exigidos."
+                  : resource.resourceType === "Modelo/roteiro" || resource.resourceType === "Formulário"
+                    ? "Use como ponto de partida e adapte às instruções da modalidade e da instituição financiadora."
+                    : "Consulte o documento para entender quais orientações se aplicam ao seu projeto.";
             const statusLabel =
               resource.callStatus === "Chamada aberta" && resource.deadline
                 ? "Chamada aberta · prazo " + formatDate(resource.deadline)
@@ -362,7 +402,8 @@ export default function TemplatesPage() {
                       <div className="mb-2 flex flex-wrap gap-2">
                         <Badge variant="secondary">{resource.agency}</Badge>
                         <Badge variant="outline">{resource.resourceType}</Badge>
-                        <Badge variant="outline">{resource.callStatus}</Badge>
+                        <Badge variant={resource.reviewStatus === "Validado pela COCEN" ? "secondary" : "outline"}>{resource.reviewStatus === "Validado pela COCEN" ? "Validado pela COCEN" : "Pendente de validação"}</Badge>
+                        {resource.callStatus === "Chamada aberta" || resource.callStatus === "Encerrada / histórica" ? <Badge variant="outline">{resource.callStatus}</Badge> : null}
                       </div>
                       <CardTitle className="text-lg leading-6">{resource.title}</CardTitle>
                       <p className="mt-1 text-sm text-muted-foreground">{resource.organization}</p>
@@ -374,13 +415,12 @@ export default function TemplatesPage() {
                   <p className="text-sm leading-6 text-muted-foreground">{resource.description}</p>
 
                   <div className="rounded-lg border bg-muted/30 p-3">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-foreground">Por que este recurso aparece</p>
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <p className="text-xs font-semibold uppercase tracking-wide text-foreground">Relevância para a pesquisa</p>
+                      <Badge variant={resource.associationStatus === "Temática" ? "secondary" : "outline"}>{relevanceLabel}</Badge>
+                    </div>
                     <p className="mt-1 text-sm leading-6 text-muted-foreground">{resource.relevanceNote}</p>
-                  </div>
-
-                  <div className="space-y-1">
-                    <p className="text-xs font-semibold text-foreground">Atenção à elegibilidade</p>
-                    <p className="text-sm leading-6 text-muted-foreground">{resource.eligibilitySummary}</p>
+                    <p className="mt-2 text-xs leading-5 text-muted-foreground">{actionLabel}</p>
                   </div>
 
                   <div className="flex flex-wrap gap-2">
@@ -392,20 +432,16 @@ export default function TemplatesPage() {
                     ))}
                   </div>
 
-                  <div className="space-y-2 rounded-lg border p-3 text-xs">
-                    <p>
-                      <span className="font-semibold text-foreground">Centros/núcleos:</span>{" "}
-                      <span className="text-muted-foreground">{centerLabel}</span>
-                    </p>
-                    <p>
-                      <span className="font-semibold text-foreground">Temas relacionados:</span>{" "}
-                      <span className="text-muted-foreground">{lineLabels}</span>
-                    </p>
-                    <p>
-                      <span className="font-semibold text-foreground">Situação:</span>{" "}
-                      <span className="text-muted-foreground">{statusLabel}</span>
-                    </p>
-                  </div>
+                  <details className="rounded-lg border px-3 py-2 text-sm">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-3 font-semibold text-foreground focus:outline-none focus:ring-2 focus:ring-ring">Ver detalhes e orientações <ChevronDown className="h-4 w-4 shrink-0" aria-hidden="true" /></summary>
+                    <div className="mt-3 space-y-2 text-xs">
+                      <p><span className="font-semibold text-foreground">Centros/núcleos:</span>{" "}<span className="text-muted-foreground">{centerLabel}</span></p>
+                      <p><span className="font-semibold text-foreground">Temas relacionados:</span>{" "}<span className="text-muted-foreground">{lineLabels}</span></p>
+                      <p><span className="font-semibold text-foreground">Situação:</span>{" "}<span className="text-muted-foreground">{statusLabel}</span></p>
+                      <p><span className="font-semibold text-foreground">Como usar:</span>{" "}<span className="text-muted-foreground">{actionLabel}</span></p>
+                      <p><span className="font-semibold text-foreground">Elegibilidade:</span>{" "}<span className="text-muted-foreground">{resource.eligibilitySummary}</span></p>
+                    </div>
+                  </details>
 
                   <div className="mt-auto border-t pt-4">
                     <div className="mb-4 grid gap-2 text-xs text-muted-foreground sm:grid-cols-2">
@@ -427,6 +463,22 @@ export default function TemplatesPage() {
                       </p>
                     </div>
 
+                    <div className="mb-3 flex flex-wrap gap-2">
+                      <button type="button" onClick={() => {
+                        const next = savedIds.includes(resource.id) ? savedIds.filter((id) => id !== resource.id) : [...savedIds, resource.id];
+                        setSavedIds(next);
+                        try { window.localStorage.setItem("cocen-saved-research-resources", JSON.stringify(next)); } catch { /* favoritos ficam apenas nesta sessão */ }
+                      }} aria-pressed={savedIds.includes(resource.id)} className="inline-flex min-h-9 items-center gap-2 rounded-md border bg-background px-3 py-2 text-xs font-semibold hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
+                        <Star className={savedIds.includes(resource.id) ? "h-3.5 w-3.5 fill-current" : "h-3.5 w-3.5"} aria-hidden="true" /> {savedIds.includes(resource.id) ? "Salvo" : "Salvar recurso"}
+                      </button>
+                      <button type="button" onClick={() => {
+                        const url = `${window.location.origin}/dashboard/modelos?recurso=${encodeURIComponent(resource.id)}`;
+                        if (navigator.clipboard?.writeText) void navigator.clipboard.writeText(url);
+                        else window.prompt("Copie o link do recurso:", url);
+                      }} className="inline-flex min-h-9 items-center gap-2 rounded-md border bg-background px-3 py-2 text-xs font-semibold hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
+                        <Share2 className="h-3.5 w-3.5" aria-hidden="true" /> Compartilhar
+                      </button>
+                    </div>
                     <a
                       href={resource.sourceUrl}
                       target="_blank"
@@ -450,10 +502,7 @@ export default function TemplatesPage() {
           <div>
             <h2 className="font-semibold text-foreground">Como interpretar o catálogo</h2>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Os temas associados aos centros são sínteses para facilitar a busca, não uma transcrição integral de
-              todas as linhas oficiais. CIEBC e NEAB precisam confirmar suas linhas de pesquisa antes da personalização.
-              A biblioteca reúne modelos, guias, portais, documentos para eventos, materiais de execução e referências de ética,
-              integridade e compliance; nem todo item é um template de projeto. A FUNCAMP e o Grant Office continuam sendo referências institucionais complementares.
+              A associação por centro é uma triagem temática, não uma confirmação de elegibilidade. Recursos marcados como referência geral não indicam aderência específica; itens ainda não classificados precisam de revisão. A validação institucional e a checagem dos links devem ser registradas antes de divulgar o catálogo como oficialmente revisado. A biblioteca reúne modelos, guias, portais, documentos para eventos, materiais de execução e referências de ética, integridade e compliance.
             </p>
             <a
               href="https://www.cocen.unicamp.br/centros-e-nucleos/linhas-de-pesquisa"
