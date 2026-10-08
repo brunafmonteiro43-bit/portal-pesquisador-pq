@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 const publicNav = [
   { label: "Início", compactLabel: "Início", mobileLabel: "Início", href: "/" },
   { label: "Glossário", compactLabel: "Glossário", mobileLabel: "Glossário", href: "/glossario" },
-  { label: "Recursos para Pesquisa", compactLabel: "Recursos", mobileLabel: "Recursos", href: "/modelos" },
+  { label: "Modelos e Templates", compactLabel: "Modelos", mobileLabel: "Modelos", href: "/modelos" },
   { label: "Fomento e Oportunidades", compactLabel: "Oportunidades", mobileLabel: "Fomento", href: "/fomento-editais" },
   { label: "Trilhas de Apoio", compactLabel: "Trilhas", mobileLabel: "Trilhas", href: "/trilhas" },
   { label: "Patentes", compactLabel: "Patentes", mobileLabel: "Patentes", href: "/patentes" },
