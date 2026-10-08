@@ -122,8 +122,8 @@ export default function TemplatesPage() {
     <div className="space-y-6">
       <SectionHeader
         eyebrow="Biblioteca de apoio ao pesquisador"
-        title="Modelos, documentos e orientações de fomento"
-        description="Catálogo inicial organizado por agência, etapa do projeto e aderência temática aos centros e núcleos da COCEN."
+        title="Modelos, documentos e orientações de pesquisa"
+        description="Catálogo organizado por agência, etapa do projeto, tema de pesquisa e documentos institucionais, incluindo ética, integridade e compliance."
       />
 
       <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-950">
@@ -145,7 +145,7 @@ export default function TemplatesPage() {
         <div>
           <h2 className="text-sm font-semibold text-foreground">Navegar por etapa</h2>
           <p className="mt-1 text-xs text-muted-foreground">
-            Separe modelos de pesquisa, documentos para eventos, execução e oportunidades internacionais.
+            Encontre modelos de pesquisa, documentos institucionais, materiais de ética e integridade, eventos, execução e oportunidades internacionais.
           </p>
         </div>
         <div className="flex flex-wrap gap-2" aria-label="Filtrar por seção do catálogo">
@@ -452,8 +452,8 @@ export default function TemplatesPage() {
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
               Os temas associados aos centros são sínteses para facilitar a busca, não uma transcrição integral de
               todas as linhas oficiais. CIEBC e NEAB precisam confirmar suas linhas de pesquisa antes da personalização.
-              A biblioteca reúne modelos, guias, portais, documentos para eventos e materiais de execução; nem todo item
-              é um template de projeto. A FUNCAMP e o Grant Office continuam sendo referências institucionais complementares.
+              A biblioteca reúne modelos, guias, portais, documentos para eventos, materiais de execução e referências de ética,
+              integridade e compliance; nem todo item é um template de projeto. A FUNCAMP e o Grant Office continuam sendo referências institucionais complementares.
             </p>
             <a
               href="https://www.cocen.unicamp.br/centros-e-nucleos/linhas-de-pesquisa"
