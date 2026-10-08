@@ -49,6 +49,30 @@ export default function TemplatesPage() {
   const [query, setQuery] = useState("");
   const [savedIds, setSavedIds] = useState<string[]>([]);
   const [savedOnly, setSavedOnly] = useState(false);
+  const [shareFeedback, setShareFeedback] = useState("");
+
+  async function shareResource(url: string, resourceId: string) {
+    setShareFeedback("");
+    if (typeof navigator !== "undefined" && typeof navigator.share === "function") {
+      try {
+        await navigator.share({ title: "Recurso para pesquisa", url });
+        setShareFeedback(resourceId + ": Link compartilhado.");
+        return;
+      } catch (error) {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+      }
+    }
+    try {
+      if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(url);
+        setShareFeedback(resourceId + ": Link copiado para a área de transferência.");
+        return;
+      }
+    } catch {
+      // O navegador pode bloquear o acesso à área de transferência.
+    }
+    window.prompt("Copie o link do recurso:", url);
+  }
 
   useEffect(() => {
     try {
@@ -489,13 +513,10 @@ export default function TemplatesPage() {
                       }} aria-pressed={savedIds.includes(resource.id)} className="inline-flex min-h-9 items-center gap-2 rounded-md border bg-background px-3 py-2 text-xs font-semibold hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
                         <Star className={savedIds.includes(resource.id) ? "h-3.5 w-3.5 fill-current" : "h-3.5 w-3.5"} aria-hidden="true" /> {savedIds.includes(resource.id) ? "Salvo" : "Salvar recurso"}
                       </button>
-                      <button type="button" onClick={() => {
-                        const url = resource.sourceUrl;
-                        if (navigator.clipboard?.writeText) void navigator.clipboard.writeText(url);
-                        else window.prompt("Copie o link do recurso:", url);
-                      }} className="inline-flex min-h-9 items-center gap-2 rounded-md border bg-background px-3 py-2 text-xs font-semibold hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
+                      <button type="button" onClick={() => void shareResource(resource.sourceUrl, resource.id)} className="inline-flex min-h-9 items-center gap-2 rounded-md border bg-background px-3 py-2 text-xs font-semibold hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
                         <Share2 className="h-3.5 w-3.5" aria-hidden="true" /> Compartilhar fonte oficial
                       </button>
+                      {shareFeedback.startsWith(resource.id + ":") ? <p role="status" aria-live="polite" className="mt-2 text-xs text-muted-foreground">{shareFeedback.slice(resource.id.length + 2)}</p> : null}
                     </div>
                     <a
                       href={resource.sourceUrl}
