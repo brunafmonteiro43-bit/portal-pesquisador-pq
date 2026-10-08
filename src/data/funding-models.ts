@@ -20,7 +20,8 @@ export const fundingModelResourceSections = [
   "Execução e prestação de contas",
   "Documentos institucionais",
   "Fomento internacional",
-  "Orientações gerais"
+  "Orientações gerais",
+  "Ética, integridade e compliance em pesquisa"
 ] as const;
 
 export type FundingResourceSection = Exclude<(typeof fundingModelResourceSections)[number], "Todas as seções">;
@@ -247,7 +248,7 @@ export const cocenCenters: COCENCenter[] = [
 export type FundingModelResource = {
   id: string;
   title: string;
-  agency: "FAPESP" | "CNPq" | "CAPES" | "FINEP" | "FAEPEX" | "UNICAMP" | "Internacional";
+  agency: "FAPESP" | "CNPq" | "CAPES" | "FINEP" | "FAEPEX" | "UNICAMP" | "FUNCAMP" | "Governo de SP" | "Internacional";
   organization: string;
   description: string;
   category: "Elaboração" | "Submissão" | "Documentos institucionais" | "Execução e prestação" | "Orientações";
@@ -280,6 +281,235 @@ type BaseFundingModelResource = Omit<FundingModelResource, keyof FundingResource
 
 
 const fundingModelResourceBase: BaseFundingModelResource[] = [
+  {
+    id: "sp-codigo-etica-administracao-publica",
+    title: "Código de Ética da Administração Pública Estadual",
+    agency: "Governo de SP",
+    organization: "Governo do Estado de São Paulo",
+    description: "Código de Ética da Administração Pública Estadual, aprovado pelo Decreto nº 60.428/2014.",
+    category: "Orientações",
+    scope: "Geral",
+    sourceLabel: "Assembleia Legislativa do Estado de São Paulo",
+    sourceUrl: "https://www.al.sp.gov.br/repositorio/legislacao/decreto/2014/compilacao-decreto-60428-08.05.2014.html",
+    tags: ["ética", "administração pública", "integridade"]
+  },
+  {
+    id: "sp-cartilha-assedio-moral",
+    title: "Prevenção e Combate ao Assédio Moral",
+    agency: "Governo de SP",
+    organization: "Controladoria Geral do Estado de São Paulo",
+    description: "Cartilha para orientação e prevenção do assédio moral no serviço público.",
+    category: "Orientações",
+    scope: "Geral",
+    sourceLabel: "Controladoria Geral do Estado de São Paulo",
+    sourceUrl: "https://www.controladoriageral.sp.gov.br/cartilha-de-prevencao-e-combate-ao-assedio-moral/",
+    tags: ["assédio moral", "ética", "ambiente de trabalho"]
+  },
+  {
+    id: "unicamp-cip",
+    title: "Comissão de Integridade em Pesquisa (CIP)",
+    agency: "UNICAMP",
+    organization: "Pró-Reitoria de Pesquisa — UNICAMP",
+    description: "Informações sobre a Comissão de Integridade em Pesquisa e a Política Institucional de Boas Práticas e Integridade em Pesquisa.",
+    category: "Orientações",
+    scope: "Geral",
+    sourceLabel: "PRP/UNICAMP",
+    sourceUrl: "https://prp.unicamp.br/comissoes/comissao-de-integridade-em-pesquisa/",
+    tags: ["integridade", "boas práticas", "má conduta"]
+  },
+  {
+    id: "unicamp-politica-integridade-pesquisa",
+    title: "Política Institucional de Boas Práticas e Integridade em Pesquisa",
+    agency: "UNICAMP",
+    organization: "Universidade Estadual de Campinas",
+    description: "Norma institucional que estabelece princípios e diretrizes para boas práticas e integridade em pesquisa na Unicamp.",
+    category: "Documentos institucionais",
+    scope: "Geral",
+    sourceLabel: "UNICAMP — Procuradoria Geral",
+    sourceUrl: "https://www.pg.unicamp.br/norma/23868/0",
+    tags: ["política institucional", "integridade", "pesquisa"]
+  },
+  {
+    id: "unicamp-informacao-cip-001-2023",
+    title: "Informação CIP 001/2023",
+    agency: "UNICAMP",
+    organization: "Pró-Reitoria de Pesquisa — UNICAMP",
+    description: "Documento que descreve como a Unicamp atende ao disposto no Código de Boas Práticas Científicas da FAPESP.",
+    category: "Documentos institucionais",
+    scope: "Geral",
+    sourceLabel: "PRP/UNICAMP",
+    sourceUrl: "https://prp.unicamp.br/documento/informacao-cip-001-2023/",
+    tags: ["CIP", "FAPESP", "boas práticas"]
+  },
+  {
+    id: "unicamp-etica-pesquisa",
+    title: "Ética em Pesquisa",
+    agency: "UNICAMP",
+    organization: "Pró-Reitoria de Pesquisa — UNICAMP",
+    description: "Portal institucional com orientações e acesso aos comitês de ética em pesquisa com seres humanos e uso de animais.",
+    category: "Orientações",
+    scope: "Geral",
+    sourceLabel: "PRP/UNICAMP",
+    sourceUrl: "https://prp.unicamp.br/etica-em-pesquisa/",
+    tags: ["ética", "CEP", "animais", "seres humanos"]
+  },
+  {
+    id: "unicamp-cgdp",
+    title: "Comissão de Gestão de Dados de Pesquisa (CGDP)",
+    agency: "UNICAMP",
+    organization: "Pró-Reitoria de Pesquisa — UNICAMP",
+    description: "Informações sobre governança de dados de pesquisa e gestão do Repositório de Dados de Pesquisa da Unicamp (REDU).",
+    category: "Orientações",
+    scope: "Geral",
+    sourceLabel: "PRP/UNICAMP",
+    sourceUrl: "https://prp.unicamp.br/comissoes/gestao-de-dados-de-pesquisa/comissao/",
+    tags: ["dados de pesquisa", "REDU", "ciência aberta"]
+  },
+  {
+    id: "unicamp-redu",
+    title: "Repositório de Dados de Pesquisa (REDU)",
+    agency: "UNICAMP",
+    organization: "Universidade Estadual de Campinas",
+    description: "Repositório oficial para depósito, preservação e compartilhamento de dados e softwares resultantes de pesquisas da Unicamp.",
+    category: "Orientações",
+    scope: "Geral",
+    sourceLabel: "Sistema de Bibliotecas — UNICAMP",
+    sourceUrl: "https://www.sbu.unicamp.br/repositorio-de-dados-de-pesquisa/",
+    tags: ["REDU", "dados", "reprodutibilidade"]
+  },
+  {
+    id: "unicamp-privacidade",
+    title: "Privacidade e Proteção de Dados",
+    agency: "UNICAMP",
+    organization: "Universidade Estadual de Campinas",
+    description: "Portal institucional de privacidade e proteção de dados, relacionado à implementação da LGPD na Unicamp.",
+    category: "Documentos institucionais",
+    scope: "Geral",
+    sourceLabel: "UNICAMP — Privacidade",
+    sourceUrl: "https://www.privacidade.unicamp.br/",
+    tags: ["LGPD", "privacidade", "proteção de dados"]
+  },
+  {
+    id: "unicamp-politica-privacidade",
+    title: "Política de Privacidade da UNICAMP",
+    agency: "UNICAMP",
+    organization: "Universidade Estadual de Campinas",
+    description: "Norma institucional que estabelece diretrizes de privacidade e proteção de dados pessoais na Unicamp.",
+    category: "Documentos institucionais",
+    scope: "Geral",
+    sourceLabel: "UNICAMP — Procuradoria Geral",
+    sourceUrl: "https://www.pg.unicamp.br/norma/23852/0",
+    tags: ["LGPD", "política de privacidade", "dados pessoais"]
+  },
+  {
+    id: "unicamp-programa-integridade",
+    title: "Programa de Integridade da UNICAMP",
+    agency: "UNICAMP",
+    organization: "Controladoria Geral — UNICAMP",
+    description: "Programa institucional de integridade voltado à prevenção e ao enfrentamento da corrupção e de outras irregularidades.",
+    category: "Orientações",
+    scope: "Geral",
+    sourceLabel: "Controladoria Geral — UNICAMP",
+    sourceUrl: "https://controladoria.unicamp.br/integridade/",
+    tags: ["integridade", "anticorrupção", "governança"]
+  },
+  {
+    id: "unicamp-portal-transparencia",
+    title: "Portal Transparência UNICAMP",
+    agency: "UNICAMP",
+    organization: "Universidade Estadual de Campinas",
+    description: "Portal institucional para consulta e acompanhamento de informações e recursos públicos da Universidade.",
+    category: "Orientações",
+    scope: "Geral",
+    sourceLabel: "UNICAMP — Transparência",
+    sourceUrl: "https://transparencia.unicamp.br/",
+    tags: ["transparência", "controle social", "recursos públicos"]
+  },
+  {
+    id: "unicamp-dedh",
+    title: "Diretoria Executiva de Direitos Humanos (DeDH)",
+    agency: "UNICAMP",
+    organization: "Universidade Estadual de Campinas",
+    description: "Diretoria voltada à promoção dos direitos humanos, inclusão, diversidade, pluralidade e equidade na Universidade.",
+    category: "Orientações",
+    scope: "Geral",
+    sourceLabel: "DeDH/UNICAMP",
+    sourceUrl: "https://www.direitoshumanos.unicamp.br/",
+    tags: ["direitos humanos", "inclusão", "equidade"]
+  },
+  {
+    id: "funcamp-codigo-etica",
+    title: "Código de Ética da FUNCAMP",
+    agency: "FUNCAMP",
+    organization: "Fundação de Desenvolvimento da UNICAMP",
+    description: "Código de Ética da FUNCAMP, com princípios e valores que orientam a condução de suas atividades.",
+    category: "Documentos institucionais",
+    scope: "Geral",
+    sourceLabel: "FUNCAMP",
+    sourceUrl: "https://www.funcamp.unicamp.br/portal/Home/BaixarArquivo?CodigoDiretorio=51&TituloArquivo=C%C3%B3digo+de+%C3%89tica",
+    tags: ["FUNCAMP", "ética", "conduta"]
+  },
+  {
+    id: "funcamp-politica-compliance",
+    title: "Política de Compliance da FUNCAMP",
+    agency: "FUNCAMP",
+    organization: "Fundação de Desenvolvimento da UNICAMP",
+    description: "Política que define padrões de conduta e dissemina a cultura de conformidade e transparência na FUNCAMP.",
+    category: "Documentos institucionais",
+    scope: "Geral",
+    sourceLabel: "FUNCAMP",
+    sourceUrl: "https://www.funcamp.unicamp.br/portal/Home/BaixarArquivo?CodigoDiretorio=52&TituloArquivo=Pol%C3%ADtica+de+Compliance",
+    tags: ["FUNCAMP", "compliance", "conformidade"]
+  },
+  {
+    id: "fapesp-boas-praticas",
+    title: "Boas Práticas Científicas",
+    agency: "FAPESP",
+    organization: "Fundação de Amparo à Pesquisa do Estado de São Paulo",
+    description: "Referência da FAPESP para integridade ética da pesquisa, baseada em educação, prevenção e investigação.",
+    category: "Orientações",
+    scope: "Geral",
+    sourceLabel: "FAPESP",
+    sourceUrl: "https://fapesp.br/boaspraticas/",
+    tags: ["boas práticas", "integridade", "pesquisa"]
+  },
+  {
+    id: "fapesp-revista-boas-praticas",
+    title: "Revista Boas Práticas",
+    agency: "FAPESP",
+    organization: "Revista Pesquisa FAPESP",
+    description: "Publicações relacionadas a boas práticas científicas e integridade em pesquisa.",
+    category: "Orientações",
+    scope: "Geral",
+    sourceLabel: "Pesquisa FAPESP",
+    sourceUrl: "https://revistapesquisa.fapesp.br/category/impressa/boas-praticas/",
+    tags: ["boas práticas", "integridade", "publicações"]
+  },
+  {
+    id: "finep-codigo-etica",
+    title: "Código de Ética, Conduta e Integridade da Finep",
+    agency: "FINEP",
+    organization: "Financiadora de Estudos e Projetos",
+    description: "Documento que reúne princípios, valores e diretrizes de conduta, ética e integridade da Finep.",
+    category: "Documentos institucionais",
+    scope: "Geral",
+    sourceLabel: "Finep",
+    sourceUrl: "https://www.finep.gov.br/images/a-finep/codigo-de-etica-e-conduta/Codigo_de_Etica.pdf",
+    tags: ["Finep", "ética", "integridade"]
+  },
+  {
+    id: "cnpq-programa-integridade",
+    title: "Programa de Integridade do CNPq",
+    agency: "CNPq",
+    organization: "Conselho Nacional de Desenvolvimento Científico e Tecnológico",
+    description: "Programa estruturado para prevenção, detecção, punição e remediação de corrupção, fraude e desvios éticos e de conduta.",
+    category: "Orientações",
+    scope: "Geral",
+    sourceLabel: "CNPq",
+    sourceUrl: "https://www.gov.br/cnpq/pt-br/assuntos/noticias/cnpq-em-acao/copy_of_PlanodeIntegridade_vf.pdf",
+    tags: ["CNPq", "integridade", "anticorrupção"]
+  },
+
   {
     id: "fapesp-formularios",
     title: "Central de Formulários FAPESP",
@@ -954,6 +1184,25 @@ const projectStageOverrides: Record<string, FundingProjectStage> = {
 };
 
 const sectionOverrides: Record<string, FundingResourceSection> = {
+  "sp-codigo-etica-administracao-publica": "Ética, integridade e compliance em pesquisa",
+  "sp-cartilha-assedio-moral": "Ética, integridade e compliance em pesquisa",
+  "unicamp-cip": "Ética, integridade e compliance em pesquisa",
+  "unicamp-politica-integridade-pesquisa": "Ética, integridade e compliance em pesquisa",
+  "unicamp-informacao-cip-001-2023": "Ética, integridade e compliance em pesquisa",
+  "unicamp-etica-pesquisa": "Ética, integridade e compliance em pesquisa",
+  "unicamp-cgdp": "Ética, integridade e compliance em pesquisa",
+  "unicamp-redu": "Ética, integridade e compliance em pesquisa",
+  "unicamp-privacidade": "Ética, integridade e compliance em pesquisa",
+  "unicamp-politica-privacidade": "Ética, integridade e compliance em pesquisa",
+  "unicamp-programa-integridade": "Ética, integridade e compliance em pesquisa",
+  "unicamp-portal-transparencia": "Ética, integridade e compliance em pesquisa",
+  "unicamp-dedh": "Ética, integridade e compliance em pesquisa",
+  "funcamp-codigo-etica": "Ética, integridade e compliance em pesquisa",
+  "funcamp-politica-compliance": "Ética, integridade e compliance em pesquisa",
+  "fapesp-boas-praticas": "Ética, integridade e compliance em pesquisa",
+  "fapesp-revista-boas-praticas": "Ética, integridade e compliance em pesquisa",
+  "finep-codigo-etica": "Ética, integridade e compliance em pesquisa",
+  "cnpq-programa-integridade": "Ética, integridade e compliance em pesquisa",
   "capes-amsud": "Fomento internacional",
   "capes-augm": "Fomento internacional",
   "capes-paep": "Apoio a eventos",
@@ -1104,6 +1353,8 @@ export const fundingModelAgencies = [
   "FINEP",
   "FAEPEX",
   "UNICAMP",
+  "FUNCAMP",
+  "Governo de SP",
   "Internacional"
 ] as const;
 
