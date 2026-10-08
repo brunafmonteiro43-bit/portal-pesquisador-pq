@@ -488,15 +488,15 @@ const fundingModelResourceBase: BaseFundingModelResource[] = [
   },
   {
     id: "capes-amsud",
-    title: "MATH/STIC/CLIMAT-AMSUD — modelos de projeto",
+    title: "MATH-AMSUD — modelos de projeto",
     agency: "CAPES",
     organization: "Coordenação de Aperfeiçoamento de Pessoal de Nível Superior",
-    description: "Programas que disponibilizam Modelo de Projeto, Plano de Trabalho, Plano de Atividades, Termo de Outorga e declarações.",
+    description: "Esta página reúne documentos do MATH-AMSUD. Para STIC-AMSUD ou CLIMAT-AMSUD, consulte a página própria de cada programa e o edital vigente.",
     category: "Submissão",
     scope: "Específico de chamada/programa",
     sourceLabel: "CAPES",
     sourceUrl: "https://www.gov.br/capes/pt-br/acesso-a-informacao/acoes-e-programas/bolsas/bolsas-e-auxilios-internacionais/bolsas-e-auxilios-internacionais/encontre-aqui/paises/multinacional/programa-math-amsud",
-    tags: ["AMSUD", "internacional", "plano de trabalho"]
+    tags: ["MATH-AMSUD", "internacional", "plano de trabalho"]
   },
   {
     id: "capes-augm",
@@ -954,6 +954,8 @@ const projectStageOverrides: Record<string, FundingProjectStage> = {
 };
 
 const sectionOverrides: Record<string, FundingResourceSection> = {
+  "capes-amsud": "Fomento internacional",
+  "capes-augm": "Fomento internacional",
   "capes-paep": "Apoio a eventos",
   "capes-paep-eb": "Apoio a eventos",
   "finep-fap": "Orientações gerais",
