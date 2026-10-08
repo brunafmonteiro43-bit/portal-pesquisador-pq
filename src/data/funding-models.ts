@@ -261,6 +261,7 @@ export type FundingModelResource = {
   projectStage: FundingProjectStage;
   centers: string[];
   researchLines: string[];
+  associationStatus: "Transversal" | "Temática" | "Não classificada";
   eligibilitySummary: string;
   relevanceNote: string;
   callStatus: FundingCallStatus;
@@ -273,7 +274,7 @@ export type FundingModelResource = {
 type FundingResourceMetadata = Pick<FundingModelResource,
   "resourceType" | "section" | "projectStage" | "centers" | "researchLines" |
   "eligibilitySummary" | "relevanceNote" | "callStatus" | "deadline" |
-  "lastCheckedAt" | "reviewStatus" | "reviewedBy"
+  "lastCheckedAt" | "reviewStatus" | "reviewedBy" | "associationStatus"
 >;
 type BaseFundingModelResource = Omit<FundingModelResource, keyof FundingResourceMetadata>;
 
@@ -1311,12 +1312,15 @@ function inferProjectStage(resource: BaseFundingModelResource): FundingProjectSt
 }
 
 export const fundingModelResources: FundingModelResource[] = fundingModelResourceBase.map((resource) => {
-  const centers = centersByResource[resource.id] ?? allCenterIds;
+  const explicitlyMappedCenters = centersByResource[resource.id];
+  const centers = explicitlyMappedCenters ?? [];
+  const associationStatus = resource.scope === "Geral"
+    ? "Transversal"
+    : explicitlyMappedCenters && explicitlyMappedCenters.length > 0
+      ? "Temática"
+      : "Não classificada";
   const centersWithLines = cocenCenters.filter((center) => centers.includes(center.id));
-  const defaultResearchLines =
-    centers.length === allCenterIds.length
-      ? allResearchLines
-      : Array.from(new Set(centersWithLines.flatMap((center) => center.researchLines)));
+  const defaultResearchLines = Array.from(new Set(centersWithLines.flatMap((center) => center.researchLines)));
   const status = statusOverrides[resource.id] ?? {};
   const isInternational = resource.agency === "Internacional";
 
@@ -1327,6 +1331,7 @@ export const fundingModelResources: FundingModelResource[] = fundingModelResourc
     projectStage: inferProjectStage(resource),
     centers,
     researchLines: researchLinesByResource[resource.id] ?? defaultResearchLines,
+    associationStatus,
     eligibilitySummary:
       eligibilityByResource[resource.id] ??
       (isInternational
