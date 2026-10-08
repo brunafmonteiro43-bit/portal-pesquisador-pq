@@ -140,7 +140,7 @@ export default function TemplatesPage() {
     <div className="space-y-6">
       <SectionHeader
         eyebrow="Biblioteca de apoio ao pesquisador"
-        title="Recursos para Pesquisa"
+        title="Modelos e Templates"
         description="Encontre modelos, formulários, guias, documentos institucionais e orientações de ética e integridade para apoiar cada etapa da pesquisa."
       />
 
