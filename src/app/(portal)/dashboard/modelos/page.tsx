@@ -1,27 +1,70 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ExternalLink, FileText, Info, Search, ShieldCheck } from "lucide-react";
+import {
+  CalendarClock,
+  ExternalLink,
+  FileText,
+  Info,
+  RotateCcw,
+  Search,
+  ShieldAlert
+} from "lucide-react";
 import { SectionHeader } from "@/components/modules/section-header";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
+  cocenCenters,
   fundingModelAgencies,
-  fundingModelCategories,
+  fundingModelCallStatuses,
+  fundingModelProjectStages,
+  fundingModelResourceSections,
+  fundingModelResourceTypes,
   fundingModelResources
 } from "@/data/funding-models";
 
+const ALL_CENTERS = "Todos";
+const ALL_LINES = "Todas as linhas";
+
+function formatDate(date: string) {
+  const parts = date.split("-");
+  if (parts.length !== 3) return date;
+  return parts[2] + "/" + parts[1] + "/" + parts[0];
+}
+
 export default function TemplatesPage() {
   const [selectedAgency, setSelectedAgency] = useState<(typeof fundingModelAgencies)[number]>("Todos");
-  const [selectedCategory, setSelectedCategory] = useState<(typeof fundingModelCategories)[number]>("Todas");
+  const [selectedSection, setSelectedSection] =
+    useState<(typeof fundingModelResourceSections)[number]>("Todas as seções");
+  const [selectedCenter, setSelectedCenter] = useState(ALL_CENTERS);
+  const [selectedLine, setSelectedLine] = useState(ALL_LINES);
+  const [selectedType, setSelectedType] =
+    useState<(typeof fundingModelResourceTypes)[number]>("Todos os tipos");
+  const [selectedStage, setSelectedStage] =
+    useState<(typeof fundingModelProjectStages)[number]>("Todas as etapas");
+  const [selectedStatus, setSelectedStatus] =
+    useState<(typeof fundingModelCallStatuses)[number]>("Todos os status");
   const [query, setQuery] = useState("");
+
+  const allResearchLines = useMemo(
+    () => Array.from(new Set(cocenCenters.flatMap((center) => center.researchLines))).sort((a, b) => a.localeCompare(b, "pt-BR")),
+    []
+  );
+  const selectedCenterRecord = cocenCenters.find((center) => center.id === selectedCenter);
+  const availableResearchLines =
+    selectedCenter === ALL_CENTERS ? allResearchLines : selectedCenterRecord?.researchLines ?? [];
 
   const filteredResources = useMemo(() => {
     const normalizedQuery = query.trim().toLocaleLowerCase("pt-BR");
 
     return fundingModelResources.filter((resource) => {
       const matchesAgency = selectedAgency === "Todos" || resource.agency === selectedAgency;
-      const matchesCategory = selectedCategory === "Todas" || resource.category === selectedCategory;
+      const matchesSection = selectedSection === "Todas as seções" || resource.section === selectedSection;
+      const matchesCenter = selectedCenter === ALL_CENTERS || resource.centers.includes(selectedCenter);
+      const matchesLine = selectedLine === ALL_LINES || resource.researchLines.includes(selectedLine);
+      const matchesType = selectedType === "Todos os tipos" || resource.resourceType === selectedType;
+      const matchesStage = selectedStage === "Todas as etapas" || resource.projectStage === selectedStage;
+      const matchesStatus = selectedStatus === "Todos os status" || resource.callStatus === selectedStatus;
       const searchable = [
         resource.title,
         resource.agency,
@@ -29,41 +72,132 @@ export default function TemplatesPage() {
         resource.description,
         resource.category,
         resource.scope,
+        resource.resourceType,
+        resource.section,
+        resource.projectStage,
+        resource.eligibilitySummary,
+        resource.relevanceNote,
+        resource.callStatus,
+        resource.deadline ?? "",
+        ...resource.centers,
+        ...resource.researchLines,
         ...resource.tags
       ]
         .join(" ")
         .toLocaleLowerCase("pt-BR");
 
-      const matchesQuery = !normalizedQuery || searchable.includes(normalizedQuery);
-      return matchesAgency && matchesCategory && matchesQuery;
+      return (
+        matchesAgency &&
+        matchesSection &&
+        matchesCenter &&
+        matchesLine &&
+        matchesType &&
+        matchesStage &&
+        matchesStatus &&
+        (!normalizedQuery || searchable.includes(normalizedQuery))
+      );
     });
-  }, [query, selectedAgency, selectedCategory]);
+  }, [
+    query,
+    selectedAgency,
+    selectedCenter,
+    selectedLine,
+    selectedSection,
+    selectedStage,
+    selectedStatus,
+    selectedType
+  ]);
+
+  function resetFilters() {
+    setSelectedAgency("Todos");
+    setSelectedSection("Todas as seções");
+    setSelectedCenter(ALL_CENTERS);
+    setSelectedLine(ALL_LINES);
+    setSelectedType("Todos os tipos");
+    setSelectedStage("Todas as etapas");
+    setSelectedStatus("Todos os status");
+    setQuery("");
+  }
 
   return (
     <div className="space-y-6">
       <SectionHeader
-        eyebrow="Apoio à elaboração e submissão"
-        title="Modelos, documentos e apoio à elaboração de projetos"
-        description="Encontre roteiros, formulários, manuais e orientações oficiais organizados por agência de fomento e finalidade."
+        eyebrow="Biblioteca de apoio ao pesquisador"
+        title="Modelos, documentos e orientações de fomento"
+        description="Catálogo inicial organizado por agência, etapa do projeto e aderência temática aos centros e núcleos da COCEN."
       />
 
       <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-950">
         <div className="flex items-start gap-3">
-          <Info className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
+          <ShieldAlert className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
           <div className="space-y-1">
-            <p className="font-semibold">Consulte sempre a fonte oficial antes da submissão.</p>
+            <p className="font-semibold">A associação temática ainda não confirma elegibilidade.</p>
             <p className="leading-6">
-              FAPESP possui diversos roteiros relativamente estáveis, mas CNPq, CAPES e Finep podem publicar
-              modelos específicos para cada chamada. Por isso, o Portal direciona para a versão mantida pela
-              própria agência em vez de armazenar cópias que podem ficar desatualizadas.
+              As recomendações são uma triagem inicial baseada nos temas publicados pela COCEN. Antes de submeter,
+              confira o edital e os requisitos na fonte oficial. A validação institucional dos itens está pendente
+              e a data de checagem de cada link ainda não foi registrada; por isso, o portal não os apresenta como
+              “verificados pela COCEN”.
             </p>
           </div>
         </div>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-[1fr_220px]">
-        <label className="relative block">
-          <span className="sr-only">Buscar modelo, agência ou documento</span>
+      <div className="space-y-3">
+        <div>
+          <h2 className="text-sm font-semibold text-foreground">Navegar por etapa</h2>
+          <p className="mt-1 text-xs text-muted-foreground">
+            Separe modelos de pesquisa, documentos para eventos, execução e oportunidades internacionais.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2" aria-label="Filtrar por seção do catálogo">
+          {fundingModelResourceSections.map((section) => {
+            const active = selectedSection === section;
+            return (
+              <button
+                key={section}
+                type="button"
+                onClick={() => setSelectedSection(section)}
+                aria-pressed={active}
+                className={
+                  active
+                    ? "rounded-full bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground shadow-sm"
+                    : "rounded-full border bg-background px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                }
+              >
+                {section}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="space-y-3">
+        <h2 className="text-sm font-semibold text-foreground">Filtrar por agência</h2>
+        <div className="flex flex-wrap gap-2" aria-label="Filtrar por agência">
+          {fundingModelAgencies.map((agency) => {
+            const active = selectedAgency === agency;
+            return (
+              <button
+                key={agency}
+                type="button"
+                onClick={() => setSelectedAgency(agency)}
+                aria-pressed={active}
+                className={
+                  active
+                    ? "rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm"
+                    : "rounded-full border bg-background px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                }
+              >
+                {agency}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <label className="relative block sm:col-span-2 xl:col-span-3">
+          <span className="sr-only">Buscar modelo, agência, centro ou tema de pesquisa</span>
           <Search
             className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
             aria-hidden="true"
@@ -72,140 +206,258 @@ export default function TemplatesPage() {
             type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Buscar modelo, agência ou documento..."
+            placeholder="Buscar modelo, agência, centro, tema ou requisito..."
             className="h-11 w-full rounded-md border border-input bg-background pl-10 pr-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-ring focus:ring-2 focus:ring-ring/20"
           />
         </label>
 
         <label>
-          <span className="sr-only">Filtrar por finalidade</span>
+          <span className="mb-1.5 block text-xs font-medium text-muted-foreground">Centro ou núcleo</span>
           <select
-            value={selectedCategory}
-            onChange={(event) =>
-              setSelectedCategory(event.target.value as (typeof fundingModelCategories)[number])
-            }
+            value={selectedCenter}
+            onChange={(event) => {
+              setSelectedCenter(event.target.value);
+              setSelectedLine(ALL_LINES);
+            }}
             className="h-11 w-full rounded-md border border-input bg-background px-3 text-sm outline-none focus:border-ring focus:ring-2 focus:ring-ring/20"
           >
-            {fundingModelCategories.map((category) => (
-              <option key={category} value={category}>
-                {category === "Todas" ? "Todas as finalidades" : category}
+            <option value={ALL_CENTERS}>Todos os centros e núcleos</option>
+            {cocenCenters.map((center) => (
+              <option key={center.id} value={center.id}>
+                {center.id} — {center.name}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label>
+          <span className="mb-1.5 block text-xs font-medium text-muted-foreground">Tema/linha de pesquisa</span>
+          <select
+            value={selectedLine}
+            onChange={(event) => setSelectedLine(event.target.value)}
+            disabled={availableResearchLines.length === 0}
+            className="h-11 w-full rounded-md border border-input bg-background px-3 text-sm outline-none focus:border-ring focus:ring-2 focus:ring-ring/20 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            <option value={ALL_LINES}>Todas as linhas disponíveis</option>
+            {availableResearchLines.map((line) => (
+              <option key={line} value={line}>
+                {line}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label>
+          <span className="mb-1.5 block text-xs font-medium text-muted-foreground">Tipo de recurso</span>
+          <select
+            value={selectedType}
+            onChange={(event) => setSelectedType(event.target.value as (typeof fundingModelResourceTypes)[number])}
+            className="h-11 w-full rounded-md border border-input bg-background px-3 text-sm outline-none focus:border-ring focus:ring-2 focus:ring-ring/20"
+          >
+            {fundingModelResourceTypes.map((type) => (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label>
+          <span className="mb-1.5 block text-xs font-medium text-muted-foreground">Etapa do projeto</span>
+          <select
+            value={selectedStage}
+            onChange={(event) => setSelectedStage(event.target.value as (typeof fundingModelProjectStages)[number])}
+            className="h-11 w-full rounded-md border border-input bg-background px-3 text-sm outline-none focus:border-ring focus:ring-2 focus:ring-ring/20"
+          >
+            {fundingModelProjectStages.map((stage) => (
+              <option key={stage} value={stage}>
+                {stage}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label>
+          <span className="mb-1.5 block text-xs font-medium text-muted-foreground">Situação da chamada</span>
+          <select
+            value={selectedStatus}
+            onChange={(event) => setSelectedStatus(event.target.value as (typeof fundingModelCallStatuses)[number])}
+            className="h-11 w-full rounded-md border border-input bg-background px-3 text-sm outline-none focus:border-ring focus:ring-2 focus:ring-ring/20"
+          >
+            {fundingModelCallStatuses.map((status) => (
+              <option key={status} value={status}>
+                {status}
               </option>
             ))}
           </select>
         </label>
       </div>
 
-      <div className="flex flex-wrap gap-2" aria-label="Filtrar por agência">
-        {fundingModelAgencies.map((agency) => {
-          const active = selectedAgency === agency;
-          return (
-            <button
-              key={agency}
-              type="button"
-              onClick={() => setSelectedAgency(agency)}
-              aria-pressed={active}
-              className={
-                active
-                  ? "rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm"
-                  : "rounded-full border bg-background px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-              }
-            >
-              {agency}
-            </button>
-          );
-        })}
-      </div>
+      {selectedCenterRecord && selectedCenterRecord.researchLines.length === 0 && (
+        <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950">
+          <p className="font-semibold">{selectedCenterRecord.id}: linhas de pesquisa a confirmar</p>
+          <p className="mt-1 leading-6">
+            A página pública de linhas de pesquisa da COCEN consultada não apresenta linhas para este centro/núcleo.
+            Os recursos transversais continuam disponíveis, mas a recomendação temática precisa ser validada com a unidade.
+          </p>
+        </div>
+      )}
 
       <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border bg-muted/30 px-4 py-3">
         <div>
           <p className="text-sm font-semibold text-foreground">
-            {filteredResources.length} {filteredResources.length === 1 ? "recurso encontrado" : "recursos encontrados"}
+            {filteredResources.length} de {fundingModelResources.length} recursos
           </p>
           <p className="text-xs text-muted-foreground">
-            Catálogo demonstrativo com links para as fontes oficiais.
+            Links para fontes oficiais; validação institucional e checagem de links ainda pendentes.
           </p>
         </div>
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <ShieldCheck className="h-4 w-4" aria-hidden="true" />
-          Fonte e data de verificação visíveis em cada card
-        </div>
+        <button
+          type="button"
+          onClick={resetFilters}
+          className="inline-flex min-h-9 items-center gap-2 rounded-md border bg-background px-3 py-2 text-xs font-semibold text-foreground transition-colors hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+        >
+          <RotateCcw className="h-3.5 w-3.5" aria-hidden="true" />
+          Limpar filtros
+        </button>
       </div>
 
       {filteredResources.length === 0 ? (
         <div className="rounded-xl border border-dashed p-10 text-center">
           <p className="font-semibold">Nenhum recurso encontrado.</p>
           <p className="mt-1 text-sm text-muted-foreground">
-            Tente outro termo de busca ou remova um dos filtros.
+            Tente outro termo ou limpe algum dos filtros selecionados.
           </p>
         </div>
       ) : (
         <div className="grid gap-4 lg:grid-cols-2">
-          {filteredResources.map((resource) => (
-            <Card key={resource.id} className="flex h-full flex-col">
-              <CardHeader className="space-y-4">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex min-w-0 gap-3">
+          {filteredResources.map((resource) => {
+            const centerLabel =
+              resource.centers.length === cocenCenters.length
+                ? "Transversal aos 23 centros e núcleos"
+                : resource.centers.length === 0
+                  ? "Sem associação temática definida"
+                  : resource.centers.join(", ");
+            const lineLabels =
+              resource.researchLines.length === allResearchLines.length
+                ? "Transversal a várias linhas de pesquisa"
+                : resource.researchLines.length > 0
+                  ? resource.researchLines.slice(0, 3).join(" · ") +
+                    (resource.researchLines.length > 3 ? " · +" + (resource.researchLines.length - 3) : "")
+                  : "Linha de pesquisa não informada";
+            const statusLabel =
+              resource.callStatus === "Chamada aberta" && resource.deadline
+                ? "Chamada aberta · prazo " + formatDate(resource.deadline)
+                : resource.callStatus === "Encerrada / histórica" && resource.deadline
+                  ? "Referência histórica · prazo encerrado em " + formatDate(resource.deadline)
+                  : resource.callStatus;
+
+            return (
+              <Card key={resource.id} className="flex h-full flex-col">
+                <CardHeader className="space-y-4">
+                  <div className="flex items-start gap-3">
                     <span className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                       <FileText className="h-5 w-5" aria-hidden="true" />
                     </span>
-                    <div className="min-w-0">
+                    <div className="min-w-0 flex-1">
                       <div className="mb-2 flex flex-wrap gap-2">
                         <Badge variant="secondary">{resource.agency}</Badge>
-                        <Badge variant="outline">{resource.category}</Badge>
+                        <Badge variant="outline">{resource.resourceType}</Badge>
+                        <Badge variant="outline">{resource.callStatus}</Badge>
                       </div>
                       <CardTitle className="text-lg leading-6">{resource.title}</CardTitle>
                       <p className="mt-1 text-sm text-muted-foreground">{resource.organization}</p>
                     </div>
                   </div>
-                </div>
-              </CardHeader>
+                </CardHeader>
 
-              <CardContent className="flex flex-1 flex-col gap-4">
-                <p className="text-sm leading-6 text-muted-foreground">{resource.description}</p>
+                <CardContent className="flex flex-1 flex-col gap-4">
+                  <p className="text-sm leading-6 text-muted-foreground">{resource.description}</p>
 
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="outline">{resource.scope}</Badge>
-                  {resource.tags.slice(0, 3).map((tag) => (
-                    <Badge key={tag} variant="secondary">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
+                  <div className="rounded-lg border bg-muted/30 p-3">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-foreground">Por que este recurso aparece</p>
+                    <p className="mt-1 text-sm leading-6 text-muted-foreground">{resource.relevanceNote}</p>
+                  </div>
 
-                <div className="mt-auto border-t pt-4">
-                  <div className="mb-4 grid gap-2 text-xs text-muted-foreground sm:grid-cols-2">
+                  <div className="space-y-1">
+                    <p className="text-xs font-semibold text-foreground">Atenção à elegibilidade</p>
+                    <p className="text-sm leading-6 text-muted-foreground">{resource.eligibilitySummary}</p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline">{resource.section}</Badge>
+                    <Badge variant="outline">{resource.projectStage}</Badge>
+                    <Badge variant="secondary">{resource.category}</Badge>
+                    {resource.tags.slice(0, 3).map((tag) => (
+                      <Badge key={tag} variant="secondary">{tag}</Badge>
+                    ))}
+                  </div>
+
+                  <div className="space-y-2 rounded-lg border p-3 text-xs">
                     <p>
-                      <span className="font-semibold text-foreground">Fonte:</span> {resource.sourceLabel}
+                      <span className="font-semibold text-foreground">Centros/núcleos:</span>{" "}
+                      <span className="text-muted-foreground">{centerLabel}</span>
                     </p>
-                    <p className="sm:text-right">
-                      <span className="font-semibold text-foreground">Verificado pela COCEN:</span>{" "}
-                      {resource.verifiedAt}
+                    <p>
+                      <span className="font-semibold text-foreground">Temas relacionados:</span>{" "}
+                      <span className="text-muted-foreground">{lineLabels}</span>
+                    </p>
+                    <p>
+                      <span className="font-semibold text-foreground">Situação:</span>{" "}
+                      <span className="text-muted-foreground">{statusLabel}</span>
                     </p>
                   </div>
 
-                  <a
-                    href={resource.sourceUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 sm:w-auto"
-                  >
-                    Acessar fonte oficial
-                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                  </a>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                  <div className="mt-auto border-t pt-4">
+                    <div className="mb-4 grid gap-2 text-xs text-muted-foreground sm:grid-cols-2">
+                      <p>
+                        <span className="font-semibold text-foreground">Fonte:</span> {resource.sourceLabel}
+                      </p>
+                      <p>
+                        <span className="font-semibold text-foreground">Etapa:</span> {resource.projectStage}
+                      </p>
+                      <p>
+                        <span className="font-semibold text-foreground">Última checagem do link:</span>{" "}
+                        {resource.lastCheckedAt ? formatDate(resource.lastCheckedAt) : "Não registrada"}
+                      </p>
+                      <p>
+                        <span className="font-semibold text-foreground">Validação institucional:</span>{" "}
+                        {resource.reviewStatus === "Validado pela COCEN"
+                          ? "Validado pela COCEN" + (resource.reviewedBy ? " · " + resource.reviewedBy : "")
+                          : "Pendente"}
+                      </p>
+                    </div>
+
+                    <a
+                      href={resource.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 sm:w-auto"
+                    >
+                      Consultar fonte oficial
+                      <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       )}
 
       <div className="rounded-xl border bg-card p-5">
-        <h2 className="font-semibold text-foreground">Evolução sugerida para a TI</h2>
-        <p className="mt-2 text-sm leading-6 text-muted-foreground">
-          Em uma próxima etapa, os anexos das chamadas capturadas pelo SGCP podem ser associados automaticamente
-          a cada oportunidade. Assim, o pesquisador deixa de consultar um repositório genérico e passa a visualizar
-          os documentos necessários para preparar aquela submissão específica.
-        </p>
+        <div className="flex items-start gap-3">
+          <Info className="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground" aria-hidden="true" />
+          <div>
+            <h2 className="font-semibold text-foreground">Como interpretar o catálogo</h2>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              Os temas associados aos centros são sínteses para facilitar a busca, não uma transcrição integral de
+              todas as linhas oficiais. CIEBC e NEAB precisam confirmar suas linhas de pesquisa antes da personalização.
+              A biblioteca reúne modelos, guias, portais, documentos para eventos e materiais de execução; nem todo item
+              é um template de projeto. A FUNCAMP e o Grant Office continuam sendo referências institucionais complementares.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
