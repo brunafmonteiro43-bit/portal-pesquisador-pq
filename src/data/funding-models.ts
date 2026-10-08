@@ -975,8 +975,6 @@ const fundingModelResourceBase: BaseFundingModelResource[] = [
   }];
 
 
-const allResearchLines = Array.from(new Set(cocenCenters.flatMap((center) => center.researchLines)));
-
 const innovationCenters = ["CBMEG", "CCSNano", "CEB", "CEMIB", "CPQBA", "CEPETRO", "NIPE", "NIED", "NEPA"];
 const biomedicalCenters = ["CBMEG", "CEB", "CEMIB", "CPQBA", "NEPA", "NEPO", "NEPP", "PAGU"];
 const policyCenters = ["CESOP", "NEPA", "NEPAM", "NEPO", "NEPP", "NIED", "NUDECRI", "PAGU", "CEPAGRI"];
