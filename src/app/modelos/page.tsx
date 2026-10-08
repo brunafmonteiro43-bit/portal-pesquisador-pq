@@ -10,5 +10,5 @@ const items = [
 ];
 
 export default function PublicModelosPage() {
-  return <PublicPage eyebrow="Documentos públicos" title="Modelos e Templates" description="Categorias de documentos e modelos demonstrativos para orientar pesquisadores antes do acesso ao ambiente interno." items={items} />;
+  return <PublicPage eyebrow="Documentos públicos" title="Modelos e Templates" description="Explore modelos, formulários, documentos institucionais e orientações que ajudam a planejar, submeter e acompanhar projetos de pesquisa." items={items} />;
 }

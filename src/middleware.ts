@@ -13,11 +13,27 @@ const legacyFundingPaths = new Set([
   "/dashboard/oportunidades"
 ]);
 
+const legacyPublicRoutes: Record<string, string> = {
+  "/modelos": "/dashboard/modelos",
+  "/templates": "/dashboard/modelos",
+  "/fomento-editais": "/dashboard/fomento-oportunidades",
+  "/trilhas": "/dashboard/trilhas",
+  "/glossario": "/dashboard/glossario",
+  "/centros-nucleos": "/dashboard/centros",
+  "/patentes": "/dashboard/patentes",
+  "/busca": "/dashboard"
+};
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (legacyFundingPaths.has(pathname)) {
     return NextResponse.redirect(new URL("/dashboard/fomento-oportunidades", request.nextUrl));
+  }
+
+  const authenticatedDestination = legacyPublicRoutes[pathname];
+  if (authenticatedDestination) {
+    return NextResponse.redirect(new URL(authenticatedDestination, request.nextUrl));
   }
 
   const hasSessionCookie = sessionCookieNames.some((name) => request.cookies.has(name));
@@ -40,6 +56,14 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/dashboard/:path*",
-    "/api/chat/:path*"
+    "/api/chat/:path*",
+    "/modelos",
+    "/templates",
+    "/fomento-editais",
+    "/trilhas",
+    "/glossario",
+    "/centros-nucleos",
+    "/patentes",
+    "/busca"
   ]
 };
