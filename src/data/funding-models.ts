@@ -975,7 +975,6 @@ const fundingModelResourceBase: BaseFundingModelResource[] = [
   }];
 
 
-const allCenterIds = cocenCenters.map((center) => center.id);
 const allResearchLines = Array.from(new Set(cocenCenters.flatMap((center) => center.researchLines)));
 
 const innovationCenters = ["CBMEG", "CCSNano", "CEB", "CEMIB", "CPQBA", "CEPETRO", "NIPE", "NIED", "NEPA"];
@@ -1314,10 +1313,10 @@ function inferProjectStage(resource: BaseFundingModelResource): FundingProjectSt
 export const fundingModelResources: FundingModelResource[] = fundingModelResourceBase.map((resource) => {
   const explicitlyMappedCenters = centersByResource[resource.id];
   const centers = explicitlyMappedCenters ?? [];
-  const associationStatus = resource.scope === "Geral"
-    ? "Transversal"
-    : explicitlyMappedCenters && explicitlyMappedCenters.length > 0
-      ? "Temática"
+  const associationStatus = explicitlyMappedCenters && explicitlyMappedCenters.length > 0
+    ? "Temática"
+    : resource.scope === "Geral"
+      ? "Transversal"
       : "Não classificada";
   const centersWithLines = cocenCenters.filter((center) => centers.includes(center.id));
   const defaultResearchLines = Array.from(new Set(centersWithLines.flatMap((center) => center.researchLines)));
