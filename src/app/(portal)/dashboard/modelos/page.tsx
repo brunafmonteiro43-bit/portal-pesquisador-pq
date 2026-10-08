@@ -455,6 +455,15 @@ export default function TemplatesPage() {
               A biblioteca reúne modelos, guias, portais, documentos para eventos e materiais de execução; nem todo item
               é um template de projeto. A FUNCAMP e o Grant Office continuam sendo referências institucionais complementares.
             </p>
+            <a
+              href="https://www.cocen.unicamp.br/centros-e-nucleos/linhas-de-pesquisa"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-primary underline underline-offset-4 hover:no-underline"
+            >
+              Consultar linhas de pesquisa na página oficial da COCEN
+              <ExternalLink className="h-4 w-4" aria-hidden="true" />
+            </a>
           </div>
         </div>
       </div>
