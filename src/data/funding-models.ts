@@ -244,58 +244,6 @@ export const cocenCenters: COCENCenter[] = [
   }
 ];
 
-export const fundingModelResourceTypes = [
-  "Todos os tipos", "Modelo/roteiro", "Formulário", "Guia/manual", "Portal oficial",
-  "Documento de submissão", "Relatório/prestação de contas", "Documento institucional",
-  "Documento para evento", "Edital de referência"
-] as const;
-export type FundingResourceType = Exclude<(typeof fundingModelResourceTypes)[number], "Todos os tipos">;
-
-export const fundingModelResourceSections = [
-  "Todas as seções", "Elaboração e submissão", "Apoio a eventos",
-  "Execução e prestação de contas", "Documentos institucionais", "Fomento internacional", "Orientações gerais"
-] as const;
-export type FundingResourceSection = Exclude<(typeof fundingModelResourceSections)[number], "Todas as seções">;
-
-export const fundingModelProjectStages = [
-  "Todas as etapas", "Planejamento e elaboração", "Submissão", "Eventos",
-  "Execução e prestação de contas", "Documentação institucional", "Consulta e orientação", "Múltiplas etapas"
-] as const;
-export type FundingProjectStage = Exclude<(typeof fundingModelProjectStages)[number], "Todas as etapas">;
-
-export const fundingModelCallStatuses = [
-  "Todos os status", "Permanente", "Varia por chamada", "Chamada aberta", "Encerrada / histórica"
-] as const;
-export type FundingCallStatus = Exclude<(typeof fundingModelCallStatuses)[number], "Todos os status">;
-
-export type COCENCenter = { id: string; name: string; researchLines: string[] };
-
-export const cocenCenters: COCENCenter[] = [
-  { id: "CBMEG", name: "Centro de Biologia Molecular e Engenharia Genética", researchLines: ["Biologia molecular, genética e genômica", "Biotecnologia e bioinformática", "Medicina molecular e biologia vegetal"] },
-  { id: "CCSNano", name: "Centro de Componentes Semicondutores e Nanotecnologias", researchLines: ["Semicondutores e nanoeletrônica", "Nanofabricação, nanofotônica e nanomateriais"] },
-  { id: "CEB", name: "Centro de Engenharia Biomédica", researchLines: ["Engenharia biomédica e clínica", "Medicina nuclear, ressonância e radiodiagnóstico"] },
-  { id: "CEMIB", name: "Centro Multidisciplinar para Investigação Biológica", researchLines: ["Modelos biológicos e doenças", "Células-tronco, CRISPR e vacinas"] },
-  { id: "CIEBC", name: "CIEBC", researchLines: [] },
-  { id: "CEPAGRI", name: "Centro de Pesquisas Meteorológicas e Climáticas Aplicadas à Agricultura", researchLines: ["Meteorologia, clima e agricultura", "Sensoriamento remoto e mudanças climáticas"] },
-  { id: "CEPETRO", name: "Centro de Estudos de Petróleo", researchLines: ["Petróleo, reservatórios e perfuração", "Energia, CCUS e transição energética", "IA e ciência de dados aplicada à energia"] },
-  { id: "CESOP", name: "Centro de Estudos de Opinião Pública", researchLines: ["Opinião pública e comportamento político-social", "Políticas públicas e democracia"] },
-  { id: "CIDDIC", name: "Centro de Integração, Documentação e Difusão Cultural", researchLines: ["Musicologia e performance sinfônica", "Pedagogia musical e canto coral"] },
-  { id: "CLE", name: "Centro de Lógica, Epistemologia e História da Ciência", researchLines: ["Lógica e epistemologia", "História da ciência e filosofia"] },
-  { id: "CMU", name: "Centro de Memória-Unicamp", researchLines: ["Memória, cidade e história social/econômica", "Acervos e arquivos"] },
-  { id: "CPQBA", name: "Centro Pluridisciplinar de Pesquisas Químicas, Biológicas e Agrícolas", researchLines: ["Agrotecnologia e bioprocessos", "Farmacologia, toxicologia e microbiologia", "Química analítica/orgânica e produtos naturais"] },
-  { id: "LUME", name: "Núcleo Interdisciplinar de Pesquisas Teatrais", researchLines: ["Teatro, atuação e performance", "Dança, palhaçaria e corpo na arte"] },
-  { id: "NEAB", name: "Núcleo de Estudos Afro-Brasileiros", researchLines: [] },
-  { id: "NEPA", name: "Núcleo de Estudos e Pesquisas em Alimentação", researchLines: ["Saúde pública, alimentação e nutrição", "Tecnologias alimentares e abastecimento", "Segurança alimentar e agricultura familiar"] },
-  { id: "NEPAM", name: "Núcleo de Estudos e Pesquisas Ambientais", researchLines: ["Biodiversidade e conservação", "Serviços ecossistêmicos, clima e justiça ambiental", "Sustentabilidade"] },
-  { id: "NEPO", name: "Núcleo de Estudos de População Elza Berquó", researchLines: ["Demografia e políticas públicas", "Família, gênero e população", "População, ambiente, saúde e saúde reprodutiva"] },
-  { id: "NEPP", name: "Núcleo de Estudos de Políticas Públicas", researchLines: ["Políticas públicas, pobreza e proteção social", "Infância, adolescência, segurança, saúde e educação"] },
-  { id: "NICS", name: "Núcleo Interdisciplinar de Comunicação Sonora", researchLines: ["Informação musical e processamento digital de sinais", "Som interativo, música e cognição"] },
-  { id: "NIED", name: "Núcleo de Informática Aplicada à Educação", researchLines: ["Tecnologias digitais na educação", "Pensamento computacional, STEAM e robótica", "Software educacional, EaD, inclusão e IA"] },
-  { id: "NIPE", name: "Núcleo Interdisciplinar de Planejamento Energético", researchLines: ["Planejamento e política energética", "Energia, ambiente, sustentabilidade e bioenergia"] },
-  { id: "NUDECRI", name: "Núcleo de Desenvolvimento da Criatividade", researchLines: ["Linguagem urbana e cidades inteligentes", "Divulgação científica e tecnologias da linguagem", "Literatura, artes e comunicação"] },
-  { id: "PAGU", name: "Núcleo de Estudos de Gênero Pagu", researchLines: ["Gênero, sexualidade e desigualdades", "Violência, justiça e políticas públicas", "Cultura, mídia, trabalho e mobilidade"] }
-];
-
 export type FundingModelResource = {
   id: string;
   title: string;
