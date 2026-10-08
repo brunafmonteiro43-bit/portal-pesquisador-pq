@@ -341,6 +341,11 @@ export default function TemplatesPage() {
             {filteredResources.length} de {fundingModelResources.length} recursos
           </p>
           <p className="text-xs text-muted-foreground">
+            {selectedCenterRecord ? `Filtro de centro: ${selectedCenterRecord.id}` : "Todos os centros e núcleos"}
+            {selectedLine !== ALL_LINES ? ` · Tema: ${selectedLine}` : ""}
+            {selectedSection !== "Todas as seções" ? ` · Categoria: ${selectedSection}` : ""}
+          </p>
+          <p className="mt-1 text-xs text-muted-foreground">
             Links para fontes oficiais; validação institucional e checagem de links ainda pendentes.
           </p>
         </div>
@@ -389,7 +394,12 @@ export default function TemplatesPage() {
                 ? "Chamada aberta · prazo " + formatDate(resource.deadline)
                 : resource.callStatus === "Encerrada / histórica" && resource.deadline
                   ? "Referência histórica · prazo encerrado em " + formatDate(resource.deadline)
-                  : resource.callStatus;
+                  : resource.callStatus === "Permanente"
+                    ? "Referência contínua; não é uma chamada específica"
+                    : resource.callStatus;
+            const relatedResources = fundingModelResources
+              .filter((other) => other.id !== resource.id && (other.section === resource.section || other.tags.some((tag) => resource.tags.includes(tag))))
+              .slice(0, 3);
 
             return (
               <Card key={resource.id} className="flex h-full flex-col">
@@ -440,6 +450,14 @@ export default function TemplatesPage() {
                       <p><span className="font-semibold text-foreground">Situação:</span>{" "}<span className="text-muted-foreground">{statusLabel}</span></p>
                       <p><span className="font-semibold text-foreground">Como usar:</span>{" "}<span className="text-muted-foreground">{actionLabel}</span></p>
                       <p><span className="font-semibold text-foreground">Elegibilidade:</span>{" "}<span className="text-muted-foreground">{resource.eligibilitySummary}</span></p>
+                      {relatedResources.length > 0 ? (
+                        <div className="border-t pt-2">
+                          <p className="mb-1 font-semibold text-foreground">Recursos relacionados</p>
+                          <ul className="space-y-1">
+                            {relatedResources.map((related) => <li key={related.id}><a href={related.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 hover:no-underline">{related.title}</a></li>)}
+                          </ul>
+                        </div>
+                      ) : null}
                     </div>
                   </details>
 
